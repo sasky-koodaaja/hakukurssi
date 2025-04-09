@@ -1,0 +1,11 @@
+[book]
+title = "Ammatillisen verkkoprofiilin koostaminen"
+description = "SASKY Koodaaja-verkkokoulutusten hakuvaihekurssin taustamateriaali"
+authors = ["Pekka Tapio Aalto, Peter Forsell"]
+language = "fi"
+multilingual = false
+src = "src"
+
+[output.html]
+additional-css = ["custom.css"]
+site-url = "/book/"
