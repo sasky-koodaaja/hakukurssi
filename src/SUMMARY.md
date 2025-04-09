@@ -16,7 +16,7 @@
 
 # OSA 4 - API-rajapinnat
 
-- [todo](./osa3/todo.md)
+- [todo](./osa4/todo.md)
 
 ---
 
