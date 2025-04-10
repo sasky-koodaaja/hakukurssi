@@ -4,7 +4,7 @@
 
 # OSA 1 - HTML ja CSS
 
-- [todo](./osa1/todo.md)
+- [HTML-kielen termistöä](./osa1/elements.md)
 
 # OSA 2 - Johdanto JavaScriptiin
 
