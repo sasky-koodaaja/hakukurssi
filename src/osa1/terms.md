@@ -8,7 +8,7 @@ kokonaisuutta, jossa on *aloitustagi*, *sisältö* ja *lopetustagi*. Aloitustagi
 Aloitustagin tunnistaa siitä, että se on sana tai lyhenne, joka on sijoitettu `<>`-merkkien sisälle. Esimerkiksi `<p>` on yksi yleinen aloitustagi. Lopetustagin tunnistaa siitä, että se on samanlainen kuin aloitustagi, mutta sanan tai lyhenteen edessä on `/`-merkki. Edellä olevan aloitustagin lopetustagi on `</p>`.
  
 <div class="image">
- <img alt="Esimerkkikuva, joka kuvaa elementin rakennetta." src="./elements-1.png">
+ <img alt="Esimerkkikuva, joka kuvaa elementin rakennetta." src="./terms-1.png">
 </div>
  
 ## Sisäkkäiset elementit
@@ -76,9 +76,9 @@ HTML-elementti voi olla myös niin sanottu **tyhjä elementti**. Tyhjässä elem
  
 `img` (image) on tyhjä elementti, jolla sivulle sijoitetaan kuva. Sijoitettavan kuvan osoite määritellään `src`-määritteellä ja kuvan vaihtoehtoinen kuvateksti määritellään `alt`-määritteellä. Tässä tapauksessa elementillä ei ole tarvetta sisällölle, joten siksi sillä ei ole sisältöosaa eikä lopetustagia.
  
-> Huomaa, että elementillä voi olla monia määritteitä, joista osa on välttämättömiä ja osa vapaaehtoisia. Esimerkiksi `src` ja `alt` ovat kummatkin `img`-elementin pakollisia määritteitä.
+> Huomaa, että elementillä voi olla monia määritteitä, joista osa on pakollisia ja osa vapaaehtoisia. Esimerkiksi `src` ja `alt` ovat kummatkin `img`-elementin pakollisia määritteitä.
  
-## Sisältö on keskiössä
+## Merkkauksessa sisältö on keskiössä
  
 HTML-elementeillä merkataan dokumentin merkityksellistä sisältöä (semantiikkaa), ei sen ulkoasua. Tilanteessa käytettävä HTML-elementti valitaan sen merkityksen perusteella, ei sen ulkoasun perusteella.
  
