@@ -3,6 +3,6 @@ pre, code {
 }
 
 .image img {
-  margin: 0 auto;
+  margin-left: 2em;
   max-width: 80%;
 }
