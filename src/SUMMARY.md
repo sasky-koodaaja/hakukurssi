@@ -12,7 +12,7 @@
 
 - [JavaScript-ohjelmoinnin perusteet](./osa2/javascript01.md)
 - [Muuttujat](./osa2/jsmuuttujat.md)
-- [Operaattorit](./osa2/joperaattorit.md)
+- [Operaattorit](./osa2/jsoperaattorit.md)
 
 # OSA 3 - Kaaviot
 
