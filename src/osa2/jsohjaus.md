@@ -14,7 +14,7 @@ ohjauskomento (ehto) {
 }
 ```
 
-Yllä olevassa esimerkissä "ohjauskomento" voisi olla esimerkiksi ```while``` tai ```if```. Ohjauskomennon jälkeen on normaalisti suluissa oleva ehto (tai muun tyyppinen  lauseke, kuten ```for```-rakenteessa), joka määrää,suoritetaanko kyseinen lohko. 
+Yllä olevassa esimerkissä "ohjauskomento" voisi olla esimerkiksi ```while``` tai ```if```. Ohjauskomennon jälkeen on normaalisti suluissa oleva ehto (tai muun tyyppinen  lauseke, kuten ```for```-rakenteessa), joka määrää, suoritetaanko kyseinen lohko. 
 
 Lohko suoritetaan aina kokonaisuudessaan tai jätetään kokonaan väliin – yksittäisiä lauseita ei hypitä yli. Näin lohko sitoo useamman lauseen yhdeksi ehjäksi kokonaisuudeksi.
 
