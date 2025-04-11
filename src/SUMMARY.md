@@ -2,6 +2,10 @@
 
 [Ammatillisen verkkoprofiilin koostaminen](README.md)
 
+# Työvälineet
+ - [Tarvittavat ohjelmat](./tyovalineet/ohjelmat.md)
+ - [Visual Studio Coden asentaminen](./tyovalineet/vsc.md)
+
 # OSA 1 - HTML ja CSS
 
 - [HTML-kielen termistöä](./osa1/terms.md)
