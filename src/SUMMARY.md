@@ -14,7 +14,6 @@
 - [Muuttujat](./osa2/jsmuuttujat.md)
 - [Operaattorit](./osa2/jsoperaattorit.md)
 
-
 # OSA 3 - Kaaviot
 
 - [todo](./osa3/todo.md)
