@@ -2,7 +2,7 @@
 
 Verkossa on runsaasti lähdemateriaalia tarjolla. Hyvä vaihtoehto on esimerkiksi sivusto [W3Schools Javascript](https://www.w3schools.com/js/default.asp) ja vaihtoehtoisesti vaikka maksutta saatavilla olevaa kirja [JavaScript From Zero to Hero](https://codersguild.net/download/2811_JavaScript-From-Zero-to-Hero.pdf) (hieman nurinkurisesti vasta luku 4 käsittelee alkeita, hyppää siis neljänteen lukuun). Linkki on toisinaan hyvin hidas, ole siis kärsivällinen.
 
-Erinomainen tietolähde on myös ohjelmistokehittäjien yhteisö [Stack Overflow](https://stackoverflow.com/questions), jossa hakutoiminnon avulla voi etsiä vastauksia kysymyksiin ja jos kyseisestä asiasta ei löydy tietoja, voi lisätä oman kysymyksen.
+Erinomainen tietolähde on myös ohjelmistokehittäjien yhteisö [Stack Overflow](https://stackoverflow.com/questions), jossa hakutoiminnon avulla voi etsiä vastauksia kysymyksiin ja jos kyseisestä asiasta ei löydy tietoja, voi lisätä oman kysymyksen. Vastaava ja kenties vielä suositumpi on [Stack Exchange](https://superuser.com/), johon kannattaa myös tutustua.
 
 ## Ohjelmoinnin peruskäsitteet
 
@@ -29,7 +29,11 @@ Koodilause muistuttaa tavallisen kielen virkettä: siinä on aina jokin toiminto
 
 ### Miten testaan nopeasti JavaScript-lauseen?
 
+<!--
 [![Klikkaa kuvaa nähdäksesi videon](console.jpg)](https://www.youtube.com/watch?v=K5MPBOznDSc)
+-->
+
+<a href="https://www.youtube.com/watch?v=K5MPBOznDSc" target=_blank><img src="console.jpg"></a>
 
 Klikkaa yllä olevaa kuvaa nähdäksesi videon.
 

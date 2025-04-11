@@ -97,7 +97,7 @@ let tulos = (2 + 3) * 4 // tulos on 20, koska sulut lasketaan ensin
 
 ### Yhteenveto
 - Käytä operaattoreita laskemiseen ja tekstin yhdistämiseen.
-- + toimii sekä lukujen että tekstin kanssa.
+- \+ toimii sekä lukujen että tekstin kanssa.
 - Modulo (%) kertoo, mitä jää jäljelle jaossa.
 - ++ ja -- ovat lyhenteitä yhden lisäämiselle tai vähentämiselle.
 - Käytä sulkuja selkeyttämään laskujen järjestystä.

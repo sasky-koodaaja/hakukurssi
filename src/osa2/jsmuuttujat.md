@@ -74,7 +74,7 @@ Escape-merkki on kenoviiva ```\```, jota seuraa jokin muu merkki. Tämä yhdiste
 Muutama Escape-merkki:
 - \\' ja \\" sallivat kirjoittaa lainausmerkin osaksi merkkijonoa
 - \n tekee rivinvaihdon
-- \\ lisää kenoviivan
+- \\\ lisää kenoviivan
 
 Esimerkki merkkijonosta, joka sisältää Escape-merkkejä:
 ```javascript
@@ -85,6 +85,7 @@ Ylläolevan muuttujan tulostus tuottaa tällaisen rivin:
 ```text
 Täällä on kenoviiva \ ja lainausmerkki " tekstin joukossa.
 ```
+
 
 Kun haluat tulostaa tekstin kahdelle riville, lisää haluamaasi kohtaan \\n.
 ```javascript
