@@ -11,6 +11,7 @@
 - [HTML-kielen termistöä](./osa1/terms.md)
 - [Yleisimmät HTML-elementit](./osa1/elements.md)
 - [HTML-dokumentti](./osa1/document.md)
+- [Ensimmäinen HTML-sivu](./osa1/hello.md)
 
 # OSA 2 - Johdanto JavaScriptiin
 
