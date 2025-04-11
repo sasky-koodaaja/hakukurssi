@@ -18,7 +18,7 @@ HTML-dokumentilla on selkeä ja tarkasti määritelty rakenne. Alla on yksinkert
  
 ## `<!DOCTYPE html>`
  
-Dokumentti alkaa aina dokumenttityypillä (`DOCTYPE`), joka määrittelee, mitä HTML-suositusta dokumentti noudattaa. Dokumenttityyppi on tärkeä määritellä, koska sen perusteella  selaimet tulkitsevat dokumentin merkkausta. Vuosien saatossa HTML:stä on tullut useita suosituksia, joista jokaisella on oma dokumenttityyppinsä.
+Dokumentti alkaa aina dokumenttityypillä (`DOCTYPE`). Se määrittelee, mitä HTML-suositusta dokumentti noudattaa. Dokumenttityyppi on tärkeä määritellä, koska sen perusteella  selaimet tulkitsevat dokumentin merkkausta. Vuosien saatossa HTML:stä on tullut useita suosituksia, joista jokaisella on oma dokumenttityyppinsä.
  
 Aikaisemmissa suosituksissa dokumenttityyppien määrittelyt olivat pitkiä tekstipätkiä. HTML5-suosituksen myötä dokumenttityyppi typistettiin lyhyeksi ja ytimekkääksi.
  
