@@ -10,7 +10,9 @@
 
 # OSA 2 - Johdanto JavaScriptiin
 
-- [todo](./osa2/todo.md)
+- [JavaScript-ohjelmoinnin perusteet](./osa2/javascript01.md)
+- [Muuttujat](./osa2/jsmuuttujat.md)
+- [Operaattorit](./osa2/joperaattorit.md)
 
 # OSA 3 - Kaaviot
 
