@@ -94,6 +94,8 @@ Kirjoita funktio, joka ottaa parametrina vastaan yhden luvun ja palauttaa sen ne
 
 Tässä esimerkissä on kaksi uutta asiaa, toinen on ```<input>```-elementin käyttö JavaScriptin kanssa ja toinen on ```onClick```-tapahtumaan liitetty funktiokutsu. Tutki esimerkkikoodia huolellisesti, kopioi se ja tallenna tiedostoksi ja kokeile toiminta selaimella. Samaa tekniikkaa käytetään myöhemminkin runsaasti.
 
+Tässä vaiheessa ei tarvitse vielä selvittää ```document.getElementById("elementinTunniste")```-rakenteen toimintaa. Sen voi kopioida sellaisenaan tehtävästä toiseen, kunhan vaihtaa jokaisessa kohdassa halutun elementin tunnisteen eli id:n kyseiseen kutsuun.
+
 ```javascript
 <!DOCTYPE html>
 <html>
@@ -198,9 +200,9 @@ Kirjoita HTML-sivu ja funktio, joka muuntaa annetun lämpötilan celsius-asteist
 Näytä tulos sivulla.
 
 
-## Pieniä apuja harjoituksiin
+## Mallipohjat avuksi harjoituksiin
 
-Mikli harjoitusten koodaaminen tuntuu ylipääsemättömän vaikealta, voit käyttää apunasi alla olevia tyhjiä mallipohjia.
+Mikäli harjoitusten koodaaminen tuntuu ylipääsemättömän vaikealta, voit käyttää apunasi alla olevia tyhjiä mallipohjia. Niistä puuttuu vain JavaScript-funktio.
 
 ### Mallipohja 17
 
