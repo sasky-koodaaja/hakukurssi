@@ -1,8 +1,10 @@
 
-## JavaScriptin perusteet – Ohjausrakenteet ja lohko
+# Ohjausrakenteet ja lohko
 
+## Ohjausrakenteet
 Ohjausrakenteet ovat ohjelmoinnissa keinoja hallita, mitä osia koodista suoritetaan ja missä järjestyksessä. Ne mahdollistavat esimerkiksi ehtojen tarkistamisen ja toistuvien toimintojen suorittamisen. Ilman ohjausrakenteita ohjelma suorittaisi koodirivit vain ylhäältä alas, yksi kerrallaan, ilman mahdollisuutta valintoihin tai toistoihin.
 
+## Lohko
 Lohko tarkoittaa joukkoa koodirivejä, jotka kuuluvat yhteen. Lohko merkitään JavaScriptissä aaltosulkujen ```{ }``` sisään. Esimerkiksi if-ehtolauseessa lohko kertoo, mitä tapahtuu, jos ehto toteutuu.
 
 Tyypillisesti eri ohjausrakenteet ovat alla olevan muotoisia:
@@ -18,7 +20,7 @@ Yllä olevassa esimerkissä "ohjauskomento" voisi olla esimerkiksi ```while``` t
 
 Lohko suoritetaan aina kokonaisuudessaan tai jätetään kokonaan väliin – yksittäisiä lauseita ei hypitä yli. Näin lohko sitoo useamman lauseen yhdeksi ehjäksi kokonaisuudeksi.
 
-### Esimerkkejä
+## Esimerkit
 
 **if-else (ehtolause):**
 

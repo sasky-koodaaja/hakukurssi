@@ -1,8 +1,8 @@
-## JavaScriptin perusteet – Operaattorit
+# Operaattorit
 
 Operaattorit ovat symboleita, joilla voidaan tehdä laskutoimituksia ja muokata muuttujien arvoja. Ne ovat ohjelmoinnin perusrakennuspalikoita, aivan kuten matikassa + ja -.
 
-### Laskuoperaattorit
+## Laskuoperaattorit
 
 Yksi tärkeimmistä operaattoreista on **sijoitusoperaattori** jota merkitään yhdellä yhtysuuruusmerkillä (=). Se on tavallaan suora määräys tietokoneelle, että **sijoita merkin oikealla puolella oleva arvo vasemmalla olevaan muuttujaan**. Muista, aina oikealta vasemmalle.
 
@@ -218,13 +218,14 @@ Lisää muuttujaan yksi ja näytä uusi arvo innerHTML:ssä.
 </html>
 ```
 
-### Vertailuoperaattorit
+## Vertailuoperaattorit
 
 JavaScriptissä on operaattoreita, joita käytetään vertaamaan arvoja keskenään. Näitä kutsutaan vertailuoperaattoreiksi (comparison operators).
 
 Vertailun tuloksena saadaan tosi (true) tai epätosi (false) arvo.
 
-#### Tärkeimmät vertailuoperaattorit
+### Tärkeimmät vertailuoperaattorit
+
 |Operaattori|Selitys|Esimerkki|Tulos
 |-----------|-------|---------|-----
 |==	|Onko arvot yhtäsuuret?|a == 6|false
@@ -235,7 +236,7 @@ Vertailun tuloksena saadaan tosi (true) tai epätosi (false) arvo.
 |<=	|Onko pienempi tai yhtä suuri?|a <= 4|false
 
 
-### Esimerkkejä vertailuista
+## Esimerkkejä vertailuista
 Alla on kolme yksinkertaista esimerkkiä, jotka voit avata selaimessa ja nähdä tulokset suoraan:
 
 **esimerkki4.html**

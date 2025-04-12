@@ -40,7 +40,9 @@ Koodilause on ohjelmointikielessä yksi yksittäinen käsky tai toimenpide, jonk
 
 Koodilause muistuttaa tavallisen kielen virkettä: siinä on aina jokin toiminto ja usein myös kohde, johon toiminto kohdistuu. Esimerkiksi lause "Anna Maijalle omena" kertoo, kuka saa mitä. Vastaavasti ohjelmointikielen lause voi sanoa: "laske yhteen nämä luvut ja tallenna tulos".
 
-### Miten testaan nopeasti JavaScript-lauseen?
+## Miten testaan nopeasti JavaScript-lauseen?
+
+Alla on pieni video, jossa esitellään selaimesta löytyvän konsolin käyttöä lyhyesti. 
 
 <!--
 [![Klikkaa kuvaa nähdäksesi videon](console.jpg)](https://www.youtube.com/watch?v=K5MPBOznDSc)

@@ -1,6 +1,7 @@
 
-## JavaScriptin perusteet – Muuttujat ja tietotyypit
-### Muuttujat
+# Muuttujat ja tietotyypit
+
+## Muuttujat
 Muuttujat ovat säilytyspaikkoja arvoille eli datalle. Ne mahdollistavat sen, että koodisi voi käsitellä vaihtelevaa tietoa – kuten käyttäjän nimeä tai laskun summaa. Tieto pysyy muuttujassa tallessa koko ohjelman suorituksen ajan. 
 
 Ohjelmoija voi halutessaan muuttaa muuttujan arvoja ohjelman suorituksen aikana vaikka monta kertaa, esimerkiksi pelissä voi pelaajan pistemäärä olla tallennettuna muuttujaan ja aina kun pelaaja onnistuu jossain uudessa asiassa, hänen piste-muuttujansa arvoa kasvatetaan.
@@ -30,7 +31,7 @@ Muistettavaa muuttujista:
 - Vältä muuttujien nimeämisessä skandinaavisia kirjaimia, osa työkaluista tai kirjastoista voi toimia väärin
 - Käytä camelCase-tyyliä: esim. ```kokoNimi``` tai alaviivoja esim. ```ale_prosentti``` kun muuttujan nimi on pitkä yhdyssana.
 
-### Yksinkertaiset tietotyypit (primitiiivit)
+## Perustietotyypit (primitiiivit)
 Muuttujille voi antaa eri tyyppisiä arvoja. JavaScript tunnistaa tyypin automaattisesti.
 
 Tärkeimmät tietotyypit:
