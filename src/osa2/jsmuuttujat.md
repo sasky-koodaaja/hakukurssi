@@ -30,7 +30,7 @@ Muistettavaa muuttujista:
 - Vältä muuttujien nimeämisessä skandinaavisia kirjaimia, osa työkaluista tai kirjastoista voi toimia väärin
 - Käytä camelCase-tyyliä: esim. ```kokoNimi``` tai alaviivoja esim. ```ale_prosentti``` kun muuttujan nimi on pitkä yhdyssana.
 
-### 1.2 Yksinkertaiset tietotyypit (primitiiivit)
+### Yksinkertaiset tietotyypit (primitiiivit)
 Muuttujille voi antaa eri tyyppisiä arvoja. JavaScript tunnistaa tyypin automaattisesti.
 
 Tärkeimmät tietotyypit:
