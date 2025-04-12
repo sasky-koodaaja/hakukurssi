@@ -86,3 +86,194 @@ Klikkaa alla olevaa kuvaa, niin näet yksinkertaisena animaationa kyseisen funkt
 
 Funktiot tekevät koodista loogisempaa, jakamalla sen pienempiin osiin. JavaScriptissä funktion voi luoda helposti function-avainsanalla. Harjoittelemalla yksinkertaisilla esimerkeillä opit nopeasti, kuinka tehokas työkalu funktio on ohjelmoinnissa!
 
+## Esimerkit
+
+### Esimerkki 7
+
+Kirjoita funktio, joka ottaa parametrina vastaan yhden luvun ja palauttaa sen neliön. Tulosta funktion palauttaman laskutoimituksen tulos napin painalluksesta.
+
+Tässä esimerkissä on kaksi uutta asiaa, toinen on ```<input>```-elementin käyttö JavaScriptin kanssa ja toinen on ```onClick```-tapahtumaan liitetty funktiokutsu. Tutki esimerkkikoodia huolellisesti, kopioi se ja tallenna tiedostoksi ja kokeile toiminta selaimella. Samaa tekniikkaa käytetään myöhemminkin runsaasti.
+
+```javascript
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Esimerkki 7 – Neliön laskeminen</title>
+</head>
+<body>
+  <h2>Laske neliö</h2>
+  <input type="number" id="luku" placeholder="Syötä luku">
+  <button onclick="laskeNelio()">Laske</button>
+  <p id="tulos"></p>
+
+  <script>
+    function laskeNelio() {
+      let luku = Number(document.getElementById("luku").value);
+      let nelio = luku * luku;
+      document.getElementById("tulos").innerText = "Neliö on: " + nelio;
+    }
+  </script>
+</body>
+</html>
+```
+
+### Esimerkki 8
+
+Kirjoita funktio, joka saa parametrina henkilön nimen ja tulostaa tervehdyksen "Hei, [nimi]!"
+
+```javascript
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Esimerkki 8 – Tervehdys</title>
+</head>
+<body>
+  <h2>Tervehdi käyttäjää</h2>
+  <input type="text" id="nimi" placeholder="Kirjoita nimesi">
+  <button onclick="tervehdi()">Tervehdi</button>
+  <p id="tervehdys"></p>
+
+  <script>
+    function tervehdi() {
+      let nimi = document.getElementById("nimi").value;
+      document.getElementById("tervehdys").innerText = "Hei, " + nimi + "!";
+    }
+  </script>
+</body>
+</html>
+```
+### Esimerkki 9
+
+Kirjoita funktio, joka kertoo onko syötetty luku parillinen vai ei.
+
+```javascript
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Esimerkki 9 – Parillisuus</title>
+</head>
+<body>
+  <h2>Tarkista onko luku parillinen</h2>
+  <input type="number" id="luku" placeholder="Syötä luku">
+  <button onclick="tarkistaParillisuus()">Tarkista</button>
+  <p id="vastaus"></p>
+
+  <script>
+    function tarkistaParillisuus() {
+      let luku = Number(document.getElementById("luku").value);
+      if (luku % 2 === 0) {
+        document.getElementById("vastaus").innerText = "Luku on parillinen.";
+      } else {
+        document.getElementById("vastaus").innerText = "Luku on pariton.";
+      }
+    }
+  </script>
+</body>
+</html>
+```
+
+## Harjoitukset
+
+### Harjoitus 17
+
+Kirjoita HTML-sivu, jossa käyttäjältä kysytään kaksi lukua. Luo funktio, joka laskee lukujen summan ja näyttää sen sivulla.
+
+### Harjoitus 18
+
+Luo HTML-sivu ja funktio, joka tarkistaa annetun iän perusteella, kuuluuko käyttäjä seuraaviin ryhmiin:
+
+- Alle 13 → "lapsi"
+- 13–19 → "nuori"
+- 20 tai yli → "aikuinen"
+
+Näytä tulos sivulla.
+
+### Harjoitus 19
+
+Kirjoita HTML-sivu ja funktio, joka muuntaa annetun lämpötilan celsius-asteista fahrenheiteiksi. ```(Kaava: F = C * 1.8 + 32)```
+
+Näytä tulos sivulla.
+
+
+## Pieniä apuja harjoituksiin
+
+Mikli harjoitusten koodaaminen tuntuu ylipääsemättömän vaikealta, voit käyttää apunasi alla olevia tyhjiä mallipohjia.
+
+### Mallipohja 17
+
+```javascript
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Harjoitus 17 – Laske summa</title>
+</head>
+<body>
+  <h2>Laske kahden luvun summa</h2>
+  <input type="number" id="luku1" placeholder="Ensimmäinen luku">
+  <input type="number" id="luku2" placeholder="Toinen luku">
+  <button onclick="laskeSumma()">Laske</button>
+  <p id="tulos"></p>
+
+  <script>
+    function laskeSumma() {
+      // Täydennä funktio tähän
+    }
+  </script>
+</body>
+</html>
+```
+
+
+### Mallipohja 18
+
+```javascript
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Harjoitus 18 – Ikäryhmä</title>
+</head>
+<body>
+  <h2>Tarkista ikäryhmä</h2>
+  <input type="number" id="ika" placeholder="Anna ikäsi">
+  <button onclick="tarkistaIka()">Tarkista</button>
+  <p id="vastaus"></p>
+
+  <script>
+    function tarkistaIka() {
+      // Täydennä funktio tähän
+    }
+  </script>
+</body>
+</html>
+```
+
+
+### Mallipohja 19
+
+```javascript
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Harjoitus 19 – Celsius to Fahrenheit</title>
+</head>
+<body>
+  <h2>Muunna lämpötila</h2>
+  <input type="number" id="celsius" placeholder="Celsius-asteet">
+  <button onclick="muunna()">Muunna</button>
+  <p id="fahrenheit"></p>
+
+  <script>
+    function muunna() {
+      // Täydennä funktio tähän
+    }
+  </script>
+</body>
+</html>
+```
+

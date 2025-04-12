@@ -60,38 +60,39 @@ for (let i = 0; i < 5; i++) {
 
 Seuraavien harjoitusten kanssa käytetään automaattista koodintarkistuspalvelua Codecheck.io. 
 
-### Harjoitus 6
+### Harjoitus 11
 
 Kirjoita if-else -rakenne, joka testaa annetun muuttujan ```ika``` arvoa ja tulostaa joko "Olet täysi-ikäinen." tai "Olet alaikäinen." riippuen siitä, onko muuttujan arvo suurempi tai yhtäsuuri kuin 18.
 
-[Harjoitus 6 - codecheck](https://codecheck.io/files/2504120812xlv5gvm3o8dzdnftrm4hfuo8)
+[Harjoitus 11 - codecheck](https://codecheck.io/files/2504120812xlv5gvm3o8dzdnftrm4hfuo8)
 
-### Harjoitus 7
+### Harjoitus 12
 
 Tulosta allekkain numerot 1:stä 10:een käyttäen while-silmukkaa.
 
-[Harjoitus 7 - codecheck](https://codecheck.io/files/25041208574nnhjke606ro06mequuw27zyc)
+[Harjoitus 12 - codecheck](https://codecheck.io/files/25041208574nnhjke606ro06mequuw27zyc)
 
-### Harjoitus 8
+### Harjoitus 13
 
 Tulosta kaikki parilliset luvut välillä 2–20 käyttäen for-silmukkaa. 
 
-[Harjoitus 8 - codecheck](https://codecheck.io/files/2504120917atbm2tidd4o3yxni5bkjsw3b9)
+[Harjoitus 13 - codecheck](https://codecheck.io/files/2504120917atbm2tidd4o3yxni5bkjsw3b9)
 
-### Harjoitus 9
+### Harjoitus 14
 
 Laske ja tulosta lukujen 1–100 summa for-silmukalla.
 
-[Harjoitus 9 - codecheck](https://codecheck.io/files/25041209263wbzgmmo54fwyjx6p1w5s4mrk)
+[Harjoitus 14 - codecheck](https://codecheck.io/files/25041209263wbzgmmo54fwyjx6p1w5s4mrk)
 
-### Harjoitus 10
+### Harjoitus 15
 
 Kirjoita if/else -rakenne, joka tutkii annettua muuttujaa ja tulostaa joko "Luku on parillinen." tai "Luku on pariton." riippuen muuttujan arvosta.
 
-[Harjoitus 10 - codecheck](https://codecheck.io/files/2504120936c1etuvc3iivrwnw3v2jpfbi81)
+[Harjoitus 15 - codecheck](https://codecheck.io/files/2504120936c1etuvc3iivrwnw3v2jpfbi81)
 
-### Harjoitus 11
+### Harjoitus 16
 
 Kirjota while-silmukka, joka tulostaa allekkain silmukkamuuttujan arvon niin kauna, kuin se on suurempi kuin 0. Joka silmukan kierroksella muuttujan arvoa pitää vähentää yhdellä.
 
-[Harjoitus 11 - codecheck](https://codecheck.io/files/2504120944azomttm6s1kd352mc2d4l9kfi)
+[Harjoitus 16 - codecheck](https://codecheck.io/files/2504120944azomttm6s1kd352mc2d4l9kfi)
+

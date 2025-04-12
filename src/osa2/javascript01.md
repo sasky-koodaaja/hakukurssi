@@ -44,9 +44,6 @@ Koodilause muistuttaa tavallisen kielen virkettä: siinä on aina jokin toiminto
 
 Alla on pieni video, jossa esitellään selaimesta löytyvän konsolin käyttöä lyhyesti. 
 
-<!--
-[![Klikkaa kuvaa nähdäksesi videon](console.jpg)](https://www.youtube.com/watch?v=K5MPBOznDSc)
--->
 
 <a href="https://www.youtube.com/watch?v=K5MPBOznDSc" target=_blank><img src="console.jpg"></a>
 
