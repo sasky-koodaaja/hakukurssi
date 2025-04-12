@@ -43,7 +43,7 @@ function tervehdi() {
 
 3. ```console.log("Hei maailma!")``` tulostaa tekstin konsoliin.
 
-4. Funktiota ei suoriteta automaattisesti – se pitää kutsua erikseen. Kutsu on ikäänkuin oma komentosanansa, joka voi esiintyä muualla koodissa omana lauseenaan. Kutsu voidaan myös kytkeä jonkin tapahtuman seuraukseksi, esimerkiksi käyttäjä klikkaa painiketta, joka kutsuu funktiota. Funktion kutsu tämän funktion tapauksessa on yksinkertaisesti rivi, jossa on funktion nimi ja suut, jotka ovat pakolliset.
+4. Funktiota ei suoriteta automaattisesti – se pitää kutsua erikseen. Kutsu on ikäänkuin uusi komentosana, joka voi esiintyä muualla koodissa omana lauseenaan. Kutsu voidaan myös kytkeä jonkin tapahtuman seuraukseksi, esimerkiksi käyttäjä klikkaa painiketta, joka kutsuu funktiota. Funktion kutsu tämän funktion tapauksessa on yksinkertaisesti rivi, jossa on funktion nimi ja sulut, jotka ovat pakolliset.
 
 ```javascript
 tervehdi()
@@ -70,6 +70,17 @@ Funktiota kutsutaan näin:
 let tulos = laskeSumma(3, 4)    // tulos saa arvon 7
 console.log(tulos)              // tulostaa: 7
 ```
+#### Selitys:
+Funktion kutsussa sulkujen sisällä on kaksi lukua; 3 ja 4.Kutsuttaessa ensimmäinen näistä parametreista, eli 3, asetetaan ensimmäisen funktion parametrimuuttujan ```a``` arvoksi. Toinen parametri 4 menee parametrimuuttujan ```b``` arvoksi. Tässä vaiheessa ohjelman suoritus "hyppää" funktioon, jossa siis a:n arvona 3 ja b:n arvona 4. 
+
+Sen jälkeen funktio suorittaa laskutoimituksen ja **palauttaa** vastauksen. Samalla funktio päättyy ja ohjelman suoritus palaa takaisin sinne, missä funktiota kutsuttiin.  Kyseisellä rivillä on sijoituslause ```let tulos = laskeSumma(3, 4)``` jolloin funkiokutsun palautusarvo sijoitetaan muuttujan ```tulos``` arvoksi.
+
+Lopuksi ohjelma tulostaa saamansa arvon näytölle.
+
+Klikkaa alla olevaa kuvaa, niin näet yksinkertaisena animaationa kyseisen funktiokutsun etenemisen vaihe vaiheelta.
+
+<a href="https://youtu.be/YZe5mIHbzkE" target=_blank><img src="funcani.jpg"></a>
+
 
 ### Yhteenveto
 
