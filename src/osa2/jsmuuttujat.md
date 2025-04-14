@@ -139,7 +139,7 @@ JavaScript-koodi kirjoitetaan HTML-sivulle ```<script>```-elementin sisään. T�
 
 Usein ```<script>``` sijoitetaan ```<body>```-elementin sisään ja sen loppuun. Kun selain lukee HTML-tiedostoa ylhäältä alas, se lukee ja suorittaa koodin heti kun se kohtaa sen. Jos JavaScript yritetään suorittaa ennen kuin sivun sisältö on ehtinyt latautua (esimerkiksi ennen kuin elementit kuten ```<p id="tulos">``` ovat olemassa), koodi ei välttämättä toimi oikein – selain ei vielä "näe" niitä elementtejä.
 
-Siksi on hyvä tapa sijoittaa ```<script>```-elementti juuri ennen sivun rungon lopettavaa ```</body>```-tagia,
+Siksi on hyvä tapa sijoittaa ```<script>```-elementti juuri ennen sivun rungon lopettavaa ```<body>```-tagia,
 
 Alla on muutamia esimerkkejä ja niiden jälkeen harjoituksia, joiden avulla voit itse kokeilla miten koodaaminen onnistuu.
 
@@ -216,6 +216,10 @@ Luo muuttuja ```ekaLuku```, jonka arvo on ```12```, ja ```tokaLuku```, jonka arv
 
 
 ## Harjoitukset
+
+Harjoitukset ov tarkoitettu itseopiskeluun. Yritä ratkaista annetut harjoitustehtävät. Jos haluat, saat käyttää apunasi tekoälyä siinä muodossa, että teet kysymyksiä, jotka alkavat sanalla "miksi."
+
+Näitä harjoituksia ei arvioida eikä niistä saa pisteitä valintaprosessiin, mutta niiden kautta oppii uutta, jota tarvitset myöhemmin tämän hakukurssin varsinaisessa arvioitavassa näyttötehtävässä.
 
 ### Harjoitus 1
 Luo muuttuja nimeltä ```tervehdys```, jonka arvo on ```"Hei maailma!"```. Tulosta se alert-ikkunassa.

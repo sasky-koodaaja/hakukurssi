@@ -6,7 +6,19 @@
 Funktio on ohjelmoinnissa kuin pieni ohjelma ohjelman sisällä. Se on nimetty kokonaisuus koodia, joka suorittaa tietyn tehtävän. Funktio voi ottaa syötteitä (eli parametreja), käsitellä ne, ja palauttaa tuloksen. Funktioita käytetään, jotta ohjelmakoodista tulee **selkeämpää**, **uudelleenkäytettävää**, ja **helpommin ylläpidettävää**.
 
 Ilman funktioita joutuisi kirjoittamaan saman koodin moneen kertaan. Funktio mahdollistaa saman toiminnon suorittamisen monta kertaa eri tilanteissa vain yhdellä koodinpätkällä. Esimerkiksi jos haluat laskea kahden luvun summan useassa kohdassa ohjelmaa, voit tehdä sen yhden summalaskufunktion avulla – etkä toista samaa koodia moneen kertaan.
-Miten funktio määritellään JavaScriptissä?
+
+### Valmiit funktiot
+
+
+Kaikissa ohjelmointikielissä on suuri joukko valmiita funktioita, jotka ovat kielen kehittäjien kirjoittamia. Niitä on JavaScriptissäkin useita satoja. Ne ovat ikään kuin reservissä odottamassa, että niitä kutsutaan.
+
+Olet jo aiemmin käyttänyt esimerkiksi ```alert()``` ja ```console.log()```-funktioita. Muita hyvin usein käytettyjä ovat esimerkiksi ```parseInt()```, ```Math.random()``` ja ```prompt()```.
+
+Funktio karkeasti ottaen käyttäytyy kuin kielen komentosana ja niitä on helppo koodata itse lisää.
+
+Joku on koodannut nämä funktiot valmiiksi ja nyt me voimme vain käyttää niitä suoraan, eikä meidän tarvitse edes tietää, mitä funktion sisällä tapahtuu. Riittää, että tiedämme esimerkiksi sen, että ```alert("moi")``` avaa pienen ikkunan ja tulostaa sen sisään parametrina antamamme viestin. Tämä on esimerkki uudelleenkäytettävyydestä.
+
+### Miten funktio määritellään JavaScriptissä?
 
 JavaScriptissä funktio voidaan määritellä usealla tavalla, mutta tavallisin perusmuoto on seuraava:
 
@@ -20,11 +32,13 @@ function nimi(parametri1, parametri2) {
 
 - nimi on funktion nimi. Sen avulla funktiota voidaan kutsua myöhemmin.
 
-- uluissa ```()``` määritellään parametrit eli syötteet, joita funktio ottaa vastaan.
+- suluissa ```()``` määritellään parametrit eli syötteet, joita funktio ottaa vastaan.
 
 - altosulkujen ```{}``` sisällä on funktion sisältö eli mitä se tekee. Tämä on lohko, johon tutustiomme jo aiemmin.
 
 - ```return``` palauttaa arvon funktion kutsujalle. Jos return-lausetta ei ole, funktio palauttaa undefined.
+
+**HUOMAA, kun olemme kirjoittaneet funktion valmiiksi, se jää ikään kuin reserviin odottamaan, että sitä kutsutaan jossain koodin myöhemmässä vaiheessa. Funktion mää'rittely ei siis vielä käynnistä sitä.**
 
 ## Esimerkit
 
@@ -43,13 +57,13 @@ function tervehdi() {
 
 3. ```console.log("Hei maailma!")``` tulostaa tekstin konsoliin.
 
-4. Funktiota ei suoriteta automaattisesti – se pitää kutsua erikseen. Kutsu on ikäänkuin uusi komentosana, joka voi esiintyä muualla koodissa omana lauseenaan. Kutsu voidaan myös kytkeä jonkin tapahtuman seuraukseksi, esimerkiksi käyttäjä klikkaa painiketta, joka kutsuu funktiota. Funktion kutsu tämän funktion tapauksessa on yksinkertaisesti rivi, jossa on funktion nimi ja sulut, jotka ovat pakolliset.
+4. Muistutus vielä uudelleen: funktiota ei suoriteta automaattisesti vaan sitä pitää kutsua erikseen. Kutsu on ikäänkuin uusi komentosana, joka voi esiintyä muualla koodissa omana lauseenaan. Kutsu voidaan myös kytkeä jonkin tapahtuman seuraukseksi, esimerkiksi käyttäjä klikkaa painiketta, joka kutsuu funktiota. Funktion kutsu tämän funktion tapauksessa on yksinkertaisesti rivi, jossa on funktion nimi ja sulut, jotka ovat pakolliset.
 
+**Funktion kutsuminen:**
 ```javascript
 tervehdi()
 ```
 
-Olet jo aiemmin käyttänyt JavaScriptin sisäisivä funktioita ```alert()``` ja ```console.log()```. Ne on samalla tavalla määritelty ja ovat osa JavaScript-kieltä. Jou on siis koodannut nämä funktiot valmiiksi ja nyt me voimme vain käyttää niitä suoraan, eikä meidän tarvitse edes tietää, mitä funktion sisällä tapahtuu. Riittää, että tiedämme esimerkiksi sen, että ```alert("moi")``` avaa pienen ikkunan ja tulostaa sen sisään parametrina antamamme viestin. Tämä on esimerkki uudelleenkäytettävyydestä.
 
 ### Esimerkki 2: Funktio, joka laskee summan
 
@@ -77,14 +91,14 @@ Sen jälkeen funktio suorittaa laskutoimituksen ja **palauttaa** vastauksen. Sam
 
 Lopuksi ohjelma tulostaa saamansa arvon näytölle.
 
-Klikkaa alla olevaa kuvaa, niin näet yksinkertaisena animaationa kyseisen funktiokutsun etenemisen vaihe vaiheelta.
+Klikkaa alla olevaa kuvaa, niin näet yksinkertaisena animaationa kyseisen funktiokutsun etenemisen vaihe vaiheelta. Ohjelman suoritus "hyppää" välillä funktioon, jonka koodirivit suoritetaan, ja funktiosta palataan takaisin sinne, mistä sitä kutsuttiin.
 
 <a href="https://youtu.be/YZe5mIHbzkE" target=_blank><img src="funcani.jpg"></a>
 
 
 ### Yhteenveto
 
-Funktiot tekevät koodista loogisempaa, jakamalla sen pienempiin osiin. JavaScriptissä funktion voi luoda helposti function-avainsanalla. Harjoittelemalla yksinkertaisilla esimerkeillä opit nopeasti, kuinka tehokas työkalu funktio on ohjelmoinnissa!
+Funktiot tekevät koodista loogisempaa jakamalla sen pienempiin osiin. JavaScriptissä funktion voi luoda helposti function-avainsanalla. Harjoittelemalla yksinkertaisilla esimerkeillä opit nopeasti, kuinka tehokas työkalu funktio on ohjelmoinnissa!
 
 ## Esimerkit
 
@@ -178,6 +192,8 @@ Kirjoita funktio, joka kertoo onko syötetty luku parillinen vai ei.
 ```
 
 ## Harjoitukset
+
+Nämäkin harjoitukset ovat vapaaehtoisia ja tarkoitettu koodaustaitojen opiskeluun.
 
 ### Harjoitus 17
 

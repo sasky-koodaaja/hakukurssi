@@ -105,6 +105,8 @@ let tulos = (2 + 3) * 4 // tulos on 20, koska sulut lasketaan ensin
 
 ## Harjoitukset
 
+harjoitukset ovat vapaaehtoisia eikä niitä arvioida. Niissä on kuitenkin tärkeitä opiskeltavia asioita, jonka vuoksi niiden suorittaminen on erittäin suositeltavaa.
+
 ### Harjoitus 6
 Laske kahden luvun summa ja näytä tulos sivulla (innerHTML-tekniikkla)
 
