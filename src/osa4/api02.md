@@ -213,4 +213,41 @@ Alla koko koodi yhtenäisenä.
 
     <p id="tulos"></p>
 </body>
-</html>```
+</html>
+```
+
+
+## Nimipäiväpalvelun API-kutsun dataformaatit
+
+### Mitä ja missä muodossa sovellus lähettää nimipäiväpalveluun API-kutsua käyttäen?
+
+- URL-muoto:
+
+```
+https://svatky.adresa.info/json?date=DDMM
+```
+
+APIlle lähetetään yksi GET-parametri: ```date```
+
+- Se koostuu päivästä ja kuukaudesta numeromuodossa, ilman välejä tai välimerkkejä
+- Esim:
+    - tammikuuta → 0101
+    - joulukuuta → 3112
+
+
+### Mitä tietoa sovellus API-kutsun jälkeen vastaanottaa ja missä muodossa?
+
+API palauttaa JSON-muotoisen taulukon (array), jonka sisältö voi näyttää tältä:
+
+```json
+[
+  {
+    "name": "Radmila",
+    "date": "0304"
+  }
+]
+```
+
+- Jokaisessa objektissa voi olla useampi nimi.
+- Kenttä ```name``` on nimipäivän nimi.
+- ```date``` on päivä ja kuukausi muodossa DDMM.
