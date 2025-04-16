@@ -5,6 +5,7 @@ Tämä ohje toteuttaa yhden mallisovelluksen, jossa julkista ja avointa API-raja
 ### Mitä haluamme ohjelman tekevän:
 Käyttäjä valitsee päivämäärän selaimessa. Kun hän painaa "Hae nimipäivä" -painiketta, ohjelma:
 
+
 1. Lukee HTML-lomakkeesta valitun päivämäärän.
 2. Muotoilee sen oikeaan muotoon.
 3. Tekee API-kutsun Tšekkiläiseen nimipäiväpalveluun.

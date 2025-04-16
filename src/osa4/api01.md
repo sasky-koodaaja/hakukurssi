@@ -4,6 +4,7 @@ API on lyhenne sanoista Application Programming Interface ja se tarjoittaa liitt
 
 Kuvittele, että haluat tilata ruokaa ravintolasta. Sinun ei tarvitse tietää, miten kokki laittaa ruokaa, vaan riittää, että kerrot tarjoilijalle mitä haluat. Samalla tavalla ohjelmat käyttävät API-rajapintoja puhuakseen toisilleen. API on siis joukko sääntöjä ja ohjeita, joiden avulla ohjelmat voivat pyytää ja vaihtaa tietoja.
 
+
 Kun käytät API-rajapintaa, sinun täytyy tietää kaksi tärkeää asiaa:
 
 1. Minne lähetät pyynnön (eli verkkopalvelun osoite, esim. https://www.esimerkki.fi).
