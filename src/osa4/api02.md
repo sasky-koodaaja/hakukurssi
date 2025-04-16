@@ -59,7 +59,7 @@ Lisätään elementti, johon tulos (nimipäivä tai virheilmoitus) näytetään.
 ```html
 <p id="tulos"></p>
 ```
-Nämä edellä luetellut neljä HTML-riviä lisätään <body>-elementin sisään siellä olevan kommentin sijaan.
+Nämä edellä luetellut neljä HTML-riviä lisätään ```<body>```-elementin sisään siellä olevan kommentin sijaan.
 
 ## JavaScript-funktio API-kutsun suorittamiseksi
 

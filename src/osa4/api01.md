@@ -8,7 +8,6 @@ Kuvittele, että haluat tilata ruokaa ravintolasta. Sinun ei tarvitse tietää, 
 Kun käytät API-rajapintaa, sinun täytyy tietää kaksi tärkeää asiaa:
 
 1. Minne lähetät pyynnön (eli verkkopalvelun osoite, esim. https://www.esimerkki.fi).
-
 2. Missä muodossa haluamasi tieto lähetetään tai vastaanotetaan (usein JSON-formaatissa, joka on kuin selkeä tekstirakenne).
 
 Esimerkki:
@@ -30,7 +29,6 @@ Ohjelmasi ei tarvitse tietää miten säätiedot on kerätty tai miten palvelu t
 ### Miksi API on kätevä?
 
 - Voit hyödyntää valmiita tietoja tai palveluita ilman, että sinun tarvitsee rakentaa kaikkea itse.
-
 - Voit esimerkiksi hakea elokuvien tietoja, musiikkia, karttoja tai vaikkapa vitsejä.
 
 ### Esimerkkejä avoimista ja ilmaisista API-rajapinnoista
