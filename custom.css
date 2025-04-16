@@ -1,0 +1,8 @@
+pre, code {
+  white-space: pre-wrap;
+}
+
+.image img {
+  margin-left: 2em;
+  max-width: 80%;
+}
