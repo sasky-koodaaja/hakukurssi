@@ -141,8 +141,10 @@ if (tiedot.length > 0) {
     // nimitietueita voisi olla taulukkomuuttujassa useita
     // otetaan ensimmäinen, eli alkio numero 0
     let nimi = tiedot[0].name
+    // alla oleva pitkä koodirivi jatkuu kahdelle riville
     document.getElementById('tulos').textContent = `Nimipäivä ${paivaStr}.${kuukausiStr}.: ${nimi}`
 } else {
+    // alla oleva pitkä koodirivi jatkuu kahdelle riville
     document.getElementById('tulos').textContent = 'Ei löytynyt nimipäiviä valitulle päivälle.';
 }
 ```
@@ -188,6 +190,7 @@ Alla koko koodi yhtenäisenä.
             const paivaStr = ("0" + paivaObj.getDate()).slice(-2)
             const kuukausiStr = ("0" + (paivaObj.getMonth() + 1)).slice(-2)
 
+            // alla oleva pitkä koodirivi jatkuu kahdelle riville
             const apiUrl = `https://svatky.adresa.info/json?date=${paivaStr}${kuukausiStr}`
 
             try {
@@ -197,12 +200,15 @@ Alla koko koodi yhtenäisenä.
                     // nimitietueita voisi olla taulukkomuuttujassa useita
                     // otetaan ensimmäinen, eli alkio numero 0
                     let nimi = tiedot[0].name
+                    // alla oleva pitkä koodirivi jatkuu kahdelle riville
                     document.getElementById('tulos').textContent = 
                         `Nimipäivä ${paivaStr}.${kuukausiStr}.: ${nimi}`
                 } else {
+                    // alla oleva pitkä koodirivi jatkuu kahdelle riville
                     document.getElementById('tulos').textContent = 'Ei löytynyt nimipäiviä valitulle päivälle.'
                 }
             } catch (virhe) {
+                // alla oleva pitkä koodirivi jatkuu kahdelle riville
                 document.getElementById('tulos').textContent = 'Virhe haettaessa nimipäivää.'
                 console.error(virhe)
             }

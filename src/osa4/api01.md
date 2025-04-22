@@ -62,7 +62,7 @@ Kaikki alla mainitut API:t eivät vaadi rekisteröitymistä tai mitään erityis
 9. [Public Holiday API](https://date.nager.at/)
     - Näyttää yleiset pyhäpäivät eri maissa.
 
-10. [Open Trivia Database](https://opentdb.com/api_config.php
+10. [Open Trivia Database](https://opentdb.com/api_config.php)
     - Tarjoaa tietokilpailukysymyksiä (triviaa) monista eri kategorioista.
 
 ### Miten näitä kokeillaan?
