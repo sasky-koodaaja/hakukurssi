@@ -35,34 +35,34 @@ Ohjelmasi ei tarvitse tietää miten säätiedot on kerätty tai miten palvelu t
 
 Kaikki alla mainitut API:t eivät vaadi rekisteröitymistä tai mitään erityistä avainta, joten voit kokeilla niitä heti.
 
-1. Cat Facts (https://catfact.ninja/)
+1. [Cat Facts](https://catfact.ninja/)
     - Palauttaa erilaisia satunnaisia faktoja kissoista.
 
-2. Dog Facts & Dog API (https://dog.ceo/dog-api/)
+2. [Dog Facts & Dog API](https://dog.ceo/dog-api/)
     - Palauttaa tietoja koiraroduista ja satunnaisia kuvia koirista.
 
-3. Chuck Norris Jokes (https://api.chucknorris.io/)
+3. [Chuck Norris Jokes](https://api.chucknorris.io/)
     - Tarjoaa hauskoja (ja joskus kuivahkoja) Chuck Norris -vitsejä.
 
-4. Advice Slip API (https://api.adviceslip.com/)
+4. [Advice Slip API](https://api.adviceslip.com/)
     - Antaa satunnaisia neuvoja tai elämänohjeita.
 
-5. Bored API (https://www.boredapi.com/)
+5. [Bored API](https://www.boredapi.com/)
     - Ehdottaa tekemistä, jos sinulla on tylsää.
 
-6. PokeAPI (https://pokeapi.co/)
+6. [PokeAPI](https://pokeapi.co/)
     - Tarjoaa tietoja Pokémon-hahmoista (nimiä, ominaisuuksia, kuvia jne.).
 
-7. REST Countries (https://restcountries.com/)
+7. [REST Countries](https://restcountries.com/)
     - Palauttaa tietoja eri maiden lipuista, pääkaupungeista ja kielistä.
 
-8. Random User (https://randomuser.me/)
+8. [Random User](https://randomuser.me/)
     - Luo satunnaisia ”feikkikäyttäjiä” (esim. nimi, sähköposti), joita voi käyttää testaamiseen.
 
-9. Public Holiday API (https://date.nager.at/)
+9. [Public Holiday API](https://date.nager.at/)
     - Näyttää yleiset pyhäpäivät eri maissa.
 
-10. Open Trivia Database (https://opentdb.com/api_config.php
+10. [Open Trivia Database](https://opentdb.com/api_config.php
     - Tarjoaa tietokilpailukysymyksiä (triviaa) monista eri kategorioista.
 
 ### Miten näitä kokeillaan?

@@ -138,8 +138,10 @@ const tiedot = await vastaus.json()
 
 ```javascript
 if (tiedot.length > 0) {
-    document.getElementById('tulos').textContent = 
-        `Nimipäivä ${paivaStr}.${kuukausiStr}.: ${tiedot.map(nimi => nimi.name).join(', ')}`;
+    // nimitietueita voisi olla taulukkomuuttujassa useita
+    // otetaan ensimmäinen, eli alkio numero 0
+    let nimi = tiedot[0].name
+    document.getElementById('tulos').textContent = `Nimipäivä ${paivaStr}.${kuukausiStr}.: ${nimi}`
 } else {
     document.getElementById('tulos').textContent = 'Ei löytynyt nimipäiviä valitulle päivälle.';
 }
@@ -192,8 +194,11 @@ Alla koko koodi yhtenäisenä.
                 const vastaus = await fetch(apiUrl)
                 const tiedot = await vastaus.json()
                 if (tiedot.length > 0) {
+                    // nimitietueita voisi olla taulukkomuuttujassa useita
+                    // otetaan ensimmäinen, eli alkio numero 0
+                    let nimi = tiedot[0].name
                     document.getElementById('tulos').textContent = 
-                        `Nimipäivä ${paivaStr}.${kuukausiStr}.: ${tiedot.map(nimi => nimi.name).join(', ')}`
+                        `Nimipäivä ${paivaStr}.${kuukausiStr}.: ${nimi}`
                 } else {
                     document.getElementById('tulos').textContent = 'Ei löytynyt nimipäiviä valitulle päivälle.'
                 }
@@ -227,7 +232,7 @@ Alla koko koodi yhtenäisenä.
 https://svatky.adresa.info/json?date=DDMM
 ```
 
-APIlle lähetetään yksi GET-parametri: ```date```
+APIlle lähetetään yksi GET-parametri: ```date```    
 
 - Se koostuu päivästä ja kuukaudesta numeromuodossa, ilman välejä tai välimerkkejä
 - Esim:
@@ -248,6 +253,9 @@ API palauttaa JSON-muotoisen taulukon (array), jonka sisältö voi näyttää t�
 ]
 ```
 
-- Jokaisessa objektissa voi olla useampi nimi.
+- Jokaisessa objektissa voisi olla useampi nimi.
+- koska tällä hetkellä kuitenkin palautuneessa JSON-objektissa on vain yksi nimi vaikka se onkin taulukkomuuttujassa, saamme ```tiedot```-taulukon ensimmäisen alkion käyttäen indeksiä 0 näin: ```tiedot[0]``` 
+- kyseinen alkio sisältää kaksi kenttää:
 - Kenttä ```name``` on nimipäivän nimi.
 - ```date``` on päivä ja kuukausi muodossa DDMM.
+- ```name```-kentän sisältö saadaan ```nimi = tiedot[0].name``` sijoituksella muuttujaan ```nimi```.
