@@ -2,6 +2,8 @@
 
 Operaattorit ovat symboleita, joilla voidaan tehdä laskutoimituksia ja muokata muuttujien arvoja. Ne ovat ohjelmoinnin perusrakennuspalikoita, aivan kuten matikassa + ja -.
 
+Lisätietoja ja lisäharjoituksia löytyy esimerkiksi sivustosta [W3Schools Operators](https://www.w3schools.com/js/js_operators.asp).
+
 ## Laskuoperaattorit
 
 Yksi tärkeimmistä operaattoreista on **sijoitusoperaattori** jota merkitään yhdellä yhtysuuruusmerkillä (=). Se on tavallaan suora määräys tietokoneelle, että **sijoita merkin oikealla puolella oleva arvo vasemmalla olevaan muuttujaan**. Muista, aina oikealta vasemmalle.
