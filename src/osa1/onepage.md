@@ -199,3 +199,10 @@ Seuraavissa kohdissä lisätään `TODO`-rivien paikalle yksi kerrallaan sivun s
 
 Näiden jälkeen sivun HTML-osuus on valmis. Se ei näytä tällä hetkellä kovin ihmeelliseltä, koska siihen ei ole vielä kytketty tyylisääntöjä. Kun sivu avataan selaimessa, niin se näyttää seuraavanlaiselta:
 
+<div class="image">
+  <a href="onepage-1-full.png"><img alt="Kotisivupohja selaimessa." src="./onepage-1.png" width="1111"></a>
+</div><br>
+
+> Vihje: Kuvaa klikkaamalla saat näkyville koko sivun kuvaruutukopion.
+
+Seuraavaksi lähdemme määrittämään sivun ulkoasua.

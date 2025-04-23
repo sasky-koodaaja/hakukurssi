@@ -66,7 +66,7 @@ Kaikki alla mainitut API:t eivät vaadi rekisteröitymistä tai mitään erityis
 
 - Avaa verkkoselain.
 
-- Liitä osoiteriville jonkin API:n kutsu, esimerkiksi https://api.chucknorris.io/jokes/random.
+- Liitä osoiteriville jonkin API:n kutsu, esimerkiksi ```https://api.chucknorris.io/jokes/random```.
 
 - Näet JSON-rakenteisen vastauksen, joka sisältää Chuck Norris -vitsin. Se voi näyttää tältä (lyhennetty esimerkki):
 
