@@ -23,6 +23,7 @@
 - [Operaattorit](./osa2/jsoperaattorit.md)
 - [Ohjausrakenteet](./osa2/jsohjaus.md)
 - [Funktiot](./osa2/jsfun.md)
+- [Taulukkomuuttujat](./osa2/jsarr.md)
 
 # OSA 3 - Kaaviot
 

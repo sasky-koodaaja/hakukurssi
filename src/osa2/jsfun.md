@@ -5,6 +5,8 @@
 
 Funktio on ohjelmoinnissa kuin pieni ohjelma ohjelman sisällä. Se on nimetty kokonaisuus koodia, joka suorittaa tietyn tehtävän. Funktio voi ottaa syötteitä (eli parametreja), käsitellä ne, ja palauttaa tuloksen. Funktioita käytetään, jotta ohjelmakoodista tulee **selkeämpää**, **uudelleenkäytettävää**, ja **helpommin ylläpidettävää**.
 
+Lisätietoja ja lisäharjoituksia löytyy esimerkiksi sivustosta [W3Schools Functions](https://www.w3schools.com/js/js_functions.asp).
+
 Ilman funktioita joutuisi kirjoittamaan saman koodin moneen kertaan. Funktio mahdollistaa saman toiminnon suorittamisen monta kertaa eri tilanteissa vain yhdellä koodinpätkällä. Esimerkiksi jos haluat laskea kahden luvun summan useassa kohdassa ohjelmaa, voit tehdä sen yhden summalaskufunktion avulla – etkä toista samaa koodia moneen kertaan.
 
 ### Valmiit funktiot
