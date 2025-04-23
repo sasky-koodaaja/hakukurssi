@@ -47,30 +47,25 @@ Kaikki alla mainitut API:t eivät vaadi rekisteröitymistä tai mitään erityis
 4. [Advice Slip API](https://api.adviceslip.com/)
     - Antaa satunnaisia neuvoja tai elämänohjeita.
 
-5. [Bored API](https://www.boredapi.com/)
-    - Ehdottaa tekemistä, jos sinulla on tylsää.
-
-6. [PokeAPI](https://pokeapi.co/)
+5. [PokeAPI](https://pokeapi.co/)
     - Tarjoaa tietoja Pokémon-hahmoista (nimiä, ominaisuuksia, kuvia jne.).
 
-7. [REST Countries](https://restcountries.com/)
+6. [REST Countries](https://restcountries.com/)
     - Palauttaa tietoja eri maiden lipuista, pääkaupungeista ja kielistä.
 
-8. [Random User](https://randomuser.me/)
+7. [Random User](https://randomuser.me/)
     - Luo satunnaisia ”feikkikäyttäjiä” (esim. nimi, sähköposti), joita voi käyttää testaamiseen.
 
-9. [Public Holiday API](https://date.nager.at/)
+8. [Public Holiday API](https://date.nager.at/)
     - Näyttää yleiset pyhäpäivät eri maissa.
 
-10. [Open Trivia Database](https://opentdb.com/api_config.php)
+9. [Open Trivia Database](https://opentdb.com/api_config.php)
     - Tarjoaa tietokilpailukysymyksiä (triviaa) monista eri kategorioista.
 
 ### Miten näitä kokeillaan?
 
 - Avaa verkkoselain.
-
-- Liitä osoiteriville jonkin API:n kutsu, esimerkiksi https://api.chucknorris.io/jokes/random.
-
+- Liitä osoiteriville jonkin API:n kutsu, esimerkiksi ```https://api.chucknorris.io/jokes/random```.
 - Näet JSON-rakenteisen vastauksen, joka sisältää Chuck Norris -vitsin. Se voi näyttää tältä (lyhennetty esimerkki):
 
 ```json
