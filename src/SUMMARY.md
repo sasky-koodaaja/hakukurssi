@@ -15,6 +15,7 @@
 - [CSS-tyylit](./osa1/css.md)
 - [Laatikkomalli](./osa1/boxmodel.md)
 - [Yhden sivun kotisivut](./osa1/onepage.md)
+- [Kotisivupohjan ulkoasu](./osa1/onepagecss.md)
 
 # OSA 2 - Johdanto JavaScriptiin
 
@@ -32,7 +33,6 @@
 
 - [API-rajapinnat lyhyesti](./osa4/api01.md)
 - [Ensimmäinen API-sovellus](./osa4/api02.md)
-
 
 ---
 
