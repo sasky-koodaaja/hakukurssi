@@ -1,6 +1,6 @@
 # Sisällys
 
-[Ammatillisen verkkoprofiilin koostaminen](README.md)
+[HTML- ja CSS-kielen perusteet](README.md)
 
 # Työvälineet
  - [Tarvittavat ohjelmat](./tyovalineet/ohjelmat.md)
@@ -28,7 +28,8 @@
 
 # OSA 3 - Kaaviot
 
-- [todo](./osa3/todo.md)
+- [JavaScript-kirjastot](./osa3/library.md)
+- [Mermaid-kirjasto](./osa3/mermaid.md)
 
 # OSA 4 - API-rajapinnat
 

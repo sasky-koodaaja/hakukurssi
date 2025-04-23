@@ -122,7 +122,7 @@ Esimerkissä ensisijaisesti käytetään ns. `system-ui`-fonttia, joka on laitte
 
 > Suositeltava käytäntö on, että `background-color` että `color` määritellään aina yhdessä. Tällöin järjestelmän poikkeavat oletusvärit eivät sekoita tarkkaan mietittyä ulkoasua.
 
-> Netistä löytyy paljon erilaisia palveluita, joilla pystyy luomaan helpolla toisiinsa sopivia väriyhdistelmiä. Esimerkiksi [Coolors](https://coolors.co) yksi hyvin helppokäyttöinen väriyhdistelmien luontiin soveltuva palvelu. 
+> Netistä löytyy paljon erilaisia palveluita, joilla pystyy luomaan helpolla toisiinsa sopivia väriyhdistelmiä. Esimerkiksi [Coolors](https://coolors.co) on yksi hyvin helppokäyttöinen väriyhdistelmien luontiin soveltuva palvelu. 
 
 `max-width`-asetuksella määritellään sivun suurin sallittu leveys eli sen alueen leveys, jossa sivun sisältö on. Arvoksi määritellään `40em`, joka tarkoittaa 40 kirjaimen korkeutta. 
 

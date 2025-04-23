@@ -205,4 +205,4 @@ Näiden jälkeen sivun HTML-osuus on valmis. Se ei näytä tällä hetkellä kov
 
 > Vihje: Kuvaa klikkaamalla saat näkyville koko sivun kuvaruutukopion.
 
-Seuraavaksi lähdemme määrittämään sivun ulkoasua.
+Seuraavaksi lähdemme määrittelemään sivun ulkoasua.

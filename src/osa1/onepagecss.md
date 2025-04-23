@@ -428,5 +428,5 @@ Luo projektikansioon uusi tiedosto, anna sen nimeksi `03-onepage.css` ja liitä 
 Nyt sivuston ulkoasu on kokonaisuudessaan valmis ja se näyttää seuraavanlaiselta:
 
 <div class="image">
-  <img alt="Sivuston ulkoasu on valmis." src="./onepagecss-18-full.png" width="1111">
+  <img alt="Sivuston ulkoasu on valmis." src="./onepagecss-18-full.png" width="500">
 </div><br>
