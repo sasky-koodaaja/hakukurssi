@@ -8,7 +8,7 @@ Käyttäjä valitsee päivämäärän selaimessa. Kun hän painaa "Hae nimipäiv
 
 1. Lukee HTML-lomakkeesta valitun päivämäärän.
 2. Muotoilee sen oikeaan muotoon.
-3. Tekee API-kutsun Tšekkiläiseen nimipäiväpalveluun.
+3. Tekee API-kutsun tsekkiläiseen nimipäiväpalveluun.
 4. Hakee vastauksen (jos löytyy nimipäivä).
 5. Näyttää nimipäivän käyttäjälle.
 

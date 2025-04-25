@@ -1,6 +1,6 @@
 # API-rajapinnat
 
-API on lyhenne sanoista Application Programming Interface ja se tarjoittaa liittymää eli rajapintaa, jonka välityksellä eri sovellukset voivat keskustella keskenään.
+API on lyhenne sanoista Application Programming Interface ja se tarkoittaa liittymää eli rajapintaa, jonka välityksellä eri sovellukset voivat keskustella keskenään.
 
 Kuvittele, että haluat tilata ruokaa ravintolasta. Sinun ei tarvitse tietää, miten kokki laittaa ruokaa, vaan riittää, että kerrot tarjoilijalle mitä haluat. Samalla tavalla ohjelmat käyttävät API-rajapintoja puhuakseen toisilleen. API on siis joukko sääntöjä ja ohjeita, joiden avulla ohjelmat voivat pyytää ja vaihtaa tietoja.
 
