@@ -2,7 +2,7 @@
 
 Tämä materiaali on suunnattu ensisijaisesti SASKYn Koodaaja-koulutuksen hakuvaiheen orientaatiokurssin taustamateriaaliksi. Tämän materiaalin avulla tutuksi tulee muun muassa seuraavat aiheet:
 
- - Sivujen tpteuttamisessa tarvittavien työvälineiden asennus ja käyttö.
+ - Sivujen toteuttamisessa tarvittavien työvälineiden asennus ja käyttö.
  - HTML-kielen perusteet ja yksinkertaisten HTML-sivujen toteuttaminen.
  - CSS-kielen perusteet ja HTML-sivun ulkoasun muotoileminen CSS-tyyleillä.
  - JavaScriptin perusteet eli miten JavaSciptillä saadaan toteutettua toiminnallisuutta HTML-sivulle.

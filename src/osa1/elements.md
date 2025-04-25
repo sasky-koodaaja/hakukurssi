@@ -24,7 +24,7 @@ Otsikkotason elementeillä merkitään dokumentin otsikot. Sivun pääotsikko me
 Otsikkoelementit näkyvät tyypillisesti lihavoituna ja isommalla tekstikoolla. Niiden ulkoasu muokataan halutunlaiseksi CSS-tyyleillä.
  
 <div class="image">
- <img alt="Esimerkkikuva, josta ilmenee h1-, h2- ja p-elementtien ulkoasulliset erot." src="./elements-hn.png" width="343">
+ <img alt="Esimerkkikuva, josta ilmenee h1-, h2- ja p-elementtien ulkoasulliset erot." src="./elements-hn.png" width="1126">
 </div>
  
 > Muistisääntö: `h1`, &hellip; `h6`-elementtien nimet ovat lyhenne sanasta *header*.
@@ -40,7 +40,7 @@ Tavallinen tekstikappale merkitään `p`-elementillä.
 Tekstikappale näkyy tyypillisesti normaalilla tekstikoolla. Sen ylä- ja alapuolella on pieni väli erottamassa sitä muusta sisällöistä.
  
 <div class="image">
- <img alt="Esimerkkikuva, josta ilmenee h1-, h2- ja p-elementtien ulkoasulliset erot." src="./elements-hn.png" width="343">
+ <img alt="Esimerkkikuva, josta ilmenee h1-, h2- ja p-elementtien ulkoasulliset erot." src="./elements-hn.png" width="1126">
 </div>
  
 > Muistisääntö: `p`-elementin nimi on lyhenne sanasta *paragraph*.
@@ -63,7 +63,7 @@ Kuva näkyy tyypillisesti sen luonnollisessa koossa, kuvan kokoa muokataan CSS-t
  
 ## Linkki (`a`)
  
-Linkki toiselle sivulle tai saman sivun toiseen kohtaan merkitään `a`-elementillä.Linkin osoite määritellään `href`-määritteellä ja elementin sisällöksi tulee linkkiteksti.
+Linkki toiselle sivulle tai saman sivun toiseen kohtaan merkitään `a`-elementillä. Linkin osoite määritellään `href`-määritteellä ja elementin sisällöksi tulee linkkiteksti.
  
 ```html
 <a href="https://sasky.fi">SASKY koulutuskuntayhtymä</a>
@@ -72,7 +72,7 @@ Linkki toiselle sivulle tai saman sivun toiseen kohtaan merkitään `a`-elementi
 Linkki näkyy tyypillisesti alleviivattuna tekstinä. Linkin väri on sininen (linkkiä ei ole vielä avattu) tai violetti (linkki on avattu).
  
 <div class="image">
- <img alt="Esimerkkejä linkin näkymisestä sivulla. Kuvassa on linkit kolmeen avaamattomaan sivustoon." src="./elements-a.png" width="343">
+ <img alt="Esimerkkejä linkin näkymisestä sivulla. Kuvassa on linkit kolmeen avaamattomaan sivustoon." src="./elements-a.png" width="1126">
 </div>
  
 > Muistisääntö: `a`-elementin nimi on lyhenne sanasta *anchor*.
@@ -93,7 +93,7 @@ Listan alkioiden alussa on tyypillisesti pallukka, siksi tätä listaa kutsutaan
 virallinen nimi on *järjestämätön lista*.
  
 <div class="image">
- <img alt="Esimerkki listasta, jossa on kolme lista-alkiota." src="./elements-ul.png" width="343">
+ <img alt="Esimerkki listasta, jossa on kolme lista-alkiota." src="./elements-ul.png" width="1126">
 </div>
  
 Listan ulkoasua  muokataan CSS-tyylien avulla. Sivujen navigointilinkit toteutetaan usein tällä elementtirakenteella.
@@ -112,7 +112,7 @@ Suurin osa HTML-kielen elementeistä kuuluvat joko lohkotason tai sisätason ele
  
 ## Kääreet (`div` ja `span`)
  
-`div`- ja `span`-elementit eroavat muista edellä esitellyistä elementeistä. Niillä ei ole sisältömerkitystä eikä myöskään ulkoasumerkitystä. Ne ovat toisin sanoen
+`div`- ja `span`-elementit eroavat muista edellä esitellyistä elementeistä. Niillä ei ole sisältö- eikä myöskään ulkoasumerkitystä. Ne ovat toisin sanoen
 eräänlaisia ”näkymättömiä” kehyksiä eli kääreitä.
  
 ```html
@@ -122,7 +122,7 @@ eräänlaisia ”näkymättömiä” kehyksiä eli kääreitä.
 ```
  
 <div class="image">
- <img alt="Esimerkki, josta näkyy, että div- ja span-elementeillä ei ole ulkoasullista merkitystä." src="./elements-div.png" width="343">
+ <img alt="Esimerkki, josta näkyy, että div- ja span-elementeillä ei ole ulkoasullista merkitystä." src="./elements-div.png" width="1126">
 </div>
  
 Niitä käytetään silloin, kun halutaan määritellä ulkoasutyylejä isommalle kokonaisuudelle, jolle ei ole olemassa omaa loogista elementtiä.

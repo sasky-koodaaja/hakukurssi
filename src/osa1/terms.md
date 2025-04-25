@@ -68,13 +68,13 @@ Tulevissa esimerkeissä huomaat, että elementit voivat sisältää useampia tar
  
 ## Tyhjä elementti
  
-HTML-elementti voi olla myös niin sanottu **tyhjä elementti**. Tyhjässä elementissä sisältö ja loptustagi puuttuvat eli sillä on vain aloitustagi. Seuraavassa on esimerkki tyhjästä elementistä, sillä on vain aloitustagi, jossa on määritelty elementille kaksi määritettä `src` ja `alt`.
+HTML-elementti voi olla myös niin sanottu **tyhjä elementti**. Tyhjässä elementissä sisältö ja lopetustagi puuttuvat eli sillä on vain aloitustagi. Alla on esimerkki tyhjästä elementistä, jolla on vain aloitustagi. Aloitustagissa on määritelty elementille kaksi määritettä: `src` ja `alt`.
  
 ```html
 <img src="kuvakansio/kuva.jpg" alt="kuvateksti">
 ```
  
-`img` (image) on tyhjä elementti, jolla sivulle sijoitetaan kuva. Sijoitettavan kuvan osoite määritellään `src`-määritteellä ja kuvan vaihtoehtoinen kuvateksti määritellään `alt`-määritteellä. Tässä tapauksessa elementillä ei ole tarvetta sisällölle, joten siksi sillä ei ole sisältöosaa eikä lopetustagia.
+`img` (image) on tyhjä elementti, jolla sivulle sijoitetaan kuva. Sijoitettavan kuvan osoite määritellään `src`-määritteellä ja kuvan vaihtoehtoinen kuvateksti määritellään `alt`-määritteellä. Tässä tapauksessa elementillä ei ole tarvetta sisällölle, joten sillä ei ole sisältöosaa eikä lopetustagia.
  
 > Huomaa, että elementillä voi olla monia määritteitä, joista osa on pakollisia ja osa vapaaehtoisia. Esimerkiksi `src` ja `alt` ovat kummatkin `img`-elementin pakollisia määritteitä.
  

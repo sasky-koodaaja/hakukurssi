@@ -8,7 +8,7 @@ Tämän materiaalin esimerkkien testaamiseen ei vaadita tehokasta konetta, johon
 
 ## Graafinen selain
 
-Materiaalissa tehtyjen HTML-sivujen katseluun soveltuu mikä tahansa graafinen selain. Se selain, mitä käytät aktiivisesti, käy tähän aivan mainiosti. Materiaalissa olevat esimerkkikuvat ovat Microsoftin Edge -selaimesta, mutta lopputulos näyttää pääosin samalta millä tahansa muulla selaimella.
+Materiaalissa tehtyjen HTML-sivujen katseluun soveltuu mikä tahansa graafinen selain. Se selain, mitä käytät aktiivisesti, käy tähän aivan mainiosti. Materiaalissa olevat esimerkkikuvat ovat Microsoftin Edge -selaimesta, mutta lopputulos näyttää pääosin samalta myös muilla selaimilla.
 
 ## Tekstieditori
 

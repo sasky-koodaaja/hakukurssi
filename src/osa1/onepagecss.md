@@ -425,6 +425,8 @@ Luo projektikansioon uusi tiedosto, anna sen nimeksi `03-onepage.css` ja liitä 
      <a href="onepagecss-18-full.png"><img alt="Alaotsakkeen ulkoasu on määritelty." src="./onepagecss-18.png" width="1111"></a>
    </div><br>
 
+
+
 Nyt sivuston ulkoasu on kokonaisuudessaan valmis ja se näyttää seuraavanlaiselta:
 
 <div class="image">

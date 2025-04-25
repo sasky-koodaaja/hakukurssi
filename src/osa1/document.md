@@ -26,7 +26,7 @@ Aikaisemmissa suosituksissa dokumenttityyppien määrittelyt olivat pitkiä teks
  
 `html`-elementti aloittaa koko HTML-dokumentin eli se määrittelee koko dokumentin juuren.
  
-Elementin aloitustagiin on hyvä sijoittaa myös lang-määrite, jolla kerrotaan millä kielellä dokumentin sisältö on esitetty. Tätä tietoa hyödyntävät mm. puhesyntetisoijat ja erilaiset käännöstyökalut. Arvo määritellään kielikoodilla, esimerkiksi `fi` (suomi), `en` (englanti) ja `sv` (ruotsi). Dokumentti voi sisältää ainoastaan yhden `html`-elementti.
+Elementin aloitustagiin on hyvä sijoittaa myös `lang`-määrite, jolla kerrotaan millä kielellä dokumentin sisältö on esitetty. Tätä tietoa hyödyntävät mm. puhesyntetisoijat ja erilaiset käännöstyökalut. Arvo määritellään kielikoodilla, esimerkiksi `fi` (suomi), `en` (englanti) ja `sv` (ruotsi). Dokumentti voi sisältää ainoastaan yhden `html`-elementin.
  
 ## `<head>`
  

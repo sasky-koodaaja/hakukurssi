@@ -58,7 +58,7 @@ Tutustutaan seuraavaksi siihen, miten tyylitiedosto liitetään osaksi HTML-sivu
      <head>
        <meta charset="UTF-8">
        <title>Tyyleillä saat ulkoasun kohdilleen</title>
-       <link href="02-css.css" rel="stylesheet">
+       <link href="02-tyylit.css" rel="stylesheet">
      </head>
      <body>
        <h1>Tyyleillä saat ulkoasun kohdilleen!</h1>
@@ -88,7 +88,9 @@ Tutustutaan seuraavaksi siihen, miten tyylitiedosto liitetään osaksi HTML-sivu
 
 3. Avaa **HTML-sivu** selaimessa samalla tavalla, mitä edellisellä sivulla ohjeistettiin.
 
-... todo kuva tähän..
+   <div class="image">
+     <img alt="Tyylisäännöt liitetty osaksi HTML-sivua." src="./css-3.png" width="1126">
+   </div><br>
 
 ## Tyylisäännöt avattuna
 
