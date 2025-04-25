@@ -1,0 +1,385 @@
+<!DOCTYPE HTML>
+<html lang="fi" class="light sidebar-visible" dir="ltr">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Muuttujat - Ammatillisen verkkoprofiilin koostaminen</title>
+
+
+        <!-- Custom HTML head -->
+
+        <meta name="description" content="SASKY Koodaaja-verkkokoulutusten hakuvaihekurssin taustamateriaali">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff">
+
+        <link rel="icon" href="../favicon.svg">
+        <link rel="shortcut icon" href="../favicon.png">
+        <link rel="stylesheet" href="../css/variables.css">
+        <link rel="stylesheet" href="../css/general.css">
+        <link rel="stylesheet" href="../css/chrome.css">
+        <link rel="stylesheet" href="../css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="../fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" id="highlight-css" href="../highlight.css">
+        <link rel="stylesheet" id="tomorrow-night-css" href="../tomorrow-night.css">
+        <link rel="stylesheet" id="ayu-highlight-css" href="../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+        <link rel="stylesheet" href="../custom.css">
+
+
+        <!-- Provide site root and default themes to javascript -->
+        <script>
+            const path_to_root = "../";
+            const default_light_theme = "light";
+            const default_dark_theme = "navy";
+        </script>
+        <!-- Start loading toc.js asap -->
+        <script src="../toc.js"></script>
+    </head>
+    <body>
+    <div id="body-container">
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                let theme = localStorage.getItem('mdbook-theme');
+                let sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            const default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? default_dark_theme : default_light_theme;
+            let theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            const html = document.documentElement;
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add("js");
+        </script>
+
+        <input type="checkbox" id="sidebar-toggle-anchor" class="hidden">
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            let sidebar = null;
+            const sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+            }
+            sidebar_toggle.checked = sidebar === 'visible';
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <!-- populated by js -->
+            <mdbook-sidebar-scrollbox class="sidebar-scrollbox"></mdbook-sidebar-scrollbox>
+            <noscript>
+                <iframe class="sidebar-iframe-outer" src="../toc.html"></iframe>
+            </noscript>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <label id="sidebar-toggle" class="icon-button" for="sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </label>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="default_theme">Auto</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">Ammatillisen verkkoprofiilin koostaminen</h1>
+
+                    <div class="right-buttons">
+                        <a href="../print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="muuttujat-ja-tietotyypit"><a class="header" href="#muuttujat-ja-tietotyypit">Muuttujat ja tietotyypit</a></h1>
+<h2 id="muuttujat"><a class="header" href="#muuttujat">Muuttujat</a></h2>
+<p>Muuttujat ovat säilytyspaikkoja arvoille eli datalle. Ne mahdollistavat sen, että koodisi voi käsitellä vaihtelevaa tietoa – kuten käyttäjän nimeä tai laskun summaa. Tieto pysyy muuttujassa tallessa koko ohjelman suorituksen ajan.</p>
+<p>Lisätietoa ja harjoituksia löytyy esimerkiksi sivustosta <a href="https://www.w3schools.com/js/js_variables.asp">W3Schools Variables</a>.</p>
+<p>Ohjelmoija voi halutessaan muuttaa muuttujan arvoja ohjelman suorituksen aikana vaikka monta kertaa, esimerkiksi pelissä voi pelaajan pistemäärä olla tallennettuna muuttujaan ja aina kun pelaaja onnistuu jossain uudessa asiassa, hänen piste-muuttujansa arvoa kasvatetaan.</p>
+<p>Muuttuja <strong>esitellään</strong> ennen sen ensimmäistä käyttöä varatulla komentosanalla <code>let</code>. Koodi toimii valitettavasti myös, vaikka let-komennon jättää pois, mutta tällöin muuttujasta tulee vahingossa ns. globaali. Muista siis esitellä aina muuttuja oikealla tavalla.</p>
+<p>JavaScriptin koodilause päättyy joko rivinvaihtoon (ENTER) tai puolipisteeseen. Nykytavan mukaan puolipisteitä ei enää käytetä, mutta niiden käyttö ei ole virhe. Alla olevat kaksi koodilausetta päättyvät puolipisteeseen.</p>
+<pre><code class="language-javascript">let nimi = "Anna";
+let ika = 16;
+</code></pre>
+<p>Seuraavat koodirivit päättyvät rivinvaihtoon ilman puolipistettä. Huomaa, desimaalierotin on desimaalipiste eikä suomen kielen kieliopin mukainen pilkku. Kolmannella rivillä <code>hinta</code>-muuttujaan tallennetaan uusi arvo, joka korvaa vanhan. Vain viimeisin arvo jää jäljelle. Myöskään muuttujaa ei kolmannella rivillä enää uudelleen esitellä, koska se on <code>let</code>-komennolla esitelty jo aiemmin.</p>
+<pre><code class="language-javascript">let hinta = 5.95
+let alePros = 0.2
+hinta = 4.76
+</code></pre>
+<p>Muistettavaa muuttujista:</p>
+<ul>
+<li>Käytä kuvaavia nimiä (ika, etunimi) – ei pelkkiä kirjaimia (x, y).</li>
+<li>Muuttujan nimi ei saa sisältää välilyöntejä.</li>
+<li>Vältä muuttujien nimeämisessä skandinaavisia kirjaimia, osa työkaluista tai kirjastoista voi toimia väärin</li>
+<li>Käytä camelCase-tyyliä: esim. <code>kokoNimi</code> tai alaviivoja esim. <code>ale_prosentti</code> kun muuttujan nimi on pitkä yhdyssana.</li>
+</ul>
+<h2 id="perustietotyypit-primitiiivit"><a class="header" href="#perustietotyypit-primitiiivit">Perustietotyypit (primitiiivit)</a></h2>
+<p>Muuttujille voi antaa eri tyyppisiä arvoja. JavaScript tunnistaa tyypin automaattisesti.</p>
+<p>Tärkeimmät tietotyypit:</p>
+<div class="table-wrapper"><table><thead><tr><th>Tyyppi</th><th>Esimerkki</th><th>Selitys</th></tr></thead><tbody>
+<tr><td>String</td><td>"Moikka"</td><td>Teksti (merkkijono)</td></tr>
+<tr><td>Number</td><td>42, 3.14</td><td>Luku (kokonais- tai desimaali)</td></tr>
+<tr><td>Boolean</td><td>true, false</td><td>Totuusarvo (kyllä/ei)</td></tr>
+<tr><td>Undefined</td><td>muuttuja ilman arvoa</td><td>Esim. let x</td></tr>
+<tr><td>Null</td><td>null</td><td>Tarkoituksella "tyhjä"</td></tr>
+</tbody></table>
+</div>
+<pre><code class="language-javascript">let teksti = "Hei"
+let luku = 100
+let totuus = true
+let eiMaaritetty
+let tyhja = null
+</code></pre>
+<h3 id="tekstin-kirjoitus"><a class="header" href="#tekstin-kirjoitus">Tekstin kirjoitus</a></h3>
+<p>Koska tekstimuotoinen data voi sisältää kaikkia merkkejä, myös välilyöntejä ja erikoismerkkejä, tekstimuotoinen data on ympäröitävä erotinmerkeillä, joita on kolmea tyyppiä. Voit käyttää tekstiin heittomerkkejä eli 'hipsuja', lainausmerkkejä tai backtick-merkkejä:</p>
+<pre><code class="language-javascript">let eka = 'Hei'
+let toka = "Moi"
+// tämä on kommentti
+let kolmas = `Terve, ${eka}` // muuttujan upotus tulostukseen
+</code></pre>
+<h3 id="kommentit-ja-kaltevat-viivat"><a class="header" href="#kommentit-ja-kaltevat-viivat">Kommentit ja "kaltevat" viivat</a></h3>
+<p>Koodin joukkoon voi lisätä yllä olevan esimerkin mukaan <strong>kommentteja</strong>, eli ohjelmoijan omia muistiinpanoja. Ne eivät vaikuta ohjelman toimintaan vaan ovat pelkästään ihmisen luettavaksi tarkoitettuja huomautuksia tai vastaavaa. Kommentti aloitetaan kirjoittamalla peräkkäin kaksi kauttaviivaa <code>// tämä on kommentti</code>. Kauttaviivat ovat eri merkki, kuin seuraavassa esiteltävät <strong>kenoviivat</strong>, jotka osoittavat ikään kuin kello 11:een, kun taas kauttaviivat osoittavat kello 1:een.</p>
+<p>Muista: kauttaviiva <code>/</code> ja kenoviiva <code>\</code> ovat eri merkki ja saavat aikaan eri toimintoja. Seuraavaksi eräs kenoviivan käyttötarkoitus, eli escape-merkit.</p>
+<p><strong>Escape-merkit</strong> ovat erikoismerkkejä, joita käytetään ohjelmoinnissa, kun halutaan lisätä koodiin merkkejä, joita ei voi kirjoittaa suoraan sellaisenaan. Näitä merkkejä tarvitaan, koska jotkut merkit JavaScriptissä (ja muissa kielissä) tulkitaan erikoistarkoitukseen, eikä niitä voi käyttää normaalina tekstinä ilman erityistä käsittelyä.</p>
+<p>Escape-merkki on kenoviiva <code>\</code>, jota seuraa jokin muu merkki. Tämä yhdistelmä kertoo JavaScriptille: "älä käsittele seuraavaa merkkiä tavalliseen tapaan, vaan tulkitse se erikoismerkkinä".</p>
+<p>Muutama Escape-merkki:</p>
+<ul>
+<li>\' ja \" sallivat kirjoittaa lainausmerkin osaksi merkkijonoa</li>
+<li>\n tekee rivinvaihdon</li>
+<li>\\ lisää kenoviivan</li>
+</ul>
+<p>Esimerkki merkkijonosta, joka sisältää Escape-merkkejä:</p>
+<pre><code class="language-javascript">let eka = "Täällä on kenoviiva \\ ja lainausmerkki \" tekstin joukossa."
+</code></pre>
+<p>Ylläolevan muuttujan tulostus tuottaa tällaisen rivin:</p>
+<pre><code class="language-text">Täällä on kenoviiva \ ja lainausmerkki " tekstin joukossa.
+</code></pre>
+<p>Kun haluat tulostaa tekstin kahdelle riville, lisää haluamaasi kohtaan \n.</p>
+<pre><code class="language-javascript">let esimerkki = "Hei, mitä kuuluu?\nKaikki hyvin."
+</code></pre>
+<h3 id="tietotyypin-tarkistus"><a class="header" href="#tietotyypin-tarkistus">Tietotyypin tarkistus</a></h3>
+<p>Voit tarkistaa muuttujan tietotyypin komennolla typeof.</p>
+<pre><code class="language-javascript">let luku = 10
+console.log(typeof luku) // "number"
+</code></pre>
+<h3 id="tyyppimuunnokset"><a class="header" href="#tyyppimuunnokset">Tyyppimuunnokset</a></h3>
+<p>JavaScript muuntaa joskus tyyppejä automaattisesti. Tämä voi yllättää:</p>
+<pre><code class="language-javascript">let a = 2
+let b = "2"
+console.log(a + b) // "22" (yhdistää tekstiksi)
+</code></pre>
+<p>Voit myös muuntaa tyyppejä itse:</p>
+<pre><code class="language-javascript">Number("123")  // 123
+String(456)    // "456"
+Boolean("")    // false
+</code></pre>
+<h3 id="yhteenveto"><a class="header" href="#yhteenveto">Yhteenveto</a></h3>
+<ul>
+<li>Käytä let muuttujien luomiseen.</li>
+<li>Muista tietotyypit: teksti, luku, tosi/epätosi.</li>
+<li>Kirjoita kuvaavia muuttujanimiä.</li>
+<li>Tarkista tyyppi typeof-komennolla.</li>
+<li>Tyyppimuunnokset voivat aiheuttaa yllätyksiä.</li>
+</ul>
+<br>
+<h2 id="esimerkit"><a class="header" href="#esimerkit">Esimerkit</a></h2>
+<p>JavaScript-koodi kirjoitetaan HTML-sivulle <code>&lt;script&gt;</code>-elementin sisään. Tämä tarkoittaa, että voit lisätä koodin suoraan HTML-tiedostoon, ja selain suorittaa sen, kun sivu avataan. Kaikki JavaScript kirjoitetaan <code>&lt;script&gt;</code>- ja <code>&lt;/script&gt;</code>-tägien väliin. Se voi olla sivun alussa, lopussa tai erillisessä tiedostossa.</p>
+<h3 id="missä-kohtaa-htmlää-script-elementti-voi-olla"><a class="header" href="#missä-kohtaa-htmlää-script-elementti-voi-olla">Missä kohtaa HTML:ää <code>&lt;script&gt;</code>-elementti voi olla?</a></h3>
+<ul>
+<li><code>&lt;script&gt;</code>-elementti voidaan sijoittaa kahteen yleiseen paikkaan:</li>
+<li><code>&lt;head&gt;</code>-elementin sisälle</li>
+<li><code>&lt;body&gt;</code>-elementin sisälle</li>
+</ul>
+<p>Usein <code>&lt;script&gt;</code> sijoitetaan <code>&lt;body&gt;</code>-elementin sisään ja sen loppuun. Kun selain lukee HTML-tiedostoa ylhäältä alas, se lukee ja suorittaa koodin heti kun se kohtaa sen. Jos JavaScript yritetään suorittaa ennen kuin sivun sisältö on ehtinyt latautua (esimerkiksi ennen kuin elementit kuten <code>&lt;p id="tulos"&gt;</code> ovat olemassa), koodi ei välttämättä toimi oikein – selain ei vielä "näe" niitä elementtejä.</p>
+<p>Siksi on hyvä tapa sijoittaa <code>&lt;script&gt;</code>-elementti juuri ennen sivun rungon lopettavaa <code>&lt;body&gt;</code>-tagia,</p>
+<p>Alla on muutamia esimerkkejä ja niiden jälkeen harjoituksia, joiden avulla voit itse kokeilla miten koodaaminen onnistuu.</p>
+<h3 id="esimerkki-1"><a class="header" href="#esimerkki-1">Esimerkki 1</a></h3>
+<p>Luo muuttuja nimeltä <code>ilmoitus</code>, jonka arvo on <code>"Tervetuloa koodauskurssille!</code>.</p>
+<p><strong>Suoritusohje:</strong> Tulosta se alert-ikkunassa. Tee koodistasi kokonainen html-tiedosto ja tallenna se nimellä <code>esimerkki1.html</code>. Avaa luomasi tiedosto selaimessa.</p>
+<h4 id="esimerkki1html"><a class="header" href="#esimerkki1html">esimerkki1.html:</a></h4>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+  &lt;meta charset="UTF-8"&gt;
+  &lt;title&gt;Esimerkki 1&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;script&gt;
+    let ilmoitus = "Tervetuloa koodauskurssille!"
+    alert(ilmoitus)
+  &lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<h3 id="esimerkki-2"><a class="header" href="#esimerkki-2">Esimerkki 2</a></h3>
+<p>Luo muuttuja <code>oppilas</code>, jonka arvo on <code>"Lauri"</code>, ja muuttuja <code>pisteet</code>, jonka arvo on <code>95</code>. Tulosta console.log-komennolla teksti</p>
+<pre><code>Oppilas: Lauri, Pisteet: 95
+</code></pre>
+<h4 id="esimerkki2html"><a class="header" href="#esimerkki2html">esimerkki2.html:</a></h4>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+  &lt;meta charset="UTF-8"&gt;
+  &lt;title&gt;Esimerkki 2&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;script&gt;
+    let oppilas = "Lauri"
+    let pisteet = 95
+    console.log("Oppilas: " + oppilas + ", Pisteet: " + pisteet)
+  &lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<h3 id="esimerkki-3"><a class="header" href="#esimerkki-3">Esimerkki 3</a></h3>
+<p>Luo muuttuja <code>ekaLuku</code>, jonka arvo on <code>12</code>, ja <code>tokaLuku</code>, jonka arvo on <code>8</code>. Laske niiden summa ja näytä se sivulla HTML-elementissä, jonka id on <code>tulos</code>.</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+  &lt;meta charset="UTF-8"&gt;
+  &lt;title&gt;Esimerkki 3&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;p id="tulos"&gt;&lt;/p&gt;
+
+  &lt;script&gt;
+    let ekaLuku = 12
+    let tokaLuku = 8
+    let yhteensa = ekaLuku + tokaLuku
+    document.getElementById("tulos").innerHTML = "Lukujen yhteissumma on: " + yhteensa
+  &lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<h2 id="harjoitukset"><a class="header" href="#harjoitukset">Harjoitukset</a></h2>
+<p>Harjoitukset ov tarkoitettu itseopiskeluun. Yritä ratkaista annetut harjoitustehtävät. Jos haluat, saat käyttää apunasi tekoälyä siinä muodossa, että teet kysymyksiä, jotka alkavat sanalla "miksi."</p>
+<p>Näitä harjoituksia ei arvioida eikä niistä saa pisteitä valintaprosessiin, mutta niiden kautta oppii uutta, jota tarvitset myöhemmin tämän hakukurssin varsinaisessa arvioitavassa näyttötehtävässä.</p>
+<h3 id="harjoitus-1"><a class="header" href="#harjoitus-1">Harjoitus 1</a></h3>
+<p>Luo muuttuja nimeltä <code>tervehdys</code>, jonka arvo on <code>"Hei maailma!"</code>. Tulosta se alert-ikkunassa.</p>
+<h3 id="harjoitus-2"><a class="header" href="#harjoitus-2">Harjoitus 2</a></h3>
+<p>Luo muuttuja <code>nimi</code>, jonka arvo on <code>"Emma"</code>, ja muuttuja <code>ika</code>, jonka arvo on <code>23</code>. Tulosta console.log-komennolla teksti</p>
+<pre><code>Nimi: Emma, Ikä: 23
+</code></pre>
+<h3 id="harjoitus-3"><a class="header" href="#harjoitus-3">Harjoitus 3</a></h3>
+<p>Luo muuttuja <code>luku1</code>, jonka arvo on <code>5</code>, ja <code>luku2</code>, jonka arvo on <code>3</code>. Laske niiden summa ja näytä se sivulla HTML-elementissä, jonka id on <code>summa</code>.</p>
+<h3 id="harjoitus-4"><a class="header" href="#harjoitus-4">Harjoitus 4</a></h3>
+<p>Luo muuttuja <code>teksti</code>, jonka arvo on <code>"JavaScript on kivaa"</code> ja näytä se HTML-elementissä, jonka id on <code>viesti</code>.</p>
+<h3 id="harjoitus-5"><a class="header" href="#harjoitus-5">Harjoitus 5</a></h3>
+<p>Luo muuttuja <code>totuus</code> arvolla <code>true</code> ja näytä sen tietotyyppi HTML-elementissä, jonka id on <code>tyyppi</code>.</p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="../osa2/javascript01.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+                            <a rel="next prefetch" href="../osa2/jsoperaattorit.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="../osa2/javascript01.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next prefetch" href="../osa2/jsoperaattorit.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="../elasticlunr.min.js"></script>
+        <script src="../mark.min.js"></script>
+        <script src="../searcher.js"></script>
+
+        <script src="../clipboard.min.js"></script>
+        <script src="../highlight.js"></script>
+        <script src="../book.js"></script>
+
+        <!-- Custom JS scripts -->
+
+
+    </div>
+    </body>
+</html>

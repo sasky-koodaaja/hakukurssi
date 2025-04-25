@@ -1,0 +1,326 @@
+<!DOCTYPE HTML>
+<html lang="fi" class="light sidebar-visible" dir="ltr">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>CSS-tyylit - Ammatillisen verkkoprofiilin koostaminen</title>
+
+
+        <!-- Custom HTML head -->
+
+        <meta name="description" content="SASKY Koodaaja-verkkokoulutusten hakuvaihekurssin taustamateriaali">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff">
+
+        <link rel="icon" href="../favicon.svg">
+        <link rel="shortcut icon" href="../favicon.png">
+        <link rel="stylesheet" href="../css/variables.css">
+        <link rel="stylesheet" href="../css/general.css">
+        <link rel="stylesheet" href="../css/chrome.css">
+        <link rel="stylesheet" href="../css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="../fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" id="highlight-css" href="../highlight.css">
+        <link rel="stylesheet" id="tomorrow-night-css" href="../tomorrow-night.css">
+        <link rel="stylesheet" id="ayu-highlight-css" href="../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+        <link rel="stylesheet" href="../custom.css">
+
+
+        <!-- Provide site root and default themes to javascript -->
+        <script>
+            const path_to_root = "../";
+            const default_light_theme = "light";
+            const default_dark_theme = "navy";
+        </script>
+        <!-- Start loading toc.js asap -->
+        <script src="../toc.js"></script>
+    </head>
+    <body>
+    <div id="body-container">
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                let theme = localStorage.getItem('mdbook-theme');
+                let sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            const default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? default_dark_theme : default_light_theme;
+            let theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            const html = document.documentElement;
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add("js");
+        </script>
+
+        <input type="checkbox" id="sidebar-toggle-anchor" class="hidden">
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            let sidebar = null;
+            const sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+            }
+            sidebar_toggle.checked = sidebar === 'visible';
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <!-- populated by js -->
+            <mdbook-sidebar-scrollbox class="sidebar-scrollbox"></mdbook-sidebar-scrollbox>
+            <noscript>
+                <iframe class="sidebar-iframe-outer" src="../toc.html"></iframe>
+            </noscript>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <label id="sidebar-toggle" class="icon-button" for="sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </label>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="default_theme">Auto</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">Ammatillisen verkkoprofiilin koostaminen</h1>
+
+                    <div class="right-buttons">
+                        <a href="../print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="css-tyylit"><a class="header" href="#css-tyylit">CSS-tyylit</a></h1>
+<p>Aikaisemmin tutustuttiin HTML-merkkaukseen, jolla esitetään dokumentin sisältö. Ohjeena tagien valinnassa oli, että kussakin tilanteessa käytettävä tagi valitaan sisällön perusteella, ei halutun ulkoasun perusteella. Tämän seurauksena HTML-sivu itsessään on vielä aika karun näköinen.</p>
+<p>HTML-sivun ulkoasua voidaan koristella <em>CSS-tyylien</em> (Cascading Style Sheets) avulla. Nämä CSS-tyylit esiteltään <em>tyylisääntöinä</em> (style rules), jotka kokonaisuutena määrittelevät HTML-sivulle sen ulkoasun. Tyylisäännöt koostuvat yksittäisistä <strong>säännöistä</strong>, jotka määrittelevät tietylle määritellylle kokonaisuudelle ulkoasumääritykset.</p>
+<h2 id="sääntö"><a class="header" href="#sääntö">Sääntö</a></h2>
+<p>Yksittäinen sääntö muodostuu <em>selektorista</em> ja aaltosulkeilla rajatusta
+<em>deklaraatiolohkosta</em>. <strong>Selektori</strong> määrää mitä elementtejä sääntö koskee. Selektori voi olla
+yksinkertaisimmillaan elementin nimi (kuten esimerkiksi <code>h1</code>). <strong>Deklaraatiolohko</strong> sisältää yhden tai useamman määrittelyn, jotka muokkaavat kohteena olevan elementin ulkoasua. Yksittäistä määrittelyä kutsutaan deklaraatioksi, se päättyy aina puolipisteeseen.</p>
+<p>Alla olevassa esimerkkisäännössä selektorina on <code>h1</code>-elementti ja deklaraatiolohkossa on yksi deklaraatio.</p>
+<div class="image">
+ <img alt="Yksittäinen sääntö muodostuu selektorista ja deklaraatiolohkosta. Kuvan esimerkissä deklaraatiolohkossa on yksi deklaraation." src="./css-1.png" width="980">
+</div>
+<h2 id="deklaraatio"><a class="header" href="#deklaraatio">Deklaraatio</a></h2>
+<p>Deklaraatio koostuu ominaisuuden nimestä ja sen arvosta. <strong>Nimi</strong> määrittelee, mitä tyyliominaisuutta muokataan, <strong>arvo</strong> määrittelee ominaisuudelle uuden arvon. Ominaisuuden nimi ja arvo erotetaan toisistaan aina kaksoispisteellä.</p>
+<div class="image">
+ <img alt="Deklaraation koostuu ominaisuuden nimestä ja arvosta, jotka erotetaan toisistaan kaksoispisteellä." src="./css-2.png" width="951">
+</div><br>
+<p>Deklaraatiolohko voi sisältää useamman deklaraation. Deklaraatiot käsitellään
+ylhäältä alas, myöhäisempi määritys korvaa aiemman.</p>
+<p>Esimerkiksi seuraavassa esimerkissä määritellään <code>p</code>-elementille marginaali, tekstin koko ja riviväli. Ensimmäisellä rivillä oleva <code>margin</code>-määrite asettaa saman levyisen marginaalin elementin jokaiselle sivulle. Toisella rivillä oleva <code>margin-bottom</code>-määrite korvaa edellä määritetyn alamarginaalin uudella arvolla.</p>
+<pre><code class="language-css">p { margin: 1em;
+    margin-bottom: 2em; 
+    font-size: 80%;
+    line-height: 1.4; 
+</code></pre>
+<blockquote>
+<p>Edellä kuvattu korvaavuus ei todennäköisesti tunnu ihan selkeimmältä, mutta opit niiden toiminnan myöhemmin, kun opit lisää CSS-määritteistä. Lisäksi kannattaa varautua siihen, että tulet oppimaan tästä monesta muusta myös tekemiesi virheiden kautta. 😉</p>
+</blockquote>
+<h2 id="tyylisääntöjen-liittäminen"><a class="header" href="#tyylisääntöjen-liittäminen">Tyylisääntöjen liittäminen</a></h2>
+<p>Tyylisäännöt voidaan liittää kolmella eri tavalla osaksi HTML-sivua.</p>
+<ol>
+<li>Tiedostoviittauksella <code>link</code>-elementin avulla, jolloin tyylit liitetään omana tiedostona.</li>
+<li>Tyylit sijoitetaan HTML-dokumentin <code>head</code>-osioon sijoitetun <code>style</code>-elementin sisälle. Tällä menetelmällä HTML-dokumentilla on omat, yksilölliset CSS-tyylissäännöt.</li>
+<li>Yksittäisen HTML-elementin aloitustagiin <code>style</code>-määritteenä, jolloin tyyli koskee ainoastaan kyseistä elementtiä.</li>
+</ol>
+<p>Näistä ensimmäinen vaihtoehto on suositeltavin, siinä tyylisäännöt liitetään sivustoon erillisenä tiedostona. Tällä tavalla koko sivustolla voidaan käyttää samoja tyylisääntöjä ja koko sivustoa koskevien tyylien muuttaminen on pidemmän päälle nopeampaa.</p>
+<p>Tutustutaan seuraavaksi siihen, miten tyylitiedosto liitetään osaksi HTML-sivua.</p>
+<ol>
+<li>
+<p>Luo projektikansioon uusi tiedosto, anna sen nimeksi <code>02-tyylit.html</code> ja liitä sen sisällöksi seuraava HTML-koodi:</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html lang="fi"&gt;
+  &lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;title&gt;Tyyleillä saat ulkoasun kohdilleen&lt;/title&gt;
+    &lt;link href="02-tyylit.css" rel="stylesheet"&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;h1&gt;Tyyleillä saat ulkoasun kohdilleen!&lt;/h1&gt;
+    &lt;p&gt;Tämä sivu on esimerkki siitä, miten tyyleillä saa muokattua ulkoasua (oletustyyliä) hienommaksi.&lt;/p&gt;
+    &lt;p&gt;Tämän sivun ulkoasun määrittely on tehty kuudella deklaraatiolla.&lt;/p&gt;
+  &lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p>Tämä dokumentti on rakenteeltaan identtinen aikasempien esimerkkien kanssa. Keskeinen lisäys on <code>head</code>-elementissä oleva <code>link</code>-elementti, jolla CSS-tiedosto saadaan kytkettyä osaksi HTML-sivua. Tässä HTML-dokumenttiin linkitetään <code>02-css.css</code>-niminen tiedosto.</p>
+</li>
+<li>
+<p>Luo projektikansioon uusi tiedosto, anna sen nimeksi <code>02-tyylit.css</code> ja liitä sen sisällöksi seuraavat CSS-tyylisäännöt:</p>
+<pre><code class="language-css">body {
+  font-family: system-ui, sans-serif;
+  background-color: #B3BFB8;
+  color: #000;
+  max-width: 40em;
+  margin: 2em auto;
+}
+
+h1 {
+  font-size: 1.25em;
+}
+</code></pre>
+</li>
+<li>
+<p>Avaa <strong>HTML-sivu</strong> selaimessa samalla tavalla, mitä edellisellä sivulla ohjeistettiin.</p>
+<div class="image">
+  <img alt="Tyylisäännöt liitetty osaksi HTML-sivua." src="./css-3.png" width="1126">
+</div><br>
+</li>
+</ol>
+<h2 id="tyylisäännöt-avattuna"><a class="header" href="#tyylisäännöt-avattuna">Tyylisäännöt avattuna</a></h2>
+<p>Seuraavaksi tutustutaan hieman siihen, mitä edellä olevat tyylisäännöt määrittelevät.</p>
+<pre><code class="language-css">body {
+  font-family: system-ui, sans-serif;
+  background-color: #B3BFB8;
+  color: #000;
+  max-width: 40em;
+  margin: 2em auto;
+}
+</code></pre>
+<p>Alussa oleva <code>body</code>-selektori kohdistaa deklaraatiolohkossa olevat määrittelyt vaikuttamaan dokumentin <code>body</code>-elementtiin. Siihen määritellään tyypillisesti koko dokumenttia koskevat tyylimääritykset, kuten käytettävä fontti, taustaväri ja tekstinväri.</p>
+<p><code>font-family</code>-asetuksella määritellään elementissä (ja tässä tapauksessa koko dokumentissa) käytettävä fontti. <code>system-ui</code> ja <code>sans-serif</code> ovat geneerisiä tunnisteita, eivät siis oikeita fonttien nimiä. Käytettävät fontit listataan pilkulla erotettuna, joista ensimmäiseksi laitteelta löytyvää fonttia käytetään ensisijaisesti.</p>
+<p>Esimerkissä ensisijaisesti käytetään ns. <code>system-ui</code>-fonttia, joka on laitteen käyttöliittymässä käytössä oleva oletusfontti. Toissijaisesti käytetään mitä tahansa <code>sans-serif</code>-perheen fonttia, jolloin käytetään päätteetöntä fonttia, joka laitteessa oletuksena käytetään. Tämän seurauksena Windows-koneissa käytetään todennäköisesti Segoe UI -fonttia ja Mac OS -koneissa puolestaan San Francisco -fonttia.</p>
+<blockquote>
+<p>Osa CSS-tyylimäärityksistä ovat sellaisia, jotka periytyvät (inherit) lapsielementeille, jolloin niitä ei tarvitse määritellä jokaiselle alaelementille erikseen. Esimerkiksi edellä käsitelty <code>font-family</code> on sellainen. Kun käytettävä fontti määritellään <code>body</code>-elementille, niin silloin samaa fonttia käytetään kauttaaltaan koko dokumentissa, jollei sitä erikseen määritellä toiseksi.</p>
+<p>W3Schoolin sivuilla on tiivis esittely <a href="https://www.w3schools.com/cssref/pr_font_font-family.php">font-family</a>-määritteestä. Sivun taulukossa oleva <code>Inherited: yes</code>-rivi kertoo, että kyseinen määrite periytyy.</p>
+</blockquote>
+<p><code>background-color</code> asettaa elementille sen taustavärin. Esimerkissä värikoodi annetaan ns. HTML-värikoodina, missä arvo alkaa <code>#</code>-merkillä ja sen perässä on joko kolme tai kuusi numeroa. Tässä tapauksessa taustaväriksi määritellään vaaleanvihreä. Taustaväri ei periydy sen lapsielementeille. Elementtien taustaväri on oletuksena läpinäkyvä, jolloin koko sivun taustaväri on automaattisesti muidenkin sivulla olevien elementtien taustaväri.</p>
+<blockquote>
+<p>HTML-värikoodi on oikeasti numeroita, vaikka siellä näyttää esiintyvän kirjaimia joukossa. Värikoodi esitetään kompaktimmassa heksadesimamaalimuodossa, jossa käytössä olevat numerot ovat <code>0</code>, <code>1</code>, <code>2</code>, <code>3</code>, <code>4</code>, <code>5</code>, <code>6</code>, <code>7</code>, <code>8</code>, <code>9</code>, <code>A</code>, <code>B</code>, <code>C</code>, <code>D</code>, <code>E</code> ja <code>F</code>.</p>
+</blockquote>
+<p><code>color</code> määrittelee käytettävän tekstivärin, joka esimerkkitapauksessa asetetaan mustaksi. Tekstivärin määritys periytyy lapsielementeille eli esimerkissä koko dokumentin tekstiväri on musta, jollei sitä erikseen määritetä jollekin elementille toiseksi. Poikkeuksena ovat linkit, joiden oletusvärit eivät muutu, ne täytyy asettaa erikseen.</p>
+<blockquote>
+<p>Suositeltava käytäntö on, että <code>background-color</code> että <code>color</code> määritellään aina yhdessä. Tällöin järjestelmän poikkeavat oletusvärit eivät sekoita tarkkaan mietittyä ulkoasua.</p>
+</blockquote>
+<blockquote>
+<p>Netistä löytyy paljon erilaisia palveluita, joilla pystyy luomaan helpolla toisiinsa sopivia väriyhdistelmiä. Esimerkiksi <a href="https://coolors.co">Coolors</a> on yksi hyvin helppokäyttöinen väriyhdistelmien luontiin soveltuva palvelu.</p>
+</blockquote>
+<p><code>max-width</code>-asetuksella määritellään sivun suurin sallittu leveys eli sen alueen leveys, jossa sivun sisältö on. Arvoksi määritellään <code>40em</code>, joka tarkoittaa 40 kirjaimen korkeutta.</p>
+<blockquote>
+<p><code>em</code>-yksikkö on ns. suhteellinen yksikkö eli se saa arvonsa käytössä olevaan fonttikokoon perustuen. Tämä yksikkö mahdollistaa skaalautuvien sivujen toteuttamisen, jossa sivun ulkoasua ei ole sidottu tiettyyn esimääriteltyyn arvoon.</p>
+</blockquote>
+<p><code>margin</code>-asetuksella määritellään koko dokumentin ympärillä olevat marginaalialueet. <code>2em</code> määrittelee sivun ylä- ja alareunaan kahden kirjaimen korkuisen tyhjän alueen. <code>auto</code> puolestaan keskittää sisällön vaakasuunnassa keskelle niin, että sekä vasemmassa että oikeassa reunassa on saman kokoinen tyhjä alue.</p>
+<pre><code class="language-css">h1 {
+  font-size: 1.25em;
+}
+</code></pre>
+<p>Tämä tyylisääntö kohdistuu pelkästään sivulla oleviin <code>h1</code>-elementteihin. <code>font-size</code>-asettaa niiden fonttikooksi 1,25 kertaa tavallista tekstikokoa isomman koon. Vaihtoehtoisesti tässä voisi käyttää myös arvoa <code>125%</code>.</p>
+<p>Nyt sinulla on pieni käsitys siitä, mitä CSS-tyylit ovat ja mitä niillä voi saada aikaan.</p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="../osa1/hello.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+                            <a rel="next prefetch" href="../osa1/boxmodel.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="../osa1/hello.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next prefetch" href="../osa1/boxmodel.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="../elasticlunr.min.js"></script>
+        <script src="../mark.min.js"></script>
+        <script src="../searcher.js"></script>
+
+        <script src="../clipboard.min.js"></script>
+        <script src="../highlight.js"></script>
+        <script src="../book.js"></script>
+
+        <!-- Custom JS scripts -->
+
+
+    </div>
+    </body>
+</html>

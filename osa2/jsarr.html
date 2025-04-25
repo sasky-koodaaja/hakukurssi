@@ -1,0 +1,349 @@
+<!DOCTYPE HTML>
+<html lang="fi" class="light sidebar-visible" dir="ltr">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Taulukkomuuttujat - Ammatillisen verkkoprofiilin koostaminen</title>
+
+
+        <!-- Custom HTML head -->
+
+        <meta name="description" content="SASKY Koodaaja-verkkokoulutusten hakuvaihekurssin taustamateriaali">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff">
+
+        <link rel="icon" href="../favicon.svg">
+        <link rel="shortcut icon" href="../favicon.png">
+        <link rel="stylesheet" href="../css/variables.css">
+        <link rel="stylesheet" href="../css/general.css">
+        <link rel="stylesheet" href="../css/chrome.css">
+        <link rel="stylesheet" href="../css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="../fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" id="highlight-css" href="../highlight.css">
+        <link rel="stylesheet" id="tomorrow-night-css" href="../tomorrow-night.css">
+        <link rel="stylesheet" id="ayu-highlight-css" href="../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+        <link rel="stylesheet" href="../custom.css">
+
+
+        <!-- Provide site root and default themes to javascript -->
+        <script>
+            const path_to_root = "../";
+            const default_light_theme = "light";
+            const default_dark_theme = "navy";
+        </script>
+        <!-- Start loading toc.js asap -->
+        <script src="../toc.js"></script>
+    </head>
+    <body>
+    <div id="body-container">
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                let theme = localStorage.getItem('mdbook-theme');
+                let sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            const default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? default_dark_theme : default_light_theme;
+            let theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            const html = document.documentElement;
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add("js");
+        </script>
+
+        <input type="checkbox" id="sidebar-toggle-anchor" class="hidden">
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            let sidebar = null;
+            const sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+            }
+            sidebar_toggle.checked = sidebar === 'visible';
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <!-- populated by js -->
+            <mdbook-sidebar-scrollbox class="sidebar-scrollbox"></mdbook-sidebar-scrollbox>
+            <noscript>
+                <iframe class="sidebar-iframe-outer" src="../toc.html"></iframe>
+            </noscript>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <label id="sidebar-toggle" class="icon-button" for="sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </label>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="default_theme">Auto</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">Ammatillisen verkkoprofiilin koostaminen</h1>
+
+                    <div class="right-buttons">
+                        <a href="../print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="taulukkomuuttujat"><a class="header" href="#taulukkomuuttujat">Taulukkomuuttujat</a></h1>
+<h2 id="taulukkomuuttuja-eli-array"><a class="header" href="#taulukkomuuttuja-eli-array">Taulukkomuuttuja eli Array</a></h2>
+<p>JavaScriptin taulukkomuuttuja eli array on muuttuja, johon voit tallentaa useita arvoja samanaikaisesti. Se toimii kuin lista, johon arvot järjestetään peräkkäin. Taulukkoon tallennettuja tietoja kutsutaan alkioiksi, ja jokaisella alkiolla on oma paikkansa, jota kutsutaan indeksiksi. Indeksit alkavat aina numerosta 0.</p>
+<p>Taulukkomuuttujia (array) kannattaa käyttää ohjelmoinnissa silloin, kun halutaan käsitellä useita saman tyyppisiä tietoja tehokkaasti ja helposti. Esimerkiksi kymmenen henkilön nimet yhdessä taulukossa <code>nimet</code> on paljon kätevämpi ratkaisu, kuin luoda kymmenen erillistä muuttujaa. Taulukko on parempi, koska tarvitaan vähemmän koodia, nimiä on helppo lisätä ja poistaa myöhemmin eikä tarvitse luoda uutta muuttujaa jokaiselle nimelle. Lisäksi taulukot mahdollistavat tietojen läpikäymisen silmukan avulla.</p>
+<h3 id="yhteenveto-tilanteista-joissa-taulukoita-kannattaa-käyttää"><a class="header" href="#yhteenveto-tilanteista-joissa-taulukoita-kannattaa-käyttää">Yhteenveto tilanteista, joissa taulukoita kannattaa käyttää:</a></h3>
+<div class="table-wrapper"><table><thead><tr><th>Tilanne</th><th>Miksi taulukko on hyvä?</th></tr></thead><tbody>
+<tr><td>Useita saman tyyppisiä tietoja</td><td>Vähemmän koodia ja selkeämpi rakenne</td></tr>
+<tr><td>Tietoja käsitellään silmukalla</td><td>Helppo käsitellä suuri määrä tietoja</td></tr>
+<tr><td>Tietojen määrä voi muuttua</td><td>Joustava lisäys ja poisto</td></tr>
+<tr><td>Tietojen järjestys tärkeä</td><td>Säilyttää aina järjestyksen</td></tr>
+</tbody></table>
+</div><br>
+<p>Lisätietoja ja lisäharjoituksia löytyy esimerkiksi sivustosta <a href="https://www.w3schools.com/js/js_arrays.asp">W3Schools Arrays</a>.</p>
+<h2 id="esimerkit"><a class="header" href="#esimerkit">Esimerkit</a></h2>
+<h3 id="taulukon-luonti"><a class="header" href="#taulukon-luonti">Taulukon luonti</a></h3>
+<pre><code class="language-javascript">// Luodaan taulukko, jossa on kolme nimeä
+let nimet = ["Anna", "Jukka", "Maria"]
+}
+</code></pre>
+<p>Tässä taulukossa on kolme alkiota:</p>
+<ul>
+<li>Alkio indeksissä 0 on "Anna"</li>
+<li>Alkio indeksissä 1 on "Jukka"</li>
+<li>Alkio indeksissä 2 on "Maria"</li>
+</ul>
+<h3 id="alkioiden-hakeminen-taulukosta"><a class="header" href="#alkioiden-hakeminen-taulukosta">Alkioiden hakeminen taulukosta</a></h3>
+<p>Taulukon alkioihin pääsee käsiksi indeksin avulla.</p>
+<pre><code class="language-javascript">let nimet = ["Anna", "Jukka", "Maria"];
+
+console.log(nimet[0])  // Tulostaa: Anna
+console.log(nimet[1])  // Tulostaa: Jukka
+console.log(nimet[2])  // Tulostaa: Maria
+</code></pre>
+<p>Huomaa, että indeksi alkaa aina nollasta, eli ensimmäinen alkio on indeksissä 0, toinen 1, kolmas 2, jne.</p>
+<h3 id="alkioiden-lisääminen-taulukkoon"><a class="header" href="#alkioiden-lisääminen-taulukkoon">Alkioiden lisääminen taulukkoon</a></h3>
+<p>Talukkoon lisätään alkio seuraavasti:</p>
+<pre><code class="language-javascript">nimet.push("Minni")  // Lisätään alkio "Minni" taulukon loppuun
+console.log(nimet)   // Tulostaa: ["Anna", "Jukka", "Maria", "Minni"]
+</code></pre>
+<h3 id="alkion-muuttaminen-taulukossa"><a class="header" href="#alkion-muuttaminen-taulukossa">Alkion muuttaminen taulukossa</a></h3>
+<p>Olemassa olevan alkion arvoa voi muuttaa indeksin avulla:</p>
+<pre><code class="language-javascript">let maat = ["Suomi", "Ruotsi", "Norja"]
+maat[1] = "Tanska"   // Muutetaan indeksissä 1 oleva alkio
+console.log(maat)    // Tulostaa: ["Suomi", "Tanska", "Norja"]
+</code></pre>
+<h3 id="taulukon-pituus-length"><a class="header" href="#taulukon-pituus-length">Taulukon pituus (length)</a></h3>
+<p>Taulukon pituuden saa helposti JavaScriptin length-ominaisuudella:</p>
+<pre><code class="language-javascript">let hedelmat = ["omena", "banaani", "kiivi"]
+console.log(hedelmat.length)   // Tulostaa: 3
+</code></pre>
+<h3 id="taulukon-läpikäyminen-silmukalla"><a class="header" href="#taulukon-läpikäyminen-silmukalla">Taulukon läpikäyminen silmukalla</a></h3>
+<p>Taulukon kaikki alkiot voi käydä läpi silmukan avulla:</p>
+<pre><code class="language-javascript">let kaupungit = ["Helsinki", "Tampere", "Oulu"];
+
+for (let i = 0; i &lt; kaupungit.length; i++) {
+    console.log(kaupungit[i]);
+}
+
+// Tulostaa:
+// Helsinki
+// Tampere
+// Oulu
+</code></pre>
+<h3 id="yhteenveto"><a class="header" href="#yhteenveto">Yhteenveto:</a></h3>
+<ul>
+<li>Taulukko (array) on muuttuja, joka tallentaa useita arvoja yhteen paikkaan.</li>
+<li>Arvot (eli alkiot) ovat numeroituja kokonaislukuindekseillä alkaen luvusta 0.</li>
+<li>Taulukon luonnissa käytetään hakasulkuja []</li>
+<li>Yksittäistä taulukon alkiota käytetään indeksillä, joka kirjoitetaan hakasulkujen sisään</li>
+</ul>
+<h2 id="harjoitukset"><a class="header" href="#harjoitukset">Harjoitukset</a></h2>
+<h3 id="harjoitus-20"><a class="header" href="#harjoitus-20">Harjoitus 20</a></h3>
+<p>Tee HTML-sivu, jossa on JavaScript-taulukko, johon tallennat kolme lempiväriäsi. Tulosta sitten JavaScriptin avulla taulukon ensimmäinen väri sivulle.</p>
+<p><strong>Vinkki:</strong> Käytä <code>document.getElementById</code> ja <code>.innerHTML</code> arvon näyttämiseen.</p>
+<h3 id="harjoitus-21"><a class="header" href="#harjoitus-21">Harjoitus 21</a></h3>
+<p>Luo HTML-sivu, jossa teet JavaScript-taulukon kolmesta eri eläimestä. Tulosta taulukon pituus (eli alkioiden määrä) sivulle.</p>
+<p><strong>Vinkki:</strong> Käytä taulukon <code>.length</code> -ominaisuutta.</p>
+<h3 id="harjoitus-22"><a class="header" href="#harjoitus-22">Harjoitus 22</a></h3>
+<p>Luo HTML-sivu, jossa on ensin taulukko kahdesta kaupungista. Lisää JavaScriptillä yksi kaupunki lisää taulukkoon. Lopuksi tulosta koko taulukko sivulle niin, että jokainen kaupunki näkyy omalla rivillään.</p>
+<p><strong>Vinkki:</strong> Käytä <code>.push()</code>-metodia lisätäksesi uuden kaupungin taulukkoon. Käytä lisäksi silmukkaa tulostamiseen.</p>
+<h2 id="mallivastaukset-harjoituksiin"><a class="header" href="#mallivastaukset-harjoituksiin">Mallivastaukset harjoituksiin</a></h2>
+<h3 id="mallivastaus-20"><a class="header" href="#mallivastaus-20">Mallivastaus 20</a></h3>
+<pre><code class="language-javascript">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;title&gt;Harjoitus 20&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;p id="tulos"&gt;&lt;/p&gt;
+
+    &lt;script&gt;
+        let varit = ["sininen", "punainen", "keltainen"]
+        document.getElementById("tulos").innerHTML = "Ensimmäinen väri on: " + varit[0]
+    &lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<h3 id="mallivastaus-21"><a class="header" href="#mallivastaus-21">Mallivastaus 21</a></h3>
+<pre><code class="language-javascript">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;title&gt;Harjoitus 21&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;p id="tulos"&gt;&lt;/p&gt;
+
+    &lt;script&gt;
+        let elaimet = ["kissa", "koira", "hevonen"]
+        document.getElementById("tulos").innerHTML = "Eläinten määrä: " + elaimet.length
+    &lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<h3 id="mallivastaus-22"><a class="header" href="#mallivastaus-22">Mallivastaus 22</a></h3>
+<pre><code class="language-javascript">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;title&gt;Harjoitus 22&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;div id="kaupungit"&gt;&lt;/div&gt;
+
+    &lt;script&gt;
+        let kaupungit = ["Helsinki", "Tampere"]
+        kaupungit.push("Oulu")
+
+        let tulos = ""
+        for (let i = 0; i &lt; kaupungit.length; i++) {
+            tulos += kaupungit[i] + "&lt;br&gt;"
+        }
+
+        document.getElementById("kaupungit").innerHTML = tulos
+    &lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="../osa2/jsfun.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+                            <a rel="next prefetch" href="../osa3/library.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="../osa2/jsfun.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next prefetch" href="../osa3/library.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="../elasticlunr.min.js"></script>
+        <script src="../mark.min.js"></script>
+        <script src="../searcher.js"></script>
+
+        <script src="../clipboard.min.js"></script>
+        <script src="../highlight.js"></script>
+        <script src="../book.js"></script>
+
+        <!-- Custom JS scripts -->
+
+
+    </div>
+    </body>
+</html>

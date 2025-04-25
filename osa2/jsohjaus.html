@@ -1,0 +1,274 @@
+<!DOCTYPE HTML>
+<html lang="fi" class="light sidebar-visible" dir="ltr">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Ohjausrakenteet - Ammatillisen verkkoprofiilin koostaminen</title>
+
+
+        <!-- Custom HTML head -->
+
+        <meta name="description" content="SASKY Koodaaja-verkkokoulutusten hakuvaihekurssin taustamateriaali">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff">
+
+        <link rel="icon" href="../favicon.svg">
+        <link rel="shortcut icon" href="../favicon.png">
+        <link rel="stylesheet" href="../css/variables.css">
+        <link rel="stylesheet" href="../css/general.css">
+        <link rel="stylesheet" href="../css/chrome.css">
+        <link rel="stylesheet" href="../css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="../fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" id="highlight-css" href="../highlight.css">
+        <link rel="stylesheet" id="tomorrow-night-css" href="../tomorrow-night.css">
+        <link rel="stylesheet" id="ayu-highlight-css" href="../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+        <link rel="stylesheet" href="../custom.css">
+
+
+        <!-- Provide site root and default themes to javascript -->
+        <script>
+            const path_to_root = "../";
+            const default_light_theme = "light";
+            const default_dark_theme = "navy";
+        </script>
+        <!-- Start loading toc.js asap -->
+        <script src="../toc.js"></script>
+    </head>
+    <body>
+    <div id="body-container">
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                let theme = localStorage.getItem('mdbook-theme');
+                let sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            const default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? default_dark_theme : default_light_theme;
+            let theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            const html = document.documentElement;
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add("js");
+        </script>
+
+        <input type="checkbox" id="sidebar-toggle-anchor" class="hidden">
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            let sidebar = null;
+            const sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+            }
+            sidebar_toggle.checked = sidebar === 'visible';
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <!-- populated by js -->
+            <mdbook-sidebar-scrollbox class="sidebar-scrollbox"></mdbook-sidebar-scrollbox>
+            <noscript>
+                <iframe class="sidebar-iframe-outer" src="../toc.html"></iframe>
+            </noscript>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <label id="sidebar-toggle" class="icon-button" for="sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </label>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="default_theme">Auto</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">Ammatillisen verkkoprofiilin koostaminen</h1>
+
+                    <div class="right-buttons">
+                        <a href="../print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="ohjausrakenteet-ja-lohko"><a class="header" href="#ohjausrakenteet-ja-lohko">Ohjausrakenteet ja lohko</a></h1>
+<h2 id="ohjausrakenteet"><a class="header" href="#ohjausrakenteet">Ohjausrakenteet</a></h2>
+<p>Ohjausrakenteet ovat ohjelmoinnissa keinoja hallita, mitä osia koodista suoritetaan ja missä järjestyksessä. Ne mahdollistavat esimerkiksi ehtojen tarkistamisen ja toistuvien toimintojen suorittamisen. Ilman ohjausrakenteita ohjelma suorittaisi koodirivit vain ylhäältä alas, yksi kerrallaan, ilman mahdollisuutta valintoihin tai toistoihin.</p>
+<p>Lisätietoja ja lisäharjoituksia löytyy esimerkiksi seuraavista sivustoista:</p>
+<ul>
+<li><a href="https://www.w3schools.com/js/js_if_else.asp">W3Schools IF/Else</a></li>
+<li><a href="https://www.w3schools.com/js/js_loop_while.asp">W3Schools While Loop</a></li>
+<li><a href="https://www.w3schools.com/js/js_loop_for.asp">W3Schools For Loop</a></li>
+</ul>
+<h2 id="lohko"><a class="header" href="#lohko">Lohko</a></h2>
+<p>Lohko tarkoittaa joukkoa koodirivejä, jotka kuuluvat yhteen. Lohko merkitään JavaScriptissä aaltosulkujen <code>{ }</code> sisään. Esimerkiksi if-ehtolauseessa lohko kertoo, mitä tapahtuu, jos ehto toteutuu.</p>
+<p>Tyypillisesti eri ohjausrakenteet ovat alla olevan muotoisia:</p>
+<pre><code class="language-javascript">ohjauskomento (ehto) {
+    koodilause
+    koodilause
+    koodilause
+}
+</code></pre>
+<p>Yllä olevassa esimerkissä "ohjauskomento" voisi olla esimerkiksi <code>while</code> tai <code>if</code>. Ohjauskomennon jälkeen on normaalisti suluissa oleva ehto (tai muun tyyppinen  lauseke, kuten <code>for</code>-rakenteessa), joka määrää, suoritetaanko kyseinen lohko.</p>
+<p>Lohko suoritetaan aina kokonaisuudessaan tai jätetään kokonaan väliin – yksittäisiä lauseita ei hypitä yli. Näin lohko sitoo useamman lauseen yhdeksi ehjäksi kokonaisuudeksi.</p>
+<h2 id="esimerkit"><a class="header" href="#esimerkit">Esimerkit</a></h2>
+<p><strong>if-else (ehtolause):</strong></p>
+<p>Alla olevassa if-else-rakenteessa tarkistetaan, onko muuttujan <code>numero</code> arvo suurempi kuin 0. Jos ehto <code>numero &gt; 0</code> on tosi, suoritetaan lohkossa oleva koodi ja tulostetaan "Luku on positiivinen". Jos ehto ei ole tosi, siirrytään else-haaraan ja tulostetaan "Luku ei ole positiivinen". Tämä rakenne on hyödyllinen silloin, kun halutaan tehdä eri asioita tilanteen mukaan. Ohjelma siis tekee joko/tai -päätöksiä annetun ehdon perusteella.</p>
+<pre><code class="language-javascript">let numero = 5;
+if (numero &gt; 0) {
+  console.log("Luku on positiivinen");
+} else {
+  console.log("Luku ei ole positiivinen");
+}
+</code></pre>
+<p><strong>while (toistolause, kunnes ehto ei enää pidä paikkaansa):</strong></p>
+<p>While-rakenteessa ohjelma toistaa lohkon sisällä olevaa koodia niin kauan kuin annettu ehto on tosi. Tässä esimerkissä ehto on <code>i &lt; 3</code>, eli toisto jatkuu niin kauan kuin muuttuja <code>i</code> on pienempi kuin 3. Jokaisella kierroksella tulostetaan "Toisto numero: " ja muuttujan <code>i</code> arvo. Lohkon viimeisellä rivillä <code>i</code>-muuttujaa kasvatetaan yhdellä, jotta toisto lopulta päättyy. Tämä rakenne sopii tilanteisiin, joissa ei välttämättä tiedetä etukäteen montako kertaa toistoa tarvitaan.</p>
+<pre><code class="language-javascript">let i = 0;
+while (i &lt; 3) {
+  console.log("Toisto numero: " + i);
+  i++;
+}
+</code></pre>
+<p><strong>for (toistolause, jolla toistoa ohjataan laskurimuuttujalla):</strong></p>
+<p>For-rakenteessa toisto tapahtuu ennalta määrätyn määrän kertoja. Esimerkissä toisto alkaa, kun muuttuja <code>i</code> on 0, ja jatkuu niin kauan kuin <code>i &lt; 5</code>. Jokaisella kierroksella tulostetaan "Luku: " ja <code>i</code>-muuttujan arvo. Toiston lopussa <code>i</code> kasvaa yhdellä (<code>i++</code>), kunnes se saavuttaa arvon 5 ja ehto ei enää täyty. For-silmukka on kätevä silloin, kun tiedetään tarkalleen, montako kertaa toistoa tarvitaan.</p>
+<pre><code class="language-javascript">for (let i = 0; i &lt; 5; i++) {
+  console.log("Luku: " + i);
+}
+</code></pre>
+<h2 id="harjoitukset"><a class="header" href="#harjoitukset">Harjoitukset</a></h2>
+<p>Seuraavien harjoitusten kanssa käytetään automaattista koodintarkistuspalvelua Codecheck.io.</p>
+<h3 id="harjoitus-11"><a class="header" href="#harjoitus-11">Harjoitus 11</a></h3>
+<p>Kirjoita if-else -rakenne, joka testaa annetun muuttujan <code>ika</code> arvoa ja tulostaa joko "Olet täysi-ikäinen." tai "Olet alaikäinen." riippuen siitä, onko muuttujan arvo suurempi tai yhtäsuuri kuin 18.</p>
+<p><a href="https://codecheck.io/files/2504120812xlv5gvm3o8dzdnftrm4hfuo8">Harjoitus 11 - codecheck</a></p>
+<h3 id="harjoitus-12"><a class="header" href="#harjoitus-12">Harjoitus 12</a></h3>
+<p>Tulosta allekkain numerot 1:stä 10:een käyttäen while-silmukkaa.</p>
+<p><a href="https://codecheck.io/files/25041208574nnhjke606ro06mequuw27zyc">Harjoitus 12 - codecheck</a></p>
+<h3 id="harjoitus-13"><a class="header" href="#harjoitus-13">Harjoitus 13</a></h3>
+<p>Tulosta kaikki parilliset luvut välillä 2–20 käyttäen for-silmukkaa.</p>
+<p><a href="https://codecheck.io/files/2504120917atbm2tidd4o3yxni5bkjsw3b9">Harjoitus 13 - codecheck</a></p>
+<h3 id="harjoitus-14"><a class="header" href="#harjoitus-14">Harjoitus 14</a></h3>
+<p>Laske ja tulosta lukujen 1–100 summa for-silmukalla.</p>
+<p><a href="https://codecheck.io/files/25041209263wbzgmmo54fwyjx6p1w5s4mrk">Harjoitus 14 - codecheck</a></p>
+<h3 id="harjoitus-15"><a class="header" href="#harjoitus-15">Harjoitus 15</a></h3>
+<p>Kirjoita if/else -rakenne, joka tutkii annettua muuttujaa ja tulostaa joko "Luku on parillinen." tai "Luku on pariton." riippuen muuttujan arvosta.</p>
+<p><a href="https://codecheck.io/files/2504120936c1etuvc3iivrwnw3v2jpfbi81">Harjoitus 15 - codecheck</a></p>
+<h3 id="harjoitus-16"><a class="header" href="#harjoitus-16">Harjoitus 16</a></h3>
+<p>Kirjota while-silmukka, joka tulostaa allekkain silmukkamuuttujan arvon niin kauna, kuin se on suurempi kuin 0. Joka silmukan kierroksella muuttujan arvoa pitää vähentää yhdellä.</p>
+<p><a href="https://codecheck.io/files/2504120944azomttm6s1kd352mc2d4l9kfi">Harjoitus 16 - codecheck</a></p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="../osa2/jsoperaattorit.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+                            <a rel="next prefetch" href="../osa2/jsfun.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="../osa2/jsoperaattorit.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next prefetch" href="../osa2/jsfun.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="../elasticlunr.min.js"></script>
+        <script src="../mark.min.js"></script>
+        <script src="../searcher.js"></script>
+
+        <script src="../clipboard.min.js"></script>
+        <script src="../highlight.js"></script>
+        <script src="../book.js"></script>
+
+        <!-- Custom JS scripts -->
+
+
+    </div>
+    </body>
+</html>

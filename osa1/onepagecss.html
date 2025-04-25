@@ -1,0 +1,559 @@
+<!DOCTYPE HTML>
+<html lang="fi" class="light sidebar-visible" dir="ltr">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Kotisivupohjan ulkoasu - Ammatillisen verkkoprofiilin koostaminen</title>
+
+
+        <!-- Custom HTML head -->
+
+        <meta name="description" content="SASKY Koodaaja-verkkokoulutusten hakuvaihekurssin taustamateriaali">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff">
+
+        <link rel="icon" href="../favicon.svg">
+        <link rel="shortcut icon" href="../favicon.png">
+        <link rel="stylesheet" href="../css/variables.css">
+        <link rel="stylesheet" href="../css/general.css">
+        <link rel="stylesheet" href="../css/chrome.css">
+        <link rel="stylesheet" href="../css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="../fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" id="highlight-css" href="../highlight.css">
+        <link rel="stylesheet" id="tomorrow-night-css" href="../tomorrow-night.css">
+        <link rel="stylesheet" id="ayu-highlight-css" href="../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+        <link rel="stylesheet" href="../custom.css">
+
+
+        <!-- Provide site root and default themes to javascript -->
+        <script>
+            const path_to_root = "../";
+            const default_light_theme = "light";
+            const default_dark_theme = "navy";
+        </script>
+        <!-- Start loading toc.js asap -->
+        <script src="../toc.js"></script>
+    </head>
+    <body>
+    <div id="body-container">
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                let theme = localStorage.getItem('mdbook-theme');
+                let sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            const default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? default_dark_theme : default_light_theme;
+            let theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            const html = document.documentElement;
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add("js");
+        </script>
+
+        <input type="checkbox" id="sidebar-toggle-anchor" class="hidden">
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            let sidebar = null;
+            const sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+            }
+            sidebar_toggle.checked = sidebar === 'visible';
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <!-- populated by js -->
+            <mdbook-sidebar-scrollbox class="sidebar-scrollbox"></mdbook-sidebar-scrollbox>
+            <noscript>
+                <iframe class="sidebar-iframe-outer" src="../toc.html"></iframe>
+            </noscript>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <label id="sidebar-toggle" class="icon-button" for="sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </label>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="default_theme">Auto</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">Ammatillisen verkkoprofiilin koostaminen</h1>
+
+                    <div class="right-buttons">
+                        <a href="../print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="kotisivupohjan-ulkoasu"><a class="header" href="#kotisivupohjan-ulkoasu">Kotisivupohjan ulkoasu</a></h1>
+<p>Edellisessä vaiheessa koostettiin osa osalta yhden sivun kotisivut pienelle kotisivuja tekevälle yritykselle. Seuraavaksi määritellään tälle kotisivulle pala palalta ulkoasu.</p>
+<p>Luo projektikansioon uusi tiedosto, anna sen nimeksi <code>03-onepage.css</code> ja liitä sen sisällöksi seuraavissa kohdissa olevat CSS-tyylimääritykset.</p>
+<ol>
+<li>
+<p>Aivan ensimmäiseksi tuodaan <a href="https://fonts.google.com/">Google Fonts</a> -palvelusta sivustolla käytettävä <a href="https://fonts.google.com/specimen/Inter">Inter</a>-fontti. Tämä tapahtuu seuraavalla tuontilauseella, kopioi ja liitä se CSS-tiedoston alkuun.</p>
+<pre><code class="language-css">@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&amp;display=swap');
+</code></pre>
+</li>
+<li>
+<p>Seuraavaksi määritellään sivustolla käytettävät värit ja pari arvoa. Tässä hyödynnetään CSS:n muuttujia, joiden avulla arvot määritellään vain kerran ja tämän jälkeen käytetään niille annettuja nimiä.  Kopio ja liitä seuraava teksti edellisen <code>import</code>-lauseen alle.</p>
+<pre><code class="language-css">:root {
+  --primary-dark: #B9314F;
+  --primary: #D65C70;
+  --primary-light: #EFBEC6;
+  --neutral-darkest: #000000;
+  --neutral-darkest-alpha: rgba(0,0,0,0.7);
+  --neutral: #E7ECEF;
+  --neutral-lightest: #FFFFFF;
+  --border-radius: 0.5em;
+  --max-width: 40em;
+}
+</code></pre>
+</li>
+<li>
+<p>Nollataan vielä elementtien alkuarvot. Kopioi ja liitä seuraavat sääntö edellisten alle.</p>
+<pre><code class="language-css">* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+</code></pre>
+<p>Tämä sääntö poistaa <code>margin</code>- ja <code>padding</code>-asetuksista niiden alkuarvot, jonka seurauksena  sivun pitäisi näyttää kaikilla selaimilla suunnilleen samalta. <code>box-sizing</code>-asetus määrittelee täytteen ja kehyksen paksuuden kuuluvan elementin kokonaisleveyteen ja -korkeuteen.</p>
+<div class="image">
+  <a href="onepagecss-1-full.png"><img alt="Elementtien alkuarvot nollattu." src="./onepagecss-1.png" width="1111"></a>
+</div><br>
+</li>
+<li>
+<p>Seuraavaksi päästään määrittelemään sivun lopullista ulkoasua. Ulkoasun määrittely aloitetaan <code>body</code>-elementin asetuksilla, joilla määritellään koko dokumenttia koskevat asetukset. Kopioi seuraavat rivit edellisten alapuolelle.</p>
+<pre><code class="language-css">body {
+  font-family: "Inter", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+  background-color: var(--primary-dark);
+  color: var(--neutral-lightest);
+}
+</code></pre>
+<p>Fontin määritykset on kopioitu suoraan Google Fonts -palvelun esimerkkimäärityksistä. Ne määrittelevät käytettäväksi <strong>Inter</strong>-fonttia, sen normaalia paksuutta ja tyyliä. Tämän lisäksi määritellään koko dokumentille sen taustaväri (punainen) ja tekstiväri (valkoinen).</p>
+<p>Tausta- ja tekstivärin määrityksissä on esimerkki siitä, miten CSS-tiedoston alussa määriteltyjä muuttuja-arvoja käytetään.</p>
+<div class="image">
+  <a href="onepagecss-2-full.png"><img alt="Sivuston perusvärit ja fontti on määritelty." src="./onepagecss-2.png" width="1111"></a>
+</div><br>
+</li>
+<li>
+<p>Tällä hetkellä sivun sisältö on yhtenä jatkuvana juoksutuksena, ilman selkeitä osakokonaisuuksia. Seuraavaksi määritellään sivusto näyttämään siltä, että se koostuisi useammasta päällekkäisestä sivusta. Kopioi seuraavat rivit edellisten alapuolelle.</p>
+<pre><code class="language-css">header, section {
+  min-height: 100vh;  
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 1.5em;
+}
+</code></pre>
+<p>Selektorissa on listattu kaksi elementtiä pilkulla eroteltuna. Tämän seurauksena tämä sääntö kohdistuu sekä <code>header</code>- että <code>section</code>-elementteihin. Kun useampaan elementtiin halutaan määritellä samat säännöt, ne voidaan listata selektorissa pilkulla eroteltuna.</p>
+<p><code>min-height</code>-asetus määrittelee <code>header</code>- ja <code>section</code>-elementtien vähimmäiskorkeudeksi selainikkunan näkymäalueen korkeuden (<code>vh</code> = viewport height). Tämä määritys tekee sen, että jokainen "sivu" on vähintään näkymäalueen korkuinen. Jos yksittäisen "sivun" korkeus on suurempi, niin silloin korkeus mukautuu sen mukaisesti.</p>
+<p><code>display</code>-, <code>flex-direction</code>-, <code>justify-content</code>- ja <code>align-items</code>-asetukset määrittelevät sisällön sijoittumaan pysty- ja vaakasuunnassa keskelle. Tämä CSS:n Flexbox-ominaisuuden avulla. Nämä neljä riviä ovat näppärä tapa keksittää sisältö jonkin elementin keskelle.</p>
+<p><code>padding</code>-asetus määrittelee "sivujen" reunoille pienen täytteen. Tämä huolehtii siitä, että tekstit ja muu sisältö eivät mene aivan reunaan kiinni, vaan reunoille pieni väli antamaan pientä tilan tuntua. Tämä asetus näkyy käytännössä vasta, kun sivulla oleva teksti on niin pitkä, että sitä joudutaan rivittämään.</p>
+<div class="image">
+  <a href="onepagecss-3-full.png"><img alt="Sisältö on nyt aseteltu sivun korkuisiin laatikoihin." src="./onepagecss-3.png" width="1111"></a>
+</div><br>
+</li>
+<li>
+<p>Seuraavaksi määritellään etusivun taustakuva. Tätä varten käy lataamassa ensin Unsplash-sivustolta <a href="https://unsplash.com/photos/a-forest-of-trees-with-a-body-of-water-in-the-background-xHkmimemaOQ">tässä linkissä</a> oleva kuva klikkaamalla sivun oikeassa yläkulmassa olevaa <strong>Download free</strong> nappia ja tallenna se projektikansioon nimellä <code>03-background.jpg</code>.</p>
+<p>Unsplash on yksi ilmaisia kuvia tarjoavista kuvapalveluista. Sen hienoimmat kuvat kuuluvat usein sen maksulliseen palveluun, mutta ilmaislatauksessa on paljon käyttökelpoisia kuvia. Palvelun kuvia saa käyttää vapaasti myös kaupallisissa toteutuksissa ja niitä voidaan käyttää ilman mainintaa tekijästä.</p>
+<p>Kun olet hakenut edellä olevan kuvan ja vienyt sen projektikansioon pyydettyllä nimellä, niin kopioi seuraavat rivit CSS-tiedoston loppuun edellisten alapuolelle.</p>
+<pre><code class="language-css">header {
+  background-image: url("03-background.jpg");
+  background-size: cover;
+  background-position: top;
+}
+</code></pre>
+<div class="image">
+  <a href="onepagecss-4-full.png"><img alt="Etusivun taustakuva määritelty." src="./onepagecss-4.png" width="1111"></a>
+</div><br>
+<p>Tämä asettaa etusivun taustakuvaksi edellä ladatun tiedoston. Taustakuva asetellaan niin, että se täyttää (<code>cover</code>) koko etusivun, jolloin sitä tarvittaessa suurennetaan tai pienennetään. Taustakuva asetetaan alkamaan ruudun yläreunasta, muilta sivuilta sisältöä tarvittaessa leikataan.</p>
+</li>
+<li>
+<p>Etusivun tekstiä on vaikea lukea, koska valkoinen teksti ei ole helppo lukea vaaleaa taustaa vasten. Määritellään seuraavaksi teksti paremmin luettavaksi sijoittamalla se tummemmalle alustalle. Kopio seuraavat rivit edellistan alapuolelle.</p>
+<pre><code class="language-css">header &gt; div {
+  font-size: 110%;
+  background-color: var(--neutral-darkest-alpha);
+  border-radius: calc(var(--border-radius) * 2);
+  padding: 2em;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+</code></pre>
+<p>Tämä asetus kohdistuu välittömästi <code>header</code>-elementin alla olevaan <code>div</code>-elementtiin.</p>
+<blockquote>
+<p>Huomaa, että asetus ei kohdistu <code>div</code>-elementilla alla oleviin <code>div</code>-elementteihin, vaan ainoastaan siihen <code>div</code>-elementtiin, joka on heti  <code>header</code>-elementin alla.</p>
+<p><code>header div</code> -selektori kohdistuisi kaikkiin <code>header</code>-elementin alla oleviin <code>div</code>-elementteihin, olivat ne kuinka syvällä tahansa.</p>
+</blockquote>
+<p>Tämän <code>div</code>-elementin fonttikokoa suurennetaan hieman ja sen taustaväriksi asetetaan hieman läpikuultava musta. Tämän lisäksi laatikon reunoja pyöristetään hieman <code>border-radius</code>- asetuksella sekä laatikon sisälle määritellään hieman täytettä, jotta sisältö ei olisi reunoissa kiinni.</p>
+<p><code>border-radius</code> -asetuksessa hyödynnetään CSS:n <code>calc</code>-laskentaominaisuutta. Siinä käytetään muuttujissa määriteltyä <code>--border-radius</code>-arvoa tuplaamalla sen arvo kaksinkertaiseksi. Tämä on yksinkertainen esimerkki siitä, miten arvoja voidaan laskea muista arvoista CSS-tyyleissä.</p>
+<p>Sisältö keskitetään laatikon sisälle samalla menetelmällä, mitä aiemmin käytettiin sivun sisältöjen keskittämiseen.</p>
+<div class="image">
+  <a href="onepagecss-5-full.png"><img alt="Etusivun teksti tummalla taustalla." src="./onepagecss-5.png" width="1111"></a>
+</div><br>
+</li>
+<li>
+<p>Muotoillaan seuraavaksi navigointia paremman näköiseksi. Kopioi seuraavat rivit edellisten alapuolelle.</p>
+<pre><code class="language-css">nav ul {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: 1em;
+}
+</code></pre>
+<p>Tämä sääntö kohdistuu kaikkiin <code>nav</code>-elementtien sisällä oleviin <code>ul</code>-listoihin. Sääntö sijoittaa navigointilinkit vaakaan sekä määrittelee linkkien yläpuolelle pienen marginaalin. <code>flex-wrap</code>-asetus huolehtii linkkien rivityksestä, kun sivun leveys tulee niin kapeaksi, että linkit eivät mahdu rinnakkain.</p>
+<div class="image">
+  <a href="onepagecss-6-full.png"><img alt="Navigointilinkit sijoitettu vierekkäin." src="./onepagecss-6.png" width="1111"></a>
+</div><br>
+<p>Muotoillaan vielä yksittäiset lista-alkiot. Kopioi seuraavat rivit edellisten alapuolelle.</p>
+<pre><code class="language-css">nav li {
+  list-style-type: none;  
+  background-color: var(--primary-dark);  
+  padding: 1em;
+  margin: 0.5em;
+  border-radius: var(--border-radius);
+}
+</code></pre>
+<p>Tämä sääntö kohdistuu <code>nav</code>-elemetin alla oleviin <code>li</code>-elementteihin. <code>list-style-type</code>-asetus poistaa lista-alkion edessä olevan pallukan. Loput määrittelevät lista-alkiolle taustavärin, täytteen, marginaalin ja kulman pyöreyden.</p>
+<div class="image">
+  <a href="onepagecss-7-full.png"><img alt="Navigointilinkit sijoitettu vierekkäin." src="./onepagecss-7.png" width="1111"></a>
+</div><br>
+</li>
+<li>
+<p>Aikaisemmin koko dokumentille asetettiin tekstiväri. Tämä asetus ei määrittele linkkien väriä, vaan ne tulee määritellä erikseen. Muokataan seuraavaksi navigointilinkkien värit toimivammiksi. Kopioi seuraavat rivit edellisten alapuolelle.</p>
+<pre><code class="language-css">nav a {
+  color: var(--neutral);
+  text-decoration: none;
+} 
+</code></pre>
+<p>Tämä sääntö kohdistuu <code>nav</code>-elementin alla oleviin linkkeihin. Linkin väriksi asetetaan neutraali sävy ja sen alleviivaus poistetaan.</p>
+<div class="image">
+  <a href="onepagecss-8-full.png"><img alt="Navigointilinkkien tekstiväri määritelty." src="./onepagecss-8.png" width="1111"></a>
+</div><br>
+</li>
+<li>
+<p>Määritellään navigointilinkeille  visuaalinen palaute, kun hiiren kursorin vie linkin päälle. Kopioi seuraavat rivit edellisten alapuolelle.</p>
+<pre><code class="language-css">nav li:hover {
+  background-color: var(--neutral);
+}
+
+nav li:hover a {
+  color: var(--neutral-darkest);
+}
+</code></pre>
+<p>Nämä säännöt kohdistuvat <code>nav</code>-elementin alla olevaan lista-alkioon ja linkkiin, kun hiiren kursori on lista-alkion päällä. Kun hiiren kursori on linkkilaatikon päällä, muuttuu laatikon taustavärin vaaleaksi ja tekstivärin tummaksi.</p>
+<p>Reagoiminen hiiren kursoriin tapahtuu <code>hover</code>-pseudoluokan avulla. Sen seurauksena säännössä olevat määritykset tulevat voimaan, kun hiiren kursori on elementin päällä. Kun hiiren kursori poistuu elementin päältä, palautuu alkuperäiset asetukset takaisin voimaan.</p>
+<p>Voit testata tämän toiminnallisuutta viemällä kursorin linkin päälle.</p>
+<div class="image">
+  <img alt="Navigointilinkkien värit vaihtuvat kun hiiren kursori viedään linkin päälle." src="./onepagecss-9.png" width="1108">
+</div><br>
+<p>Etusivun määritykset ovat nyt valmiit, siirrätään määrittelemään muiden sivujen ulkoasua.</p>
+</li>
+<li>
+<p>Muilla sivuilla on vielä koko dokumentille määritelty taustaväri (punainen). Muutetaan taustavärit seuraavksi neutraaleimmiksi. Kopioi seuraavat rivit edellisten alapuolelle.</p>
+<pre><code class="language-css">section {
+  background-color: var(--neutral);
+  color: var(--neutral-darkest);
+}
+
+section:nth-child(odd) {
+  background-color: var(--neutral-lightest);
+}
+</code></pre>
+<p>Ensimmäinen sääntö määrittelee jokaisen <code>section</code>-elemementin taustaväriksi vaalean värisävyn ja tekstiväriksi tumman värisävyn.</p>
+<p>Toinen sääntö muuttaa joka toisen <code>section</code>-elementin taustaväriksi valkoisen. Tällä tavalla eri sivut saadaan eroteltua visuaalisesti toisistaan.</p>
+<div class="image">
+  <a href="onepagecss-10-full.png"><img alt="Sivujen taustaväri määritelty vuorottelemaan." src="./onepagecss-10.png" width="1111"></a>
+</div><br>
+</li>
+<li>
+<p>Sivun tekstiä on tällä hetkellä raskas lukea, koska tekstirivit ovat lähtökohtaisesti liian pitkiä. Säädetään seuraavaksi tekstirivin pituutta. Kopioi seuraavat rivit edellisten alapuolelle.</p>
+<pre><code class="language-css">header p, section p {
+  max-width: var(--max-width);
+  margin: 0.5em 0;
+}
+</code></pre>
+<p>Tämä määrittelee etusivun ja muiden sivun tekstikappale-elementtien maksimileveyden sekä niiden ylä- ja alapuolelle pienen välin.</p>
+<div class="image">
+  <a href="onepagecss-11-full.png"><img alt="Tekstikappaleen maksimileveys on määritelty." src="./onepagecss-11.png" width="1111"></a>
+</div><br>
+</li>
+<li>
+<p>Sivuston otsikkoelementit kaipaavat seuraavaksi muokkaamista. Kopioi seuraavat rivit edellisten alapuolelle.</p>
+<pre><code class="language-css">h1 {
+  font-size: 300%;
+  margin: 1em 0 0.5em 0;
+}
+
+h2 {
+  font-size: 250%;
+  margin: 1em 0;
+}
+</code></pre>
+<p>Tämä asettaa <code>h1</code>- ja <code>h2</code>-elementtien tekstinkoon ja marginaalit. Tämä muutti etusivun pääotsikon lisäksi alasivun yläotsikot.</p>
+<div class="image">
+  <a href="onepagecss-12-full.png"><img alt="Otsikkoelementit on määritelty." src="./onepagecss-12.png" width="1111"></a>
+</div><br>
+</li>
+<li>
+<p>Seuraavaksi muokataan palvelut-osiossa olevat palvelut omiksi kokonaisuuksiksi. Kopioi ensin seuraavat rivit muiden jatkoksi.</p>
+<pre><code class="language-css">.palvelut {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  max-width: calc(var(--max-width) * 1.5);
+  margin-top: 1em;
+}
+</code></pre>
+<p>Tässä yhteydessä käytetään ensimmäisen kerran niin sanottua luokkaselektoria. Luokkaselektorilla sääntö voidaan kohdistaa niihin elementteihin, jotka on määritelty kuulumaan tiettyyn luokkaan <code>class</code>-määritteellä. CSS-tiedostossa selektorin alussa on <code>.</code>-merkki ja välittömästi sen perässä luokan nimi. Jos esimerkiksi elementille on määriltelty luokan nimeksi <code>yhteystiedot</code>, niin silloin siihen viitataan selektorilla <code>.yhteystiedot</code>.</p>
+<p>Tämä sääntö määrittelee <code>palvelut</code>-nimiselle elementtiluokan hyödyntämään Flexbox-asettelua. Aikaisemmista poiketen määritellään sisältö keskittymään vaakasuunnassa ja tarvittaessa rivittymään.</p>
+<p>Tämän lisäksi elementi maksimileveydeksi määritellään puolitoista kertaa tekstikappaleen maksimileveys. Koska palvelut tullaan asemoimaan useampi rinnakkain, niin silloin alueen maksimileveys voi olla leveämpi luettavuuden siitä kärsimättä.</p>
+<p>Tällä säännöllä ei ole isoa vaikutusta sivunäkymään. Jatketaan palveluiden ulkoasun määrittelyä. Kopioi seuraavat rivit edellisten alapuolelle.</p>
+<pre><code class="language-css">.palvelut &gt; div {
+  background-color: var(--primary-dark);
+  color: var(--neutral-lightest);
+  margin: 0.5em;
+  padding: 1.5em;
+  border-radius: var(--border-radius);
+  max-width: calc(var(--max-width) * 0.375);
+}
+</code></pre>
+<p>Tämä sääntö kohdistuu välittämästi <code>palvelut</code>-luokkaelementin alla oleviin <code>div</code>-elementteihin. Tämä asettaa niiden taustaväriksi tumman sävyn ja tekstiväriksi vaalean sävyn. Tämän lisäksi asetetaan yksittäisen laatikon marginaalit, täyte ja kulmien pyöreys. Marginaaleilla saadaan erotettua laatikot toisistaan, täytteellä laatikon sisälle hieman tyhjää reunoille.</p>
+<p>Laatikon maksimileveydeksi asetetaan laskukaavalla laskettu arvo, joka on 37,5% tekstikappaleen maksimileveydestä. Tämä varmistaa, että täydessä sivunleveydessä laatikoita sijoittuu kolme rinnakkain.</p>
+<div class="image">
+  <a href="onepagecss-13-full.png"><img alt="Palvelut erotteltu omiksi laatikoikseen." src="./onepagecss-13.png" width="1111"></a>
+</div><br>    
+<p>Asetetaan vielä yksittäisen laatikon otsikolle pienet marginaalit. Kopioi seuraavat rivit edellisten alapuolelle.</p>
+<pre><code class="language-css">.palvelut h3 {
+  margin: 0.8em 0;
+}
+</code></pre>
+<p>Samalla korjataan HTML-tiedostossa <em>Hakukoneoptimointi (SEO)</em> -laatikossa oleva <strong>hakukoneoptimointipalveluiden</strong>-sana lyhyemmäksi. Sivuston ulkoasua on hyvä tarkkailla pitkin kehitysprosessia ja testailla sitä useilla eri selainikkunan leveyksillä.</p>
+<div class="image">
+  <a href="onepagecss-14-full.png"><img alt="Palveluiden otsikoille määritelty pieni väli." src="./onepagecss-14.png" width="1111"></a>
+</div><br>
+<p>Palvelut-osion ulkoasu on nyt määritelty. Siirrytään muokkaamaan seuraavaa osiota.</p>
+</li>
+<li>
+<p>Referenssit osion esimerkkien ulkoasu määritellään hyvin samalla tavalla kuin Palvelut-osion ulkoasu. Aloita kopioimalla seuraavan rivit edellisten jatkoksi.</p>
+<pre><code class="language-css">.referenssit {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+</code></pre>
+<p>Tässäkin hyödynnetään luokkaselektoria, joka kohdistaa säännön <code>referenssit</code>-elementilleluokalle. Samalla tavalla kuin Palvelut-osiossa, myös tässä referenssit sijoitetaan keskelle vaakaan ja rivitetään tarvittaessa.</p>
+<p>Tämä asetus ei vielä muuttanut osion ulkoasua. Määritellään seuraavaksi yhden laatikon ulkoasu. Kopioi seuraavat rivit edellisten jatkoksi.</p>
+<pre><code class="language-css">.referenssit &gt; div {
+  background-color: var(--primary-light);
+  border-radius: var(--border-radius);
+  margin: 1em;
+  padding: 1.5em;
+  max-width: calc(var(--max-width) * 0.5);
+}
+</code></pre>
+<p>Tämä sääntö kohdistuu välittömästi <code>referenssit</code>-luokan alla oleviin <code>div</code>-elementteihin. Sille määritellään taustaväri, kulman pyöreys, marginaalit ja täyte. Näiden lisäksi yhden laatikon maksimileveydeksi asetetaan puolet tekstikappaleen maksimileveydestä.</p>
+<div class="image">
+  <a href="onepagecss-15-full.png"><img alt="Referenssit on eroteltu omiksi laatikoikseen." src="./onepagecss-15.png" width="1111"></a>
+</div><br>
+<p>Referenssikuvat pakottavat sivun leveämmäksi kuin mitä toivotaan, se korjataan seuraavaksi määritelemällä referenssilaatikon sisällön ulkoasu. Kopioi seuraavat rivit edellisten alapuolelle.</p>
+<pre><code class="language-css">.referenssit h3 {
+  color: var(--neutral-darkest);
+  font-size: 150%;
+  margin-bottom: 0.5em;
+}
+
+.referenssit p {
+  margin: 1em 0;
+}
+
+.referenssit img {
+  width: 100%;
+}
+</code></pre>
+<p>Nämä asettavat referenssilaatikon elementeille seuraavat asiat.</p>
+<ul>
+<li><code>h3</code>-otsikolle värin, fonttikoon ja alamarginaalin.</li>
+<li><code>p</code>-tekstikappaleelle ylä- ja alamarginaalin.</li>
+<li><code>img</code>-kuvan käyttämään 100% sille annetusta tilasta. Tämä skaalaa kuvan oikeaan kokoon.</li>
+</ul>
+<div class="image">
+  <a href="onepagecss-16-full.png"><img alt="Referenssilaatikoiden ulkoasu on määritelty." src="./onepagecss-16.png" width="1111"></a>
+</div><br>   
+</li>
+<li>
+<p>Referenssit-osion ulkoasu on nyt valmis, siirrytään muokkaamaan Yhteystiedot-osion ulkoasua. Tämän osion ulkoasu on aika pitkälle määritelty aikasempien asetusten pohjalta. Korjataan ainoastaan osoitteen kursivointi ja puhelinumeron tekstiväri. Kopioi seuraavat rivit edellisten alapuolelle.</p>
+</li>
+</ol>
+<pre><code class="language-css">address {
+  font-style: normal;
+  font-weight: 600;
+  margin-top: 1em;
+}
+
+address a {
+  text-decoration: none;
+  color: var(--primary-dark)
+}
+</code></pre>
+<p>Tämä asettaa osoitteen tekstityyliksi normaalin (eli poistaa kursivoinnin), tekstin paksuudeksi lihavoinnin ja pienen ylämarginaalin. Lisäksi linkistä poistetaan alleviivaus ja tekstiväriksi asetetaan tumman punainen.</p>
+   <div class="image">
+     <a href="onepagecss-17-full.png"><img alt="Yhteystietojen ulkoasu on määritelty." src="./onepagecss-17.png" width="1111"></a>
+   </div><br>    
+<ol start="17">
+<li>
+<p>Viimeisenä vaiheena on alaotsakkeen eli <code>footer</code>-elementin ulkoasun määrittely. Kopioi seuraavat rivit edellisten alapuolelle.</p>
+<pre><code class="language-css">footer {
+  font-size: 80%;
+  padding: 2em;
+  text-align: center; 
+}
+
+footer p {
+  margin: 0.5em;
+}
+</code></pre>
+<p>Nämä asetukset määrittelevät alaotsakkeen fonttikoon, täytteen ja keskittää tekstin keskelle. Tämän lisäksi alaotsakkeessa oleville tekstikappaleille määritellään pieni marginaali.</p>
+<div class="image">
+ <a href="onepagecss-18-full.png"><img alt="Alaotsakkeen ulkoasu on määritelty." src="./onepagecss-18.png" width="1111"></a>
+</li>
+</ol>
+   </div><br>
+<ol start="18">
+<li>
+<p>Nyt sivuston ulkoasu on kokonaisuudessaan valmis ja se näyttää seuraavanlaiselta:</p>
+ <div class="image">
+   <img alt="Sivuston ulkoasu on valmis." src="./onepagecss-18-full.png" width="500">
+ </div><br></li>
+</ol>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="../osa1/onepage.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+                            <a rel="next prefetch" href="../osa2/javascript01.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="../osa1/onepage.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next prefetch" href="../osa2/javascript01.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="../elasticlunr.min.js"></script>
+        <script src="../mark.min.js"></script>
+        <script src="../searcher.js"></script>
+
+        <script src="../clipboard.min.js"></script>
+        <script src="../highlight.js"></script>
+        <script src="../book.js"></script>
+
+        <!-- Custom JS scripts -->
+
+
+    </div>
+    </body>
+</html>

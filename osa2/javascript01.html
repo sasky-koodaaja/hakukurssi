@@ -1,0 +1,258 @@
+<!DOCTYPE HTML>
+<html lang="fi" class="light sidebar-visible" dir="ltr">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>JavaScript-ohjelmoinnin perusteet - Ammatillisen verkkoprofiilin koostaminen</title>
+
+
+        <!-- Custom HTML head -->
+
+        <meta name="description" content="SASKY Koodaaja-verkkokoulutusten hakuvaihekurssin taustamateriaali">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff">
+
+        <link rel="icon" href="../favicon.svg">
+        <link rel="shortcut icon" href="../favicon.png">
+        <link rel="stylesheet" href="../css/variables.css">
+        <link rel="stylesheet" href="../css/general.css">
+        <link rel="stylesheet" href="../css/chrome.css">
+        <link rel="stylesheet" href="../css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="../fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" id="highlight-css" href="../highlight.css">
+        <link rel="stylesheet" id="tomorrow-night-css" href="../tomorrow-night.css">
+        <link rel="stylesheet" id="ayu-highlight-css" href="../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+        <link rel="stylesheet" href="../custom.css">
+
+
+        <!-- Provide site root and default themes to javascript -->
+        <script>
+            const path_to_root = "../";
+            const default_light_theme = "light";
+            const default_dark_theme = "navy";
+        </script>
+        <!-- Start loading toc.js asap -->
+        <script src="../toc.js"></script>
+    </head>
+    <body>
+    <div id="body-container">
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                let theme = localStorage.getItem('mdbook-theme');
+                let sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            const default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? default_dark_theme : default_light_theme;
+            let theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            const html = document.documentElement;
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add("js");
+        </script>
+
+        <input type="checkbox" id="sidebar-toggle-anchor" class="hidden">
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            let sidebar = null;
+            const sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+            }
+            sidebar_toggle.checked = sidebar === 'visible';
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <!-- populated by js -->
+            <mdbook-sidebar-scrollbox class="sidebar-scrollbox"></mdbook-sidebar-scrollbox>
+            <noscript>
+                <iframe class="sidebar-iframe-outer" src="../toc.html"></iframe>
+            </noscript>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <label id="sidebar-toggle" class="icon-button" for="sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </label>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="default_theme">Auto</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">Ammatillisen verkkoprofiilin koostaminen</h1>
+
+                    <div class="right-buttons">
+                        <a href="../print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="javascript"><a class="header" href="#javascript">JavaScript</a></h1>
+<p>Verkossa on runsaasti lähdemateriaalia tarjolla. Hyvä vaihtoehto on esimerkiksi sivusto <a href="https://www.w3schools.com/js/default.asp">W3Schools Javascript</a> ja vaihtoehtoisesti vaikka maksutta saatavilla olevaa kirja <a href="https://codersguild.net/download/2811_JavaScript-From-Zero-to-Hero.pdf">JavaScript From Zero to Hero</a> (hieman nurinkurisesti vasta luku 4 käsittelee alkeita, hyppää siis neljänteen lukuun). Linkki on toisinaan hyvin hidas, ole siis kärsivällinen.</p>
+<p>Erinomainen tietolähde on myös ohjelmistokehittäjien yhteisö <a href="https://stackoverflow.com/questions">Stack Overflow</a>, jossa hakutoiminnon avulla voi etsiä vastauksia kysymyksiin ja jos kyseisestä asiasta ei löydy tietoja, voi lisätä oman kysymyksen. Vastaava ja kenties vielä suositumpi on <a href="https://superuser.com/">Stack Exchange</a>, johon kannattaa myös tutustua.</p>
+<h2 id="tämän-materiaalin-tavoite"><a class="header" href="#tämän-materiaalin-tavoite">Tämän materiaalin tavoite</a></h2>
+<p>Tämä itseopiskelumateriaali tarjaa vain välttämättömimmän sisällön ohjelmoinnin perusteisiin, jotta opiskelija pääsee omatoimisesti alkuun. Jos et ole aiemmin koodannut, sinun pitää alkuvaiheessa sietää sitä epävarmuuden tunnetta, että et vielä tiedä tarpeeksi. Jostain pitää aloittaa ja lähteä hitaasti etenemään ja tämän materiaalin puitteissa sivuutamme paljon erilaisia hienouksia tai oikopolkuja ja keskitymme pedagogisesti selkeimpiin koodiratkaisuihin. Vähä vähältä uutta tietoa ja uusia taitoja alkaa kertyä.</p>
+<p><strong>Tässä JavaScript-osiossa olevat harjoitustehtävät ovat vain itseopiskelua varten ja tarkoitettu aivojumpaksi. Näitä harjoituksia ei arvioida eikä niistä saa pisteitä valintaprosessiin. Siitä huolimatta ne voivat olla oppimisen kannalta arvokkaita ja tärkeitä.</strong></p>
+<p>Älä huoli, vaikka JavaScript tuntuisi aluksi vaikealta – kaikki osaajat ovat joskus olleet samassa tilanteessa. Jokainen pieni askel vie sinua eteenpäin, ja pian huomaat ymmärtäväsi yhä enemmän. Ole utelias, kokeile rohkeasti ja muista: virheet ovat paras tapa oppia. Tämä on alku matkallesi luomaan omia verkkosovelluksia – ja se on aika siisti juttu!</p>
+<p>Jos haluat käyttää tekoälyä hyväksesi, käytä sitä kuin se olisi opettaja: tee tekoälylle kysymyksiä, jotka alkavat sanalla "miksi":</p>
+<ul>
+<li>miksi tästä rivistä tulee syntax error</li>
+<li>miksi lauseeni ei tulosta mitään</li>
+<li>miksi saan virheilmoituksen 'unexpected token else'</li>
+</ul>
+<p>Tällöin oma osaaminen karttuu nopeasti. Huonoin vaihtoehto on (ja tällä kurssilla se ei ole sallittu!) pyytää tekoälyä ratkaisemaan tehtäviä sinun puolestasi. Tällöin omaa oppimista ei tapahdu lainkaan.</p>
+<h2 id="ohjelmoinnin-peruskäsitteet"><a class="header" href="#ohjelmoinnin-peruskäsitteet">Ohjelmoinnin peruskäsitteet</a></h2>
+<p>Ohjelmointi on tapa antaa tietokoneelle tarkkoja ohjeita siitä, mitä sen tulee tehdä. Ohjelmat koostuvat yksittäisistä käskyistä, jotka suoritetaan yksi kerrallaan ennalta määrätyssä järjestyksessä. Näiden käskyjen avulla tietokone voi käsitellä tietoa, ratkaista ongelmia, suorittaa toistuvia tehtäviä ja reagoida käyttäjän toimintaan. Ohjelmointi on eräänlaista viestintää ihmisen ja koneen välillä, mutta kone ymmärtää vain tarkasti määriteltyä kieltä – ohjelmointikieltä. Tämän vuoksi ohjelmointi vaatii loogista ajattelua ja huolellista ohjeiden laatimista.</p>
+<p>Useimpien ohjelmien perusrakenne noudattaa samaa yksinkertaista periaatetta: tietoja otetaan vastaan, niitä käsitellään, ja lopuksi tulokset näytetään käyttäjälle tai tallennetaan jonnekin. Näitä kolmea osaa kutsutaan nimillä syöte, prosessointi ja tuloste. Tämä kolmijako auttaa hahmottamaan ohjelman kulun ja sen, miten eri osat liittyvät toisiinsa.</p>
+<h3 id="syöte-eli-input"><a class="header" href="#syöte-eli-input">Syöte eli input</a></h3>
+<p>Syöte tarkoittaa tietoa, jota ohjelma saa ulkopuolelta. Tämä tieto voi tulla esimerkiksi käyttäjältä, joka kirjoittaa jotain näytölle ilmestyvään tekstikenttään, tai se voi olla tiedostossa oleva tieto, jonka ohjelma lukee automaattisesti. Ilman syötettä ohjelma toimisi aina samalla tavalla eikä voisi reagoida tilanteisiin tai käyttäjän tarpeisiin.</p>
+<h3 id="käsittely-eli-prosessointi"><a class="header" href="#käsittely-eli-prosessointi">Käsittely eli prosessointi</a></h3>
+<p>Kun tiedot on saatu syötteenä, ohjelma siirtyy seuraavaan vaiheeseen: käsittelyyn eli prosessointiin. Tässä vaiheessa ohjelma tekee varsinaisen työnsä. Se voi laskea, vertailla, muuntaa tai muuten käsitellä syötetietoja logiikan mukaisesti. Prosessointi on ohjelman ydin – siinä tapahtuu se, mitä varten ohjelma on kirjoitettu. Esimerkiksi laskinohjelmassa tämä vaihe tarkoittaa laskutoimituksen suorittamista käyttäjän syöttämien lukujen perusteella.</p>
+<h3 id="tulostus-eli-output"><a class="header" href="#tulostus-eli-output">Tulostus eli output</a></h3>
+<p>Kun tiedot on käsitelty, ohjelma siirtyy viimeiseen vaiheeseen eli tulostukseen. Tällöin ohjelma antaa käyttäjälle jotain näkyvää palautetta – esimerkiksi näyttää laskutoimituksen tuloksen, piirtää kuvaajan tai tallentaa tuloksen tiedostoon. Tuloste on ohjelman tapa kertoa, mitä tapahtui. Se voi olla yhtä yksinkertainen kuin teksti "Valmis!" ruudulla, tai monimutkaisempi esitys tuloksista, esimerkiksi tilasto tai raportti.</p>
+<p>Yhteenvetona voi sanoa, että ohjelma on joukko ohjeita, joiden avulla tietokone osaa ottaa vastaan tietoa, käsitellä sen halutulla tavalla ja näyttää tai tallentaa tulokset. Tämä kolmiosainen rakenne – syöte, prosessointi ja tuloste – on läsnä melkein jokaisessa ohjelmassa, yksinkertaisimmista laskimista monimutkaisiin verkkosovelluksiin. <strong>Ohjelmointi on siis ennen kaikkea järjestelmällistä ongelmanratkaisua, jossa kone tekee työn, mutta ihminen määrittää säännöt</strong>.</p>
+<h3 id="koodilause"><a class="header" href="#koodilause">Koodilause</a></h3>
+<p>Koodilause on ohjelmointikielessä yksi yksittäinen käsky tai toimenpide, jonka tietokone suorittaa. Jokainen koodilause kertoo tietokoneelle, mitä se tekee seuraavaksi – esimerkiksi luo muuttujan, laskee jotain, näyttää tietoa tai muuttaa tietoa. Lauseita suoritetaan yleensä ylhäältä alas, yksi kerrallaan, siinä järjestyksessä kuin ne on kirjoitettu.</p>
+<p>Koodilause muistuttaa tavallisen kielen virkettä: siinä on aina jokin toiminto ja usein myös kohde, johon toiminto kohdistuu. Esimerkiksi lause "Anna Maijalle omena" kertoo, kuka saa mitä. Vastaavasti ohjelmointikielen lause voi sanoa: "laske yhteen nämä luvut ja tallenna tulos".</p>
+<h2 id="miten-testaan-nopeasti-javascript-lauseen"><a class="header" href="#miten-testaan-nopeasti-javascript-lauseen">Miten testaan nopeasti JavaScript-lauseen?</a></h2>
+<p>Alla on pieni video, jossa esitellään selaimesta löytyvän konsolin käyttöä lyhyesti.</p>
+<p><a href="https://www.youtube.com/watch?v=K5MPBOznDSc" target=_blank><img src="console.jpg"></a></p>
+<p>Klikkaa yllä olevaa kuvaa nähdäksesi videon.</p>
+<p>Muutamia esimerkkejä JavaScriptin koodilauseista:</p>
+<pre><code class="language-javascript">let nimi = "Anna"
+</code></pre>
+<p>Tämä lause luo muuttujan nimeltä <code>nimi</code> ja tallentaa siihen tekstin <code>"Anna"</code>.</p>
+<pre><code class="language-javascript">let summa = 5 + 3
+</code></pre>
+<p>Tässä lasketaan yhteen luvut 5 ja 3, ja tulos (eli 8) tallennetaan muuttujaan <code>summa</code>.</p>
+<pre><code class="language-javascript">console.log("Hei maailma!")
+</code></pre>
+<p>Tämä lause näyttää tekstin selaimen konsolissa. Konsoliin tulostaminen  on yleinen tapa tarkistaa, mitä ohjelma tekee.</p>
+<pre><code class="language-javascript">luku++
+</code></pre>
+<p>Tämä lause kasvattaa yhdellä kokonaisluvun sisältävää muuttujaa nimeltä <code>luku</code>. Se on lyhyempi tapa kirjoittaa <code>luku = luku + 1</code>.</p>
+<p>Jokainen näistä esimerkeistä on yksi itsenäinen koodilause. Ohjelma koostuu useista tällaisista lauseista, jotka muodostavat yhdessä toimivan kokonaisuuden. Aivan aluksi tärkeää on oppia lukemaan ja kirjoittamaan näitä lauseita selkeästi ja loogisesti.</p>
+<br>
+<p><img src="process.png" alt="ohjelman rakenne" title="Ohjelman rakenne" /></p>
+<br>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="../osa1/onepagecss.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+                            <a rel="next prefetch" href="../osa2/jsmuuttujat.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="../osa1/onepagecss.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next prefetch" href="../osa2/jsmuuttujat.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="../elasticlunr.min.js"></script>
+        <script src="../mark.min.js"></script>
+        <script src="../searcher.js"></script>
+
+        <script src="../clipboard.min.js"></script>
+        <script src="../highlight.js"></script>
+        <script src="../book.js"></script>
+
+        <!-- Custom JS scripts -->
+
+
+    </div>
+    </body>
+</html>

@@ -1,0 +1,453 @@
+<!DOCTYPE HTML>
+<html lang="fi" class="light sidebar-visible" dir="ltr">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Funktiot - Ammatillisen verkkoprofiilin koostaminen</title>
+
+
+        <!-- Custom HTML head -->
+
+        <meta name="description" content="SASKY Koodaaja-verkkokoulutusten hakuvaihekurssin taustamateriaali">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff">
+
+        <link rel="icon" href="../favicon.svg">
+        <link rel="shortcut icon" href="../favicon.png">
+        <link rel="stylesheet" href="../css/variables.css">
+        <link rel="stylesheet" href="../css/general.css">
+        <link rel="stylesheet" href="../css/chrome.css">
+        <link rel="stylesheet" href="../css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="../fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" id="highlight-css" href="../highlight.css">
+        <link rel="stylesheet" id="tomorrow-night-css" href="../tomorrow-night.css">
+        <link rel="stylesheet" id="ayu-highlight-css" href="../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+        <link rel="stylesheet" href="../custom.css">
+
+
+        <!-- Provide site root and default themes to javascript -->
+        <script>
+            const path_to_root = "../";
+            const default_light_theme = "light";
+            const default_dark_theme = "navy";
+        </script>
+        <!-- Start loading toc.js asap -->
+        <script src="../toc.js"></script>
+    </head>
+    <body>
+    <div id="body-container">
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                let theme = localStorage.getItem('mdbook-theme');
+                let sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            const default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? default_dark_theme : default_light_theme;
+            let theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            const html = document.documentElement;
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add("js");
+        </script>
+
+        <input type="checkbox" id="sidebar-toggle-anchor" class="hidden">
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            let sidebar = null;
+            const sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+            }
+            sidebar_toggle.checked = sidebar === 'visible';
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <!-- populated by js -->
+            <mdbook-sidebar-scrollbox class="sidebar-scrollbox"></mdbook-sidebar-scrollbox>
+            <noscript>
+                <iframe class="sidebar-iframe-outer" src="../toc.html"></iframe>
+            </noscript>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <label id="sidebar-toggle" class="icon-button" for="sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </label>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="default_theme">Auto</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">Ammatillisen verkkoprofiilin koostaminen</h1>
+
+                    <div class="right-buttons">
+                        <a href="../print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="funktiot"><a class="header" href="#funktiot">Funktiot</a></h1>
+<h2 id="mikä-on-funktio-ohjelmoinnissa-ja-miksi-niitä-tarvitaan"><a class="header" href="#mikä-on-funktio-ohjelmoinnissa-ja-miksi-niitä-tarvitaan">Mikä on funktio ohjelmoinnissa ja miksi niitä tarvitaan?</a></h2>
+<p>Funktio on ohjelmoinnissa kuin pieni ohjelma ohjelman sisällä. Se on nimetty kokonaisuus koodia, joka suorittaa tietyn tehtävän. Funktio voi ottaa syötteitä (eli parametreja), käsitellä ne, ja palauttaa tuloksen. Funktioita käytetään, jotta ohjelmakoodista tulee <strong>selkeämpää</strong>, <strong>uudelleenkäytettävää</strong>, ja <strong>helpommin ylläpidettävää</strong>.</p>
+<p>Lisätietoja ja lisäharjoituksia löytyy esimerkiksi sivustosta <a href="https://www.w3schools.com/js/js_functions.asp">W3Schools Functions</a>.</p>
+<p>Ilman funktioita joutuisi kirjoittamaan saman koodin moneen kertaan. Funktio mahdollistaa saman toiminnon suorittamisen monta kertaa eri tilanteissa vain yhdellä koodinpätkällä. Esimerkiksi jos haluat laskea kahden luvun summan useassa kohdassa ohjelmaa, voit tehdä sen yhden summalaskufunktion avulla – etkä toista samaa koodia moneen kertaan.</p>
+<h3 id="valmiit-funktiot"><a class="header" href="#valmiit-funktiot">Valmiit funktiot</a></h3>
+<p>Kaikissa ohjelmointikielissä on suuri joukko valmiita funktioita, jotka ovat kielen kehittäjien kirjoittamia. Niitä on JavaScriptissäkin useita satoja. Ne ovat ikään kuin reservissä odottamassa, että niitä kutsutaan.</p>
+<p>Olet jo aiemmin käyttänyt esimerkiksi <code>alert()</code> ja <code>console.log()</code>-funktioita. Muita hyvin usein käytettyjä ovat esimerkiksi <code>parseInt()</code>, <code>Math.random()</code> ja <code>prompt()</code>.</p>
+<p>Funktio karkeasti ottaen käyttäytyy kuin kielen komentosana ja niitä on helppo koodata itse lisää.</p>
+<p>Joku on koodannut nämä funktiot valmiiksi ja nyt me voimme vain käyttää niitä suoraan, eikä meidän tarvitse edes tietää, mitä funktion sisällä tapahtuu. Riittää, että tiedämme esimerkiksi sen, että <code>alert("moi")</code> avaa pienen ikkunan ja tulostaa sen sisään parametrina antamamme viestin. Tämä on esimerkki uudelleenkäytettävyydestä.</p>
+<h3 id="miten-funktio-määritellään-javascriptissä"><a class="header" href="#miten-funktio-määritellään-javascriptissä">Miten funktio määritellään JavaScriptissä?</a></h3>
+<p>JavaScriptissä funktio voidaan määritellä usealla tavalla, mutta tavallisin perusmuoto on seuraava:</p>
+<pre><code class="language-javascript">function nimi(parametri1, parametri2) {
+  // täällä suoritetaan toimintoja
+  return tulos;
+}
+</code></pre>
+<ul>
+<li>
+<p><code>function</code> on varattu sana, joka kertoo että ollaan tekemässä funktiota.</p>
+</li>
+<li>
+<p>nimi on funktion nimi. Sen avulla funktiota voidaan kutsua myöhemmin.</p>
+</li>
+<li>
+<p>suluissa <code>()</code> määritellään parametrit eli syötteet, joita funktio ottaa vastaan.</p>
+</li>
+<li>
+<p>altosulkujen <code>{}</code> sisällä on funktion sisältö eli mitä se tekee. Tämä on lohko, johon tutustiomme jo aiemmin.</p>
+</li>
+<li>
+<p><code>return</code> palauttaa arvon funktion kutsujalle. Jos return-lausetta ei ole, funktio palauttaa undefined.</p>
+</li>
+</ul>
+<p><strong>HUOMAA, kun olemme kirjoittaneet funktion valmiiksi, se jää ikään kuin reserviin odottamaan, että sitä kutsutaan jossain koodin myöhemmässä vaiheessa. Funktion mää'rittely ei siis vielä käynnistä sitä.</strong></p>
+<h2 id="esimerkit"><a class="header" href="#esimerkit">Esimerkit</a></h2>
+<h3 id="esimerkki-1-yksinkertainen-tervehdysfunktio"><a class="header" href="#esimerkki-1-yksinkertainen-tervehdysfunktio">Esimerkki 1: yksinkertainen tervehdysfunktio</a></h3>
+<pre><code class="language-javascript">function tervehdi() {
+  console.log("Hei maailma!")
+}
+</code></pre>
+<h4 id="selitys-vaiheittain"><a class="header" href="#selitys-vaiheittain">Selitys vaiheittain:</a></h4>
+<ol>
+<li>
+<p><code>tervehdi()</code> määrittelee funktion nimeltä tervehdi, joka ei ota mitään parametreja.</p>
+</li>
+<li>
+<p><code>{ ... }</code> sisältää funktion rungon.</p>
+</li>
+<li>
+<p><code>console.log("Hei maailma!")</code> tulostaa tekstin konsoliin.</p>
+</li>
+<li>
+<p>Muistutus vielä uudelleen: funktiota ei suoriteta automaattisesti vaan sitä pitää kutsua erikseen. Kutsu on ikäänkuin uusi komentosana, joka voi esiintyä muualla koodissa omana lauseenaan. Kutsu voidaan myös kytkeä jonkin tapahtuman seuraukseksi, esimerkiksi käyttäjä klikkaa painiketta, joka kutsuu funktiota. Funktion kutsu tämän funktion tapauksessa on yksinkertaisesti rivi, jossa on funktion nimi ja sulut, jotka ovat pakolliset.</p>
+</li>
+</ol>
+<p><strong>Funktion kutsuminen:</strong></p>
+<pre><code class="language-javascript">tervehdi()
+</code></pre>
+<h3 id="esimerkki-2-funktio-joka-laskee-summan"><a class="header" href="#esimerkki-2-funktio-joka-laskee-summan">Esimerkki 2: Funktio, joka laskee summan</a></h3>
+<pre><code class="language-javascript">function laskeSumma(a, b) {
+  return a + b
+}
+</code></pre>
+<h4 id="selitys-vaiheittain-1"><a class="header" href="#selitys-vaiheittain-1">Selitys vaiheittain:</a></h4>
+<ol>
+<li>
+<p><code>function laskeSumma(a, b)</code> määrittelee funktion nimeltä laskeSumma, joka ottaa kaksi parametria: <code>a</code> ja <code>b</code>.</p>
+</li>
+<li>
+<p><code>return a + b</code> laskee muuttujien summan ja palauttaa sen.</p>
+</li>
+</ol>
+<p>Funktiota kutsutaan näin:</p>
+<pre><code class="language-javascript">let tulos = laskeSumma(3, 4)    // tulos saa arvon 7
+console.log(tulos)              // tulostaa: 7
+</code></pre>
+<h4 id="selitys"><a class="header" href="#selitys">Selitys:</a></h4>
+<p>Funktion kutsussa sulkujen sisällä on kaksi lukua; 3 ja 4.Kutsuttaessa ensimmäinen näistä parametreista, eli 3, asetetaan ensimmäisen funktion parametrimuuttujan <code>a</code> arvoksi. Toinen parametri 4 menee parametrimuuttujan <code>b</code> arvoksi. Tässä vaiheessa ohjelman suoritus "hyppää" funktioon, jossa siis a:n arvona 3 ja b:n arvona 4.</p>
+<p>Sen jälkeen funktio suorittaa laskutoimituksen ja <strong>palauttaa</strong> vastauksen. Samalla funktio päättyy ja ohjelman suoritus palaa takaisin sinne, missä funktiota kutsuttiin.  Kyseisellä rivillä on sijoituslause <code>let tulos = laskeSumma(3, 4)</code> jolloin funkiokutsun palautusarvo sijoitetaan muuttujan <code>tulos</code> arvoksi.</p>
+<p>Lopuksi ohjelma tulostaa saamansa arvon näytölle.</p>
+<p>Klikkaa alla olevaa kuvaa, niin näet yksinkertaisena animaationa kyseisen funktiokutsun etenemisen vaihe vaiheelta. Ohjelman suoritus "hyppää" välillä funktioon, jonka koodirivit suoritetaan, ja funktiosta palataan takaisin sinne, mistä sitä kutsuttiin.</p>
+<p><a href="https://youtu.be/YZe5mIHbzkE" target=_blank><img src="funcani.jpg"></a></p>
+<h3 id="yhteenveto"><a class="header" href="#yhteenveto">Yhteenveto</a></h3>
+<p>Funktiot tekevät koodista loogisempaa jakamalla sen pienempiin osiin. JavaScriptissä funktion voi luoda helposti function-avainsanalla. Harjoittelemalla yksinkertaisilla esimerkeillä opit nopeasti, kuinka tehokas työkalu funktio on ohjelmoinnissa!</p>
+<h2 id="esimerkit-1"><a class="header" href="#esimerkit-1">Esimerkit</a></h2>
+<h3 id="esimerkki-7"><a class="header" href="#esimerkki-7">Esimerkki 7</a></h3>
+<p>Kirjoita funktio, joka ottaa parametrina vastaan yhden luvun ja palauttaa sen neliön. Tulosta funktion palauttaman laskutoimituksen tulos napin painalluksesta.</p>
+<p>Tässä esimerkissä on kaksi uutta asiaa, toinen on <code>&lt;input&gt;</code>-elementin käyttö JavaScriptin kanssa ja toinen on <code>onClick</code>-tapahtumaan liitetty funktiokutsu. Tutki esimerkkikoodia huolellisesti, kopioi se ja tallenna tiedostoksi ja kokeile toiminta selaimella. Samaa tekniikkaa käytetään myöhemminkin runsaasti.</p>
+<p>Tässä vaiheessa ei tarvitse vielä selvittää <code>document.getElementById("elementinTunniste")</code>-rakenteen toimintaa. Sen voi kopioida sellaisenaan tehtävästä toiseen, kunhan vaihtaa jokaisessa kohdassa halutun elementin tunnisteen eli id:n kyseiseen kutsuun.</p>
+<pre><code class="language-javascript">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+  &lt;meta charset="UTF-8"&gt;
+  &lt;title&gt;Esimerkki 7 – Neliön laskeminen&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;h2&gt;Laske neliö&lt;/h2&gt;
+  &lt;input type="number" id="luku" placeholder="Syötä luku"&gt;
+  &lt;button onclick="laskeNelio()"&gt;Laske&lt;/button&gt;
+  &lt;p id="tulos"&gt;&lt;/p&gt;
+
+  &lt;script&gt;
+    function laskeNelio() {
+      let luku = Number(document.getElementById("luku").value);
+      let nelio = luku * luku;
+      document.getElementById("tulos").innerText = "Neliö on: " + nelio;
+    }
+  &lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<h3 id="esimerkki-8"><a class="header" href="#esimerkki-8">Esimerkki 8</a></h3>
+<p>Kirjoita funktio, joka saa parametrina henkilön nimen ja tulostaa tervehdyksen "Hei, [nimi]!"</p>
+<pre><code class="language-javascript">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+  &lt;meta charset="UTF-8"&gt;
+  &lt;title&gt;Esimerkki 8 – Tervehdys&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;h2&gt;Tervehdi käyttäjää&lt;/h2&gt;
+  &lt;input type="text" id="nimi" placeholder="Kirjoita nimesi"&gt;
+  &lt;button onclick="tervehdi()"&gt;Tervehdi&lt;/button&gt;
+  &lt;p id="tervehdys"&gt;&lt;/p&gt;
+
+  &lt;script&gt;
+    function tervehdi() {
+      let nimi = document.getElementById("nimi").value;
+      document.getElementById("tervehdys").innerText = "Hei, " + nimi + "!";
+    }
+  &lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<h3 id="esimerkki-9"><a class="header" href="#esimerkki-9">Esimerkki 9</a></h3>
+<p>Kirjoita funktio, joka kertoo onko syötetty luku parillinen vai ei.</p>
+<pre><code class="language-javascript">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+  &lt;meta charset="UTF-8"&gt;
+  &lt;title&gt;Esimerkki 9 – Parillisuus&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;h2&gt;Tarkista onko luku parillinen&lt;/h2&gt;
+  &lt;input type="number" id="luku" placeholder="Syötä luku"&gt;
+  &lt;button onclick="tarkistaParillisuus()"&gt;Tarkista&lt;/button&gt;
+  &lt;p id="vastaus"&gt;&lt;/p&gt;
+
+  &lt;script&gt;
+    function tarkistaParillisuus() {
+      let luku = Number(document.getElementById("luku").value);
+      if (luku % 2 === 0) {
+        document.getElementById("vastaus").innerText = "Luku on parillinen.";
+      } else {
+        document.getElementById("vastaus").innerText = "Luku on pariton.";
+      }
+    }
+  &lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<h2 id="harjoitukset"><a class="header" href="#harjoitukset">Harjoitukset</a></h2>
+<p>Nämäkin harjoitukset ovat vapaaehtoisia ja tarkoitettu koodaustaitojen opiskeluun.</p>
+<h3 id="harjoitus-17"><a class="header" href="#harjoitus-17">Harjoitus 17</a></h3>
+<p>Kirjoita HTML-sivu, jossa käyttäjältä kysytään kaksi lukua. Luo funktio, joka laskee lukujen summan ja näyttää sen sivulla.</p>
+<h3 id="harjoitus-18"><a class="header" href="#harjoitus-18">Harjoitus 18</a></h3>
+<p>Luo HTML-sivu ja funktio, joka tarkistaa annetun iän perusteella, kuuluuko käyttäjä seuraaviin ryhmiin:</p>
+<ul>
+<li>Alle 13 → "lapsi"</li>
+<li>13–19 → "nuori"</li>
+<li>20 tai yli → "aikuinen"</li>
+</ul>
+<p>Näytä tulos sivulla.</p>
+<h3 id="harjoitus-19"><a class="header" href="#harjoitus-19">Harjoitus 19</a></h3>
+<p>Kirjoita HTML-sivu ja funktio, joka muuntaa annetun lämpötilan celsius-asteista fahrenheiteiksi. <code>(Kaava: F = C * 1.8 + 32)</code></p>
+<p>Näytä tulos sivulla.</p>
+<h2 id="mallipohjat-avuksi-harjoituksiin"><a class="header" href="#mallipohjat-avuksi-harjoituksiin">Mallipohjat avuksi harjoituksiin</a></h2>
+<p>Mikäli harjoitusten koodaaminen tuntuu ylipääsemättömän vaikealta, voit käyttää apunasi alla olevia tyhjiä mallipohjia. Niistä puuttuu vain JavaScript-funktio.</p>
+<h3 id="mallipohja-17"><a class="header" href="#mallipohja-17">Mallipohja 17</a></h3>
+<pre><code class="language-javascript">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+  &lt;meta charset="UTF-8"&gt;
+  &lt;title&gt;Harjoitus 17 – Laske summa&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;h2&gt;Laske kahden luvun summa&lt;/h2&gt;
+  &lt;input type="number" id="luku1" placeholder="Ensimmäinen luku"&gt;
+  &lt;input type="number" id="luku2" placeholder="Toinen luku"&gt;
+  &lt;button onclick="laskeSumma()"&gt;Laske&lt;/button&gt;
+  &lt;p id="tulos"&gt;&lt;/p&gt;
+
+  &lt;script&gt;
+    function laskeSumma() {
+      // Täydennä funktio tähän
+    }
+  &lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<h3 id="mallipohja-18"><a class="header" href="#mallipohja-18">Mallipohja 18</a></h3>
+<pre><code class="language-javascript">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+  &lt;meta charset="UTF-8"&gt;
+  &lt;title&gt;Harjoitus 18 – Ikäryhmä&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;h2&gt;Tarkista ikäryhmä&lt;/h2&gt;
+  &lt;input type="number" id="ika" placeholder="Anna ikäsi"&gt;
+  &lt;button onclick="tarkistaIka()"&gt;Tarkista&lt;/button&gt;
+  &lt;p id="vastaus"&gt;&lt;/p&gt;
+
+  &lt;script&gt;
+    function tarkistaIka() {
+      // Täydennä funktio tähän
+    }
+  &lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<h3 id="mallipohja-19"><a class="header" href="#mallipohja-19">Mallipohja 19</a></h3>
+<pre><code class="language-javascript">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+  &lt;meta charset="UTF-8"&gt;
+  &lt;title&gt;Harjoitus 19 – Celsius to Fahrenheit&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;h2&gt;Muunna lämpötila&lt;/h2&gt;
+  &lt;input type="number" id="celsius" placeholder="Celsius-asteet"&gt;
+  &lt;button onclick="muunna()"&gt;Muunna&lt;/button&gt;
+  &lt;p id="fahrenheit"&gt;&lt;/p&gt;
+
+  &lt;script&gt;
+    function muunna() {
+      // Täydennä funktio tähän
+    }
+  &lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="../osa2/jsohjaus.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+                            <a rel="next prefetch" href="../osa2/jsarr.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="../osa2/jsohjaus.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next prefetch" href="../osa2/jsarr.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="../elasticlunr.min.js"></script>
+        <script src="../mark.min.js"></script>
+        <script src="../searcher.js"></script>
+
+        <script src="../clipboard.min.js"></script>
+        <script src="../highlight.js"></script>
+        <script src="../book.js"></script>
+
+        <!-- Custom JS scripts -->
+
+
+    </div>
+    </body>
+</html>

@@ -1,0 +1,374 @@
+<!DOCTYPE HTML>
+<html lang="fi" class="light sidebar-visible" dir="ltr">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Ensimmäinen HTML-sivu - Ammatillisen verkkoprofiilin koostaminen</title>
+
+
+        <!-- Custom HTML head -->
+
+        <meta name="description" content="SASKY Koodaaja-verkkokoulutusten hakuvaihekurssin taustamateriaali">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff">
+
+        <link rel="icon" href="../favicon.svg">
+        <link rel="shortcut icon" href="../favicon.png">
+        <link rel="stylesheet" href="../css/variables.css">
+        <link rel="stylesheet" href="../css/general.css">
+        <link rel="stylesheet" href="../css/chrome.css">
+        <link rel="stylesheet" href="../css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="../fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" id="highlight-css" href="../highlight.css">
+        <link rel="stylesheet" id="tomorrow-night-css" href="../tomorrow-night.css">
+        <link rel="stylesheet" id="ayu-highlight-css" href="../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+        <link rel="stylesheet" href="../custom.css">
+
+
+        <!-- Provide site root and default themes to javascript -->
+        <script>
+            const path_to_root = "../";
+            const default_light_theme = "light";
+            const default_dark_theme = "navy";
+        </script>
+        <!-- Start loading toc.js asap -->
+        <script src="../toc.js"></script>
+    </head>
+    <body>
+    <div id="body-container">
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                let theme = localStorage.getItem('mdbook-theme');
+                let sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            const default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? default_dark_theme : default_light_theme;
+            let theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            const html = document.documentElement;
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add("js");
+        </script>
+
+        <input type="checkbox" id="sidebar-toggle-anchor" class="hidden">
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            let sidebar = null;
+            const sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+            }
+            sidebar_toggle.checked = sidebar === 'visible';
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <!-- populated by js -->
+            <mdbook-sidebar-scrollbox class="sidebar-scrollbox"></mdbook-sidebar-scrollbox>
+            <noscript>
+                <iframe class="sidebar-iframe-outer" src="../toc.html"></iframe>
+            </noscript>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <label id="sidebar-toggle" class="icon-button" for="sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </label>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="default_theme">Auto</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">Ammatillisen verkkoprofiilin koostaminen</h1>
+
+                    <div class="right-buttons">
+                        <a href="../print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="ensimmäinen-html-sivu"><a class="header" href="#ensimmäinen-html-sivu">Ensimmäinen HTML-sivu</a></h1>
+<p>Nyt HTML-kielen käsitteet ja peruselementit ovat tuttuja. Seuraavaksi kääritään hihat ja luodaan ihan ensimmäinen HTML-sivu ja katsotaan, miltä se näyttää selaimessa.</p>
+<h2 id="projektikansion-luominen"><a class="header" href="#projektikansion-luominen">Projektikansion luominen</a></h2>
+<p>Kaikki tässä materiaalissa tehtävät tiedostot kannattaa tallentaa samaan sijaintiin, jotta niiden löytäminen on myöhemmin helpompaa. Sitä varten luomme ensin tätä materiaalia varten oman "projektikansion", jota tulemme käyttämään jatkossa.</p>
+<p>Tässä ohjeessa neuvotaan, miten projektikansio luodaan Windows-käyttöjärjestelmällä. Jos sinulla on jokin toinen käyttöjärjestelmä käytössä, niin sovella ohjeita. Perusperiaate on sama kaikissa käyttöjärjestelmissä.</p>
+<ol>
+<li>
+<p>Käynnistä Windowsin <em>Resurssienhallinta</em> klikkaamalla sen kuvaketta alareunan tehtäväpalkista.</p>
+<div class="image">
+  <img alt="Windowsin tehtäväpalkista käynnistetään Resurssienhallinta-ohjelma." src="./hello-1.png" width="734">
+</div>
+</li>
+<li>
+<p>Valitse vasemman reunan siirtymisruudusta <strong>Tiedostot</strong>-vaihtoehto (Documents).</p>
+<div class="image">
+  <img alt="Resurssienhallinnan vasemmasta reunasta valitaan Tiedostot-vaihtoehto." src="./hello-2.png" width="1182">
+</div>
+</li>
+<li>
+<p>Valitse yläreunan valikosta <strong>Uusi</strong> ja sen alta avautuvasta valikosta <strong>Kansio</strong>.</p>
+<div class="image">
+  <img alt="Yläreunan valikosta valitaan Uusi ja sen alta Kansio." src="./hello-3.png" width="1182">
+</div>
+</li>
+<li>
+<p>Anna uuden kansio nimeksi <code>koodaajasivut</code>.</p>
+<div class="image">
+  <img alt="Uuden kansio nimeksi on annettu koodaajasivut." src="./hello-4.png" width="1181">
+</div>
+</li>
+</ol>
+<p>Nyt sinulla on uusi projektikansio luotuna omalle koneellesi, tätä kansiota käytämme jatkossa uusien tiedostojen tallennuspaikkana.</p>
+<blockquote>
+<p>Voit halutessasi jatkossa sijoittaa  tiedostot omaan, itse määrittelemääsi kansioon. Myöhemmissä vaiheissa tehtävät tiedostot toimivat samalla tavalla, sijaitsevat ne missä tahansa. Muista kuitenkin soveltaa ohjeistusta aina silloin, kun ohjeistuksessa tallennetaan tai avataan tiedostoa.</p>
+</blockquote>
+<h2 id="projektikansion-avaaminen-visual-studio-codessa"><a class="header" href="#projektikansion-avaaminen-visual-studio-codessa">Projektikansion avaaminen Visual Studio Codessa</a></h2>
+<p>Seuraavaksi avaamme edellä luomamme projektikansion Visual Studio Codessa. Seuraavat ohjeet toimivat sellaisenaan, vaikka olisit asennuksen jälkeen tutustunut <em>Get Started with VS Code</em> -tutoriaaliin.</p>
+<ol>
+<li>
+<p>Avaa Visual Studio Code.</p>
+</li>
+<li>
+<p>Valitse <strong>File</strong>-valikon alta <strong>Open Folder…</strong>.</p>
+<div class="image">
+  <img alt="File-valikon alta valintaa Open Folder." src="./hello-5.png" width="873">
+</div>
+</li>
+<li>
+<p>Valitse avautuvan ikkunan vasemmasta reunasta ensin <strong>Tiedostot</strong> ja valitse tämän jälkeen <strong>koodaajasivut</strong>-kansio.</p>
+<blockquote>
+<p>Jos loit kansion eri nimellä tai eri paikkaan, niin etsi ja valitse se tässä kohdassa.</p>
+</blockquote>
+<p>Hyväksy valintasi painamalla <strong>Valitse kansio</strong> -nappia.</p>
+<div class="image">
+  <img alt="Projektikansion sijainti on valittu." src="./hello-6.png" width="942">
+</div>
+</li>
+<li>
+<p>Visual Studio Code varmistaa vielä, että luotatko kansiossa olevien tiedostojen tekijöihin. Koska tämä kansio tulee sisältämään sinun itsesi tekemiä tiedostoja, niin voit turvallisesti valita <strong>Yes, I trust the authors</strong> -vaihtoehdon.</p>
+<div class="image">
+  <img alt="Visual Studio Code varmistaa luotetaanko kansiossa olevien tiedostojen tekijöihin." src="./hello-7.png" width="782">
+</div>
+</li>
+<li>
+<p>Projektikansio on nyt avattu Visual Studio Codessa ja sinne voi nyt alkaa luomaan omia tiedostoja.</p>
+<div class="image">
+  <img alt="koodaajasivut-kansio näkyy nyt avattuna kansiona Visual Studio Codessa." src="./hello-8.png" width="785">
+</div>
+</li>
+</ol>
+<h2 id="html-sivun-luominen"><a class="header" href="#html-sivun-luominen">HTML-sivun luominen</a></h2>
+<p>Seuraavaksi luomme projektikansioon uuden HTML-sivun.</p>
+<ol>
+<li>
+<p>Kopioi seuraava ohjelmakoodi leikepöydälle.</p>
+<blockquote>
+<p>Vinkki: Voit kopioida koko tekstin klikkaamalla koodialueen oikeassa yläkulmassa olevaa kopioitikuvaketta.</p>
+</blockquote>
+<pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang="fi"&gt;
+  &lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;title&gt;Hei koodausmaailma!&lt;/title&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;h1&gt;Hei koodausmaailma!&lt;/h1&gt;
+    &lt;p&gt;Tämä sivu on ensimmäinen askel kohti koodaamisen ihmeellistä maailmaa.&lt;/p&gt;
+  &lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+</li>
+<li>
+<p>Klikkaa KOODAAJASIVUT-tekstin vieressä olevaa <strong>New File…</strong>-kuvaketta.</p>
+<div class="image">
+  <img alt="Luodaan uusi tiedosto klikkaamalla New File -kuvaketta." src="./hello-9.png" width="631">
+</div><br>
+</li>
+<li>
+<p>Syötä uuden tiedoston nimeksi <code>01-hello.html</code> ja paina <em>Enter</em>-näppäintä.</p>
+<div class="image">
+  <img alt="Annetaan uudelle tiedosto nimeksi 01-hello.html." src="./hello-10.png" width="777">
+</div><br>
+<blockquote>
+<p>Tämän materiaalin tiedostonimet alkavat numeroilla, jolloin niiden löytäminen jatkossa on helpompaa.</p>
+</blockquote>
+</li>
+<li>
+<p>Liitä leikepöydälle kopioimasi HTML-koodi editorinäkymään.</p>
+<div class="image">
+  <img alt="HTML-koodi on liitetty leikepöydältä editorinäkymään." src="./hello-11.png" width="1091">
+</div><br>
+<p>Tiedostonimen perässä on täytetty ympyrä. Se ilmoittaa, että tiedostoa on muokattu edellisen tallennuksen jälkeen.</p>
+<blockquote>
+<p>Tässä vaiheessa kannattaa myös tarkistaa, että VS Coden alapalkissa näkyy, että merkistökoodauksena (encoding) käytetään <em>UTF-8</em>-muotoa.</p>
+</blockquote>
+</li>
+<li>
+<p>Tallenna tiedosto valitsemalla <strong>File</strong>-valikosta kohta <strong>Save</strong>.</p>
+<p>Nyt tiedosto on tallennettu levylle. Tämän voi tarkistaa välilehden otsikosta. Tiedostonimen perässä on X-kuvake. Tämä ilmoittaa, että tiedostoon ei ole tehty viimeisimmän tallennuksen jälkeen.</p>
+</li>
+</ol>
+<h2 id="html-sivun-avaaminen-selaimessa"><a class="header" href="#html-sivun-avaaminen-selaimessa">HTML-sivun avaaminen selaimessa</a></h2>
+<p>Seuraavaksi voidaan katsoa, miltä sivu näyttää selaimessa.</p>
+<ol>
+<li>
+<p>Käynnistä Windowsin <em>Resurssienhallinta</em> klikkaamalla sen kuvaketta alareunan tehtäväpalkista.</p>
+<div class="image">
+  <img alt="Windowsin tehtäväpalkista käynnistetään Resurssienhallinta-ohjelma." src="./hello-1.png" width="734">
+</div>
+</li>
+<li>
+<p>Valitse vasemman reunan siirtymisruudusta <strong>Tiedostot</strong>-vaihtoehto (Documents).</p>
+<div class="image">
+  <img alt="Resurssienhallinnan vasemmasta reunasta valitaan Tiedostot-vaihtoehto." src="./hello-2.png" width="1182">
+</div><br>
+</li>
+<li>
+<p>Avaa <strong>koodaajasivut</strong>-kansio tuplaklikkaamalla sen kuvaketta.</p>
+<div class="image">
+  <img alt="Avataan koodaajasivut-kansio." src="./hello-4.png" width="1181">
+</div><br>
+</li>
+<li>
+<p>Tuplaklikkaa kansiosta löytyvää <strong>01-hello.html</strong>-tiedostoa.</p>
+<div class="image">
+  <img alt="Avataan HTML-sivu selaimessa tuplaklikkaamalla sitä." src="./hello-12.png" width="1182">
+</div><br>
+</li>
+<li>
+<p>HTML-sivu on nyt selaimessa auki.</p>
+<div class="image">
+  <img alt="Avataan HTML-sivu selaimessa tuplaklikkaamalla sitä." src="./hello-13.png" width="1182">
+</div><br>
+</li>
+<li>
+<p>Kokeile muuttaa HTML-sivua seuraavasti:</p>
+<ul>
+<li>Muuta HTML-tiedostoa Visual Studio Codessa. Muutos voi olla esimerkiksi p-elementissä olevan tekstin muuttaminen toisenlaiseksi.</li>
+<li>Tallenna tekemäsi muutokset. Tarkista, että tiedostonimen perässä oleva ympyrä muuttuu X-kuvakkeeksi.</li>
+<li>Päivitä selainsivu painamalla F5-näppäintä tai painamalla osoiterivin vasemmalla puolella olevaa päivityskuvaketta.</li>
+</ul>
+</li>
+</ol>
+<p>Nyt osaat luoda projektikansioon uusia tiedostoja ja tiedät, miten pääset katsomaan niitä selaimessa.</p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="../osa1/document.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+                            <a rel="next prefetch" href="../osa1/css.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="../osa1/document.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next prefetch" href="../osa1/css.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="../elasticlunr.min.js"></script>
+        <script src="../mark.min.js"></script>
+        <script src="../searcher.js"></script>
+
+        <script src="../clipboard.min.js"></script>
+        <script src="../highlight.js"></script>
+        <script src="../book.js"></script>
+
+        <!-- Custom JS scripts -->
+
+
+    </div>
+    </body>
+</html>

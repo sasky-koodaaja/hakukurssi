@@ -1,0 +1,2678 @@
+<!DOCTYPE HTML>
+<html lang="fi" class="light sidebar-visible" dir="ltr">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Ammatillisen verkkoprofiilin koostaminen</title>
+        <meta name="robots" content="noindex">
+
+
+        <!-- Custom HTML head -->
+
+        <meta name="description" content="SASKY Koodaaja-verkkokoulutusten hakuvaihekurssin taustamateriaali">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff">
+
+        <link rel="icon" href="favicon.svg">
+        <link rel="shortcut icon" href="favicon.png">
+        <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
+        <link rel="stylesheet" href="css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" id="highlight-css" href="highlight.css">
+        <link rel="stylesheet" id="tomorrow-night-css" href="tomorrow-night.css">
+        <link rel="stylesheet" id="ayu-highlight-css" href="ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+        <link rel="stylesheet" href="custom.css">
+
+
+        <!-- Provide site root and default themes to javascript -->
+        <script>
+            const path_to_root = "";
+            const default_light_theme = "light";
+            const default_dark_theme = "navy";
+        </script>
+        <!-- Start loading toc.js asap -->
+        <script src="toc.js"></script>
+    </head>
+    <body>
+    <div id="body-container">
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                let theme = localStorage.getItem('mdbook-theme');
+                let sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            const default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? default_dark_theme : default_light_theme;
+            let theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            const html = document.documentElement;
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add("js");
+        </script>
+
+        <input type="checkbox" id="sidebar-toggle-anchor" class="hidden">
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            let sidebar = null;
+            const sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+            }
+            sidebar_toggle.checked = sidebar === 'visible';
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <!-- populated by js -->
+            <mdbook-sidebar-scrollbox class="sidebar-scrollbox"></mdbook-sidebar-scrollbox>
+            <noscript>
+                <iframe class="sidebar-iframe-outer" src="toc.html"></iframe>
+            </noscript>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <label id="sidebar-toggle" class="icon-button" for="sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </label>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="default_theme">Auto</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">Ammatillisen verkkoprofiilin koostaminen</h1>
+
+                    <div class="right-buttons">
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="html--ja-css-kielen-perusteet"><a class="header" href="#html--ja-css-kielen-perusteet">HTML- ja CSS-kielen perusteet</a></h1>
+<p>Tämä materiaali on suunnattu ensisijaisesti SASKYn Koodaaja-koulutuksen hakuvaiheen orientaatiokurssin taustamateriaaliksi. Tämän materiaalin avulla tutuksi tulee muun muassa seuraavat aiheet:</p>
+<ul>
+<li>Sivujen toteuttamisessa tarvittavien työvälineiden asennus ja käyttö.</li>
+<li>HTML-kielen perusteet ja yksinkertaisten HTML-sivujen toteuttaminen.</li>
+<li>CSS-kielen perusteet ja HTML-sivun ulkoasun muotoileminen CSS-tyyleillä.</li>
+<li>JavaScriptin perusteet eli miten JavaSciptillä saadaan toteutettua toiminnallisuutta HTML-sivulle.</li>
+<li>JavaScript-kirjastojen hyödyntäminen osana HTML-sivua. Materiaalissa tutustutaan Mermaid-kirjaston käyttöön.</li>
+<li>Lyhyt johdanto API-rajapintoihin ja miten yksinkertaista API-rajapintaa voidaan hyödyntää osana HTML-sivua.</li>
+</ul>
+<h2 id="lisenssi"><a class="header" href="#lisenssi">Lisenssi</a></h2>
+<p>Tämä teos on lisensoitu <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Nimeä 4.0 Kansainvälinen</a> -lisenssillä.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="tarvittavat-ohjelmat"><a class="header" href="#tarvittavat-ohjelmat">Tarvittavat ohjelmat</a></h1>
+<p>Jotta voit tehdä kaikki tässä materiaalissa olevat esimerkit, tarvitset</p>
+<ul>
+<li>graafisen selaimen ja</li>
+<li>tekstieditorin.</li>
+</ul>
+<p>Tämän materiaalin esimerkkien testaamiseen ei vaadita tehokasta konetta, johon on asennettu kaikki viimeisimmät sovelluskehityksen työkalut. Minimissään käyttöjärjestelmäsi mukana tulleet ohjelmat riittävät.</p>
+<h2 id="graafinen-selain"><a class="header" href="#graafinen-selain">Graafinen selain</a></h2>
+<p>Materiaalissa tehtyjen HTML-sivujen katseluun soveltuu mikä tahansa graafinen selain. Se selain, mitä käytät aktiivisesti, käy tähän aivan mainiosti. Materiaalissa olevat esimerkkikuvat ovat Microsoftin Edge -selaimesta, mutta lopputulos näyttää pääosin samalta myös muilla selaimilla.</p>
+<h2 id="tekstieditori"><a class="header" href="#tekstieditori">Tekstieditori</a></h2>
+<p>HTML-sivujen tekemisessä yksi tärkeimmistä työkaluista on tekstieditori. Sillä muokataan HTML-kooditiedostoja ja muita tiedostoja. Periaatteessa tähän tarkoitukseen kelpaa melkein mikä tahansa tekstieditori, hätätilanteessa Windowsin Muistio (Notepad) toimii editointiin. Jotta ohjelmakoodin kirjoittaminen olisi tehokasta ja tuottavaa, kannattaa ottaa käyttöön koodaamiseen erityisesti suunniteltu tekstieditori.</p>
+<p>Tässä materiaalissa käytetään Microsoftin Visual Studio Code -tekstieditoria, pääosin seuraavista syistä:</p>
+<ul>
+<li>Se on vapaan lähdekoodin projekti, toisin sanoen se on ilmainen.</li>
+<li>Sille löytyy valmiit asennuspaketit Windowsille, Linuxille ja macOS:lle.</li>
+<li>Se on kooltaan maltillinen ja se käynnistyy kohtuullisen nopeasti.</li>
+</ul>
+<div class="image">
+ <img alt="Visual Studio Code, jossa muokataan CSS-tiedostoa." src="tyovalineet/./ohjelmat-1.png">
+</div><div style="break-before: page; page-break-before: always;"></div><h1 id="visual-studio-coden-asentaminen"><a class="header" href="#visual-studio-coden-asentaminen">Visual Studio Coden asentaminen</a></h1>
+<p>Tässä ohjeessa asennetaan Visual Studio Code -tekstieditori Windows-ympäristöön. Jos asennat editoria toiselle käyttöjärjestelmälle, niin mukaile asennuksen kulkua oman käyttöjärjestelmäsi mukaisesti.</p>
+<ol>
+<li>
+<p>Mene selaimella osoitteeseen <a href="https://code.visualstudio.com">https://code.visualstudio.com</a>.</p>
+<div align="center">
+  <img src="tyovalineet/./vsc-1.png" alt="Visual Studio Code -sovelluksen sivusto" width="500">
+</div><br>
+</li>
+<li>
+<p>Klikkaa <strong>Download for Windows</strong>-nappia. Sivusto tunnistaa automaattisesti käyttämäsi käyttöjärjestelmän ja tarjoaa sitä vastaavaa asennuspakettia. Jos näin ei kuitenkaan tapahdu, niin klikkaa silloin sivun yläreunasta <em>Download</em>-nappia ja valitse sieltä käyttöjärjestelmääsi vastaava asennuspaketti.</p>
+</li>
+<li>
+<p>Käynnistä lataamasi asennuspaketti tuplaklikkaamalla sitä.</p>
+<ul>
+<li>
+<p>Valitse asennuksessa käytettävä kieli (English) ja paina <strong>OK</strong>-nappia.</p>
+</li>
+<li>
+<p>Hyväksy <em>License Agreement</em> -näkymässä lisenssi valitsemalla <strong>I accept the agreement</strong> ja klikkaa <strong>Next</strong>.</p>
+</li>
+<li>
+<p>Hyväksy <em>Select Destination Folder</em> -näkymässä oletuksena tarjottu asennuskansio klikkaamalla <strong>Next</strong>-nappia.</p>
+</li>
+<li>
+<p>Samoin hyväksy <em>Select Start Menu Folder</em> -näkymässä tarjottu käynnistysvalikon kansionimi klikkaamalla <strong>Next</strong>.</p>
+</li>
+<li>
+<p>Valitse <em>Select Additional Tasks</em>-näkymässä ne valinnat, jotka haluat ottaa käyttöön. Seuraavat valinnat ovat suositeltavia:</p>
+<ul>
+<li>Add "Open with Code" action to Windows Explorer file context menu</li>
+<li>Add "Open with Code" action to Windows Explorer directory context menu</li>
+<li>Add to PATH (requires shell restart)</li>
+</ul>
+<div align="center">
+  <img src="tyovalineet/./vsc-2.png" alt="Select Additional Task -näkymän valinnat" width="500">
+</div><bR>
+<p>Voit valita myös kohdan <strong>Register Code as an editor for Supported file types</strong>, jos et käytä aktiivisesti jotain toista tekstieditoria koodien ja muiden tekstitiedostojen muokkaamiseen. Hyväksy tekemäsi valinnat klikkaamalla <strong>Next</strong>.</p>
+</li>
+<li>
+<p>Käynnistä <em>Ready to Install</em> -näkymässä asennus klikkaamalla <strong>Install</strong>.</p>
+</li>
+<li>
+<p>Asennusohjelma asentaa kaikki tarvittavat tiedostot sekä määrittelee polkuasetuksen. Lopulta asennusohjelma päättyy <em>Completing the Visual Studio Code Setup Wizard</em> -näkymään, jossa voit klikata <strong>Finish</strong> päättääksesi asennusohjelman.</p>
+<p>Asennusohjelma käynnistää oletuksena viimeisenä vaiheena juuri asennetun Visual Studio Coden.</p>
+<div align="center">
+  <img src="tyovalineet/./vsc-3.png" alt="Visual Studio Code käynnistetty asennuksen jälkeen" width="500">
+</div><br>
+<p>Voit tutustua Visual Studio Coden toimintaan <em>Get started with VS Code</em> -otsikon alta löytyvät opastuksen avulla.</p>
+</li>
+</ul>
+</li>
+</ol>
+<p>Nyt Visual Studio Code on asennettuna ja valmiina käyttöön. Perehdymme sen käyttöön hieman myöhemmin, ennen sitä tutustumme  HTML-kielen perusteisiin.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="html-kielen-termistöä"><a class="header" href="#html-kielen-termistöä">HTML-kielen termistöä</a></h1>
+<h2 id="elementit"><a class="header" href="#elementit">Elementit</a></h2>
+<p>HTML-merkkauksessa keskeinen käsite on <strong>elementti</strong>. Elementiksi kutsutaan
+kokonaisuutta, jossa on <em>aloitustagi</em>, <em>sisältö</em> ja <em>lopetustagi</em>. Aloitustagi aloittaa kokonaisuuden ja lopetustagi puolestaan päättää sen. Kaikki mitä jää aloitus- ja lopetustagin väliin kutsutaan (elementin) sisällöksi.</p>
+<p>Aloitustagin tunnistaa siitä, että se on sana tai lyhenne, joka on sijoitettu <code>&lt;&gt;</code>-merkkien sisälle. Esimerkiksi <code>&lt;p&gt;</code> on yksi yleinen aloitustagi. Lopetustagin tunnistaa siitä, että se on samanlainen kuin aloitustagi, mutta sanan tai lyhenteen edessä on <code>/</code>-merkki. Edellä olevan aloitustagin lopetustagi on <code>&lt;/p&gt;</code>.</p>
+<div class="image">
+ <img alt="Esimerkkikuva, joka kuvaa elementin rakennetta." src="osa1/./terms-1.png">
+</div>
+<h2 id="sisäkkäiset-elementit"><a class="header" href="#sisäkkäiset-elementit">Sisäkkäiset elementit</a></h2>
+<p>Elementtejä voidaan laittaa myös sisäkkäin. Seuraavassa esimerkkikoodissa <code>p</code>-elementti on sijoitettu <code>div</code>-elementin sisälle. Huomaa, että elementit päätetään aina sisemmästä elementistä lähtien. Toisin sanoen alla olevassa esimerkissä <code>&lt;/p&gt;</code>-lopetustagi tulee olla ennen <code>&lt;/div&gt;</code>-lopetustagia.</p>
+<pre><code class="language-html">&lt;div&gt;
+  &lt;p&gt;Tämä on tekstikappale.&lt;/p&gt;
+&lt;/div&gt;
+</code></pre>
+<p>Todellisuudessa HTML-dokumentti muodostuu sisäkkäisistä elementeistä. Alla on typistetty HTML-dokumentin rakenne, josta näkee miten HTML-dokumentti päätasolla rakentuu.</p>
+<pre><code class="language-html">&lt;html&gt;
+  &lt;head&gt;
+    &lt;title&gt;Sivun otsikko&lt;/title&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;p&gt;Tämä on tekstikappale.&lt;/p&gt;
+  &lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p>HTML-dokumentti koostuu kahdesta päätason elementistä: <strong>head</strong> ja <strong>body</strong>. <code>head</code>-elementti sisältää HTML-sivua kuvaavia tietoja, jotka eivät suoraan näy selainsivulla. Tällainen tieto on esimerkiksi selaimen välilehdellä näkyvä sivun otsikko. <code>body</code>-elementti sisältää HTML-sivun näkyvän sisällön.</p>
+<p>Huomaa, että HTML-dokumentti voi sisältää ainoastaan yhden <code>html</code>, <code>head</code> ja <code>body</code>-elementin.</p>
+<blockquote>
+<p>Tämän materiaalin HTML-esimerkeissä on käytetty sisennyksiä, jotta merkkaus olisi luettavampaa. Nämä sisennykset eivät ole pakollisia HTML-merkkauksen toiminnan kannalta, sivu toimii samalla tavalla ilman niitäkin.</p>
+<p>Esimerkiksi seuraavat kaksi merkkaustapaa ovat toiminnaltaan täysin identtiset.</p>
+<pre><code class="language-html">&lt;div&gt;
+  &lt;p&gt;Tämä on tekstikappale.&lt;/p&gt;
+&lt;/div&gt;
+</code></pre>
+<pre><code class="language-html">&lt;div&gt;&lt;p&gt;Tämä on tekstikappale.&lt;/p&gt;&lt;/div&gt;
+</code></pre>
+<p>Näistä tavoista ensimmäinen on luettavampi ja helpommin muokattava. Tästä syystä on suositeltavaa opetella HTML-merkkauksen looginen sisentäminen heti alusta alkaen.</p>
+</blockquote>
+<h2 id="määritteet"><a class="header" href="#määritteet">Määritteet</a></h2>
+<p>HTML-elementtiä voidaan tarkentaa <strong>määritteillä</strong> (attribuuteilla). Ne sijoitetaan aina elementin aloitustagiin. Määrite muodostuu nimi- ja arvoparista. Määritteen nimi ja arvo erotetaan toisistaan <code>=</code>-merkillä.</p>
+<p>Alla olevassa esimerkissä <code>a</code>-elementille on määritetty <code>href</code>-määrite. Siinä <code>href</code> on määritteen nimi ja <code>"https://www.yle.fi"</code> on sen arvo. Yleissääntö on, että arvo on aina lainausmerkkien sisällä.</p>
+<pre><code class="language-html">&lt;a href="https://www.yle.fi"&gt;Ylen kotisivut&lt;/a&gt;
+</code></pre>
+<blockquote>
+<p>Malttamattomille tiedoksi, <code>a</code>-elementti (anchor) muodostaa hyperlinkin sivulle. Linkkiä klikkaamalla avautuu <code>href</code>-määritteessä oleva URL-osoite.</p>
+</blockquote>
+<p>Tulevissa esimerkeissä huomaat, että elementit voivat sisältää useampia tarkentavia määritteitä.</p>
+<h2 id="tyhjä-elementti"><a class="header" href="#tyhjä-elementti">Tyhjä elementti</a></h2>
+<p>HTML-elementti voi olla myös niin sanottu <strong>tyhjä elementti</strong>. Tyhjässä elementissä sisältö ja lopetustagi puuttuvat eli sillä on vain aloitustagi. Alla on esimerkki tyhjästä elementistä, jolla on vain aloitustagi. Aloitustagissa on määritelty elementille kaksi määritettä: <code>src</code> ja <code>alt</code>.</p>
+<pre><code class="language-html">&lt;img src="kuvakansio/kuva.jpg" alt="kuvateksti"&gt;
+</code></pre>
+<p><code>img</code> (image) on tyhjä elementti, jolla sivulle sijoitetaan kuva. Sijoitettavan kuvan osoite määritellään <code>src</code>-määritteellä ja kuvan vaihtoehtoinen kuvateksti määritellään <code>alt</code>-määritteellä. Tässä tapauksessa elementillä ei ole tarvetta sisällölle, joten sillä ei ole sisältöosaa eikä lopetustagia.</p>
+<blockquote>
+<p>Huomaa, että elementillä voi olla monia määritteitä, joista osa on pakollisia ja osa vapaaehtoisia. Esimerkiksi <code>src</code> ja <code>alt</code> ovat kummatkin <code>img</code>-elementin pakollisia määritteitä.</p>
+</blockquote>
+<h2 id="merkkauksessa-sisältö-on-keskiössä"><a class="header" href="#merkkauksessa-sisältö-on-keskiössä">Merkkauksessa sisältö on keskiössä</a></h2>
+<p>HTML-elementeillä merkataan dokumentin merkityksellistä sisältöä (semantiikkaa), ei sen ulkoasua. Tilanteessa käytettävä HTML-elementti valitaan sen merkityksen perusteella, ei sen ulkoasun perusteella.</p>
+<p>Esimerkiksi seuraavassa merkkauksessa <code>h1</code>-elementillä kerrotaan tekstin olevan ensimmäisen tason otsikko eli sivun pääotsikko. Jos tätä elementtiä käytettäisiin ulkoasullisessa merkityksessä eli kun teksti halutaan näyttämään todella isona, niin silloin esimerkiksi ääneen lukevat selaimet korostavat tekstin väärällä tavalla.</p>
+<pre><code class="language-html">&lt;h1&gt;Tämä on sivun pääotsikko&lt;/h1&gt;
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="yleisimmät-html-elementit"><a class="header" href="#yleisimmät-html-elementit">Yleisimmät HTML-elementit</a></h1>
+<p>Alla olevassa taulukossa on HTML-kielen yleisimmin käytetyt elementit. Näiden elementtien avulla saa toteutettua täysin toimivan HTML-sivun.</p>
+<div class="table-wrapper"><table><thead><tr><th>elementti</th><th>merkitys</th></tr></thead><tbody>
+<tr><td><code>h1</code>, … <code>h6</code></td><td>otsikko</td></tr>
+<tr><td><code>p</code></td><td>tekstikappale</td></tr>
+<tr><td><code>img</code></td><td>kuva</td></tr>
+<tr><td><code>ul</code></td><td>(pallukka)lista</td></tr>
+<tr><td><code>li</code></td><td>lista-alkio</td></tr>
+<tr><td><code>div</code>ja <code>span</code></td><td>kääre-elementit</td></tr>
+</tbody></table>
+</div>
+<p>Tutustutaan seuraavaksi näiden elementtien käyttöön esimerkkien avulla.</p>
+<h2 id="otsikko-h1--h6"><a class="header" href="#otsikko-h1--h6">Otsikko (<code>h1</code>, … <code>h6</code>)</a></h2>
+<p>Otsikkotason elementeillä merkitään dokumentin otsikot. Sivun pääotsikko merkitään <code>h1</code>-elementillä, sen alaotsikot <code>h2</code>-elementeillä ja niin edelleen.</p>
+<pre><code class="language-html">&lt;h1&gt;Tämä on sivun pääotsikko&lt;/h1&gt;
+</code></pre>
+<p>Otsikkoelementit näkyvät tyypillisesti lihavoituna ja isommalla tekstikoolla. Niiden ulkoasu muokataan halutunlaiseksi CSS-tyyleillä.</p>
+<div class="image">
+ <img alt="Esimerkkikuva, josta ilmenee h1-, h2- ja p-elementtien ulkoasulliset erot." src="osa1/./elements-hn.png" width="1126">
+</div>
+<blockquote>
+<p>Muistisääntö: <code>h1</code>, … <code>h6</code>-elementtien nimet ovat lyhenne sanasta <em>header</em>.</p>
+</blockquote>
+<h2 id="tekstikappale-p"><a class="header" href="#tekstikappale-p">Tekstikappale (<code>p</code>)</a></h2>
+<p>Tavallinen tekstikappale merkitään <code>p</code>-elementillä.</p>
+<pre><code class="language-html">&lt;p&gt;Suspendisse solades risus nibh, eu pretium…&lt;/p&gt;
+</code></pre>
+<p>Tekstikappale näkyy tyypillisesti normaalilla tekstikoolla. Sen ylä- ja alapuolella on pieni väli erottamassa sitä muusta sisällöistä.</p>
+<div class="image">
+ <img alt="Esimerkkikuva, josta ilmenee h1-, h2- ja p-elementtien ulkoasulliset erot." src="osa1/./elements-hn.png" width="1126">
+</div>
+<blockquote>
+<p>Muistisääntö: <code>p</code>-elementin nimi on lyhenne sanasta <em>paragraph</em>.</p>
+</blockquote>
+<h2 id="kuva-img"><a class="header" href="#kuva-img">Kuva (<code>img</code>)</a></h2>
+<p>Kuva merkitään <code>img</code>-elementillä. <code>img</code> on tyhjä elementti (eli sillä ei ole sisältöä eikä lopetustagia). Kuvan osoite määritellään <code>src</code>-määritteellä ja kuvan vaihtoehtoinen teksti <code>alt</code>-määritteellä.</p>
+<pre><code class="language-html">&lt;img src="https://placehold.co/500x350" alt=""&gt;
+</code></pre>
+<p>Kuva näkyy tyypillisesti sen luonnollisessa koossa, kuvan kokoa muokataan CSS-tyyleillä.</p>
+<div class="image">
+ <img alt="Esimerkkikuva placehold.co-sivuston 500x350 koon täytekuvasta." src="osa1/./elements-img.png" width="500">
+</div>
+<blockquote>
+<p>Muistisääntö: <code>img</code>-elementin nimi on lyhenne sanasta <em>image</em>.</p>
+</blockquote>
+<h2 id="linkki-a"><a class="header" href="#linkki-a">Linkki (<code>a</code>)</a></h2>
+<p>Linkki toiselle sivulle tai saman sivun toiseen kohtaan merkitään <code>a</code>-elementillä. Linkin osoite määritellään <code>href</code>-määritteellä ja elementin sisällöksi tulee linkkiteksti.</p>
+<pre><code class="language-html">&lt;a href="https://sasky.fi"&gt;SASKY koulutuskuntayhtymä&lt;/a&gt;
+</code></pre>
+<p>Linkki näkyy tyypillisesti alleviivattuna tekstinä. Linkin väri on sininen (linkkiä ei ole vielä avattu) tai violetti (linkki on avattu).</p>
+<div class="image">
+ <img alt="Esimerkkejä linkin näkymisestä sivulla. Kuvassa on linkit kolmeen avaamattomaan sivustoon." src="osa1/./elements-a.png" width="1126">
+</div>
+<blockquote>
+<p>Muistisääntö: <code>a</code>-elementin nimi on lyhenne sanasta <em>anchor</em>.</p>
+</blockquote>
+<h2 id="lista-ul-ja-li"><a class="header" href="#lista-ul-ja-li">Lista (<code>ul</code> ja <code>li</code>)</a></h2>
+<p>Lista merkataan <code>ul</code>-elementillä, sen sisällöksi tulee kukin kohta omana <code>li</code>-elementtinään.</p>
+<pre><code class="language-html">&lt;ul&gt;
+  &lt;li&gt;aloitustagi&lt;/li&gt;
+  &lt;li&gt;sisältö&lt;/li&gt;
+  &lt;li&gt;lopetustagi&lt;/li&gt;
+&lt;/ul&gt;
+</code></pre>
+<p>Listan alkioiden alussa on tyypillisesti pallukka, siksi tätä listaa kutsutaan yleisesti pallukkalistaksi, vaikka sen
+virallinen nimi on <em>järjestämätön lista</em>.</p>
+<div class="image">
+ <img alt="Esimerkki listasta, jossa on kolme lista-alkiota." src="osa1/./elements-ul.png" width="1126">
+</div>
+<p>Listan ulkoasua  muokataan CSS-tyylien avulla. Sivujen navigointilinkit toteutetaan usein tällä elementtirakenteella.</p>
+<blockquote>
+<p>Muistisääntö: <code>ul</code>-elementin nimi on lyhenne sanoista <em>unordered list</em> ja <code>li</code>-elementin nimi on lyhenne sanoista <em>list item</em>.</p>
+<p>Listasta on olemassa variantti, jossa alkiot on numeroitu. Tätä kutsutaan järjestetyksi listaksi eli <em>ordered list</em>. Se merkataan <code>ol</code>-elementillä ihan samalla tavalla kuin <code>ul</code>-lista.</p>
+</blockquote>
+<h2 id="lohko--ja-sisätason-elementit"><a class="header" href="#lohko--ja-sisätason-elementit">Lohko- ja sisätason elementit</a></h2>
+<p>Suurin osa HTML-kielen elementeistä kuuluvat joko lohkotason tai sisätason elementteihin. Niiden oleellinen ero on siinä, miten ne käyttäytyvät sivulle tulostettaessa.</p>
+<p><strong>Lohkotason elementit</strong> (<em>block-level element</em>) alkavat aina uuden rivin alusta ja niiden jälkeen tulee rivinvaihto eli niiden perään ei tule enää muuta sisältöä. Esimerkiksi otsikot (<code>h1</code>, … <code>h6</code>), tekstikappale (<code>p</code>) ja lista (<code>ul</code>) ovat lohkotason elementtejä.</p>
+<p><strong>Sisätason elementit</strong> (<em>inline element</em>) puolestaan eivät ala automaattisesti uuden rivin alusta ja ne eivät päätä riviä. Toisin sanoen ne voivat sijaita keskellä tekstiä. Sisätason elementtejä ovat muun muassa linkki (<code>a</code>) ja kuva (<code>img</code>)</p>
+<h2 id="kääreet-div-ja-span"><a class="header" href="#kääreet-div-ja-span">Kääreet (<code>div</code> ja <code>span</code>)</a></h2>
+<p><code>div</code>- ja <code>span</code>-elementit eroavat muista edellä esitellyistä elementeistä. Niillä ei ole sisältö- eikä myöskään ulkoasumerkitystä. Ne ovat toisin sanoen
+eräänlaisia ”näkymättömiä” kehyksiä eli kääreitä.</p>
+<pre><code class="language-html">&lt;div&gt;
+  div ja &lt;span&gt;span&lt;/span&gt; ovat kääreitä.
+&lt;/div&gt;
+</code></pre>
+<div class="image">
+ <img alt="Esimerkki, josta näkyy, että div- ja span-elementeillä ei ole ulkoasullista merkitystä." src="osa1/./elements-div.png" width="1126">
+</div>
+<p>Niitä käytetään silloin, kun halutaan määritellä ulkoasutyylejä isommalle kokonaisuudelle, jolle ei ole olemassa omaa loogista elementtiä.</p>
+<p><code>div</code> on lohkotason elementti ja <code>span</code> on  sisätason elementti.</p>
+<h2 id="minkä-elementin-valitsen"><a class="header" href="#minkä-elementin-valitsen">Minkä elementin valitsen?</a></h2>
+<p>Valitse elementti aluksi edellä olevista sen perusteella, mikä on sen lähin sisältömerkitys. Kun nämä ovat tulleet tutuiksi, niin voit ottaa <a href="https://htmlreference.io/">htmlreference.io</a>-sivustolta esiteltyjä elementtejä mukaan käyttämiisi elementteihin.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="html-dokumentti"><a class="header" href="#html-dokumentti">HTML-dokumentti</a></h1>
+<p>HTML-dokumentilla on selkeä ja tarkasti määritelty rakenne. Alla on yksinkertaisen HTML5-dokumentin peruspohja.</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html lang="fi"&gt;
+  &lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;title&gt;Sivun otsikko&lt;/title&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;h1&gt;Sivun otsikko&lt;/h1&gt;
+    &lt;p&gt;Tämä on tekstikappale.&lt;/p&gt;
+  &lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<h2 id="doctype-html"><a class="header" href="#doctype-html"><code>&lt;!DOCTYPE html&gt;</code></a></h2>
+<p>Dokumentti alkaa aina dokumenttityypillä (<code>DOCTYPE</code>). Se määrittelee, mitä HTML-suositusta dokumentti noudattaa. Dokumenttityyppi on tärkeä määritellä, koska sen perusteella  selaimet tulkitsevat dokumentin merkkausta. Vuosien saatossa HTML:stä on tullut useita suosituksia, joista jokaisella on oma dokumenttityyppinsä.</p>
+<p>Aikaisemmissa suosituksissa dokumenttityyppien määrittelyt olivat pitkiä tekstipätkiä. HTML5-suosituksen myötä dokumenttityyppi typistettiin lyhyeksi ja ytimekkääksi.</p>
+<h2 id="html-langfi"><a class="header" href="#html-langfi"><code>&lt;html lang="fi"&gt;</code></a></h2>
+<p><code>html</code>-elementti aloittaa koko HTML-dokumentin eli se määrittelee koko dokumentin juuren.</p>
+<p>Elementin aloitustagiin on hyvä sijoittaa myös <code>lang</code>-määrite, jolla kerrotaan millä kielellä dokumentin sisältö on esitetty. Tätä tietoa hyödyntävät mm. puhesyntetisoijat ja erilaiset käännöstyökalut. Arvo määritellään kielikoodilla, esimerkiksi <code>fi</code> (suomi), <code>en</code> (englanti) ja <code>sv</code> (ruotsi). Dokumentti voi sisältää ainoastaan yhden <code>html</code>-elementin.</p>
+<h2 id="head"><a class="header" href="#head"><code>&lt;head&gt;</code></a></h2>
+<p><code>head</code>-elementti sisältää HTML-dokumentin metadatan eli sen tiedon, joka ei suoraan
+näy sivulla. Sinne sijoitetaan paljon erilaista tietoa sivusta, kuten esimerkiksi sivun merkistökoodauksesta sekä sivulle linkitetyt tyylimäärite- ja skriptitiedostot. Dokumentti voi sisältää ainoastaan yhden <code>head</code>-elementin.</p>
+<h2 id="meta-charsetutf-8"><a class="header" href="#meta-charsetutf-8"><code>&lt;meta charset="UTF-8"&gt;</code></a></h2>
+<p><code>meta</code>-elementti määrittelee HTML-dokumentin metatietoa, kuten sivun merkistökoodauksen, kuvauksen, avainsanat, tekijät ja selainikkunan määritykset.</p>
+<p>Yleisin meta-elementti on sivun merkistökoodauksen määrittely. HTML5 suosittelee sivun koodaamista UTF-8 –merkistökoodauksella, koska sillä saadaan kattava merkistötuki kohtuullisella tilankulutuksella. Tällöin sivu tallennetaan tekstieditorissa UTF-8 -muodossa ja käytetty merkistökoodaus kerrotaan meta-tagissa.</p>
+<h2 id="title"><a class="header" href="#title"><code>&lt;title&gt;</code></a></h2>
+<p><code>title</code>-elementti määrittelee HTML-dokumentin nimen tai otsikon, joka tyypillisesti näkyy selaimen välilehden tekstinä tai tallennetun kirjanmerkin tekstinä.</p>
+<p>Huomaa, että dokumentin nimi on usein eri kuin sivun ensimmäinen otsikko, sillä otsikko on usein kiinteä osa sivun kokonaisuutta ja usein se ei toimi dokumentin nimenä. Dokumentti voi sisältää ainoastaan yhden <code>title</code>-elementin.</p>
+<h2 id="body"><a class="header" href="#body"><code>&lt;body&gt;</code></a></h2>
+<p><code>body</code>-elementti sisältää HTML-dokumentin oleellisimman osuuden eli itse sisällön. Sille voi määritellä myös yhteisiä elementtimääritteitä, kuten <code>lang</code>, <code>class</code> ja <code>id</code>. Huomaa, että dokumentilla voi olla ainoastaan yksi <code>body</code>-elementti.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="ensimmäinen-html-sivu"><a class="header" href="#ensimmäinen-html-sivu">Ensimmäinen HTML-sivu</a></h1>
+<p>Nyt HTML-kielen käsitteet ja peruselementit ovat tuttuja. Seuraavaksi kääritään hihat ja luodaan ihan ensimmäinen HTML-sivu ja katsotaan, miltä se näyttää selaimessa.</p>
+<h2 id="projektikansion-luominen"><a class="header" href="#projektikansion-luominen">Projektikansion luominen</a></h2>
+<p>Kaikki tässä materiaalissa tehtävät tiedostot kannattaa tallentaa samaan sijaintiin, jotta niiden löytäminen on myöhemmin helpompaa. Sitä varten luomme ensin tätä materiaalia varten oman "projektikansion", jota tulemme käyttämään jatkossa.</p>
+<p>Tässä ohjeessa neuvotaan, miten projektikansio luodaan Windows-käyttöjärjestelmällä. Jos sinulla on jokin toinen käyttöjärjestelmä käytössä, niin sovella ohjeita. Perusperiaate on sama kaikissa käyttöjärjestelmissä.</p>
+<ol>
+<li>
+<p>Käynnistä Windowsin <em>Resurssienhallinta</em> klikkaamalla sen kuvaketta alareunan tehtäväpalkista.</p>
+<div class="image">
+  <img alt="Windowsin tehtäväpalkista käynnistetään Resurssienhallinta-ohjelma." src="osa1/./hello-1.png" width="734">
+</div>
+</li>
+<li>
+<p>Valitse vasemman reunan siirtymisruudusta <strong>Tiedostot</strong>-vaihtoehto (Documents).</p>
+<div class="image">
+  <img alt="Resurssienhallinnan vasemmasta reunasta valitaan Tiedostot-vaihtoehto." src="osa1/./hello-2.png" width="1182">
+</div>
+</li>
+<li>
+<p>Valitse yläreunan valikosta <strong>Uusi</strong> ja sen alta avautuvasta valikosta <strong>Kansio</strong>.</p>
+<div class="image">
+  <img alt="Yläreunan valikosta valitaan Uusi ja sen alta Kansio." src="osa1/./hello-3.png" width="1182">
+</div>
+</li>
+<li>
+<p>Anna uuden kansio nimeksi <code>koodaajasivut</code>.</p>
+<div class="image">
+  <img alt="Uuden kansio nimeksi on annettu koodaajasivut." src="osa1/./hello-4.png" width="1181">
+</div>
+</li>
+</ol>
+<p>Nyt sinulla on uusi projektikansio luotuna omalle koneellesi, tätä kansiota käytämme jatkossa uusien tiedostojen tallennuspaikkana.</p>
+<blockquote>
+<p>Voit halutessasi jatkossa sijoittaa  tiedostot omaan, itse määrittelemääsi kansioon. Myöhemmissä vaiheissa tehtävät tiedostot toimivat samalla tavalla, sijaitsevat ne missä tahansa. Muista kuitenkin soveltaa ohjeistusta aina silloin, kun ohjeistuksessa tallennetaan tai avataan tiedostoa.</p>
+</blockquote>
+<h2 id="projektikansion-avaaminen-visual-studio-codessa"><a class="header" href="#projektikansion-avaaminen-visual-studio-codessa">Projektikansion avaaminen Visual Studio Codessa</a></h2>
+<p>Seuraavaksi avaamme edellä luomamme projektikansion Visual Studio Codessa. Seuraavat ohjeet toimivat sellaisenaan, vaikka olisit asennuksen jälkeen tutustunut <em>Get Started with VS Code</em> -tutoriaaliin.</p>
+<ol>
+<li>
+<p>Avaa Visual Studio Code.</p>
+</li>
+<li>
+<p>Valitse <strong>File</strong>-valikon alta <strong>Open Folder…</strong>.</p>
+<div class="image">
+  <img alt="File-valikon alta valintaa Open Folder." src="osa1/./hello-5.png" width="873">
+</div>
+</li>
+<li>
+<p>Valitse avautuvan ikkunan vasemmasta reunasta ensin <strong>Tiedostot</strong> ja valitse tämän jälkeen <strong>koodaajasivut</strong>-kansio.</p>
+<blockquote>
+<p>Jos loit kansion eri nimellä tai eri paikkaan, niin etsi ja valitse se tässä kohdassa.</p>
+</blockquote>
+<p>Hyväksy valintasi painamalla <strong>Valitse kansio</strong> -nappia.</p>
+<div class="image">
+  <img alt="Projektikansion sijainti on valittu." src="osa1/./hello-6.png" width="942">
+</div>
+</li>
+<li>
+<p>Visual Studio Code varmistaa vielä, että luotatko kansiossa olevien tiedostojen tekijöihin. Koska tämä kansio tulee sisältämään sinun itsesi tekemiä tiedostoja, niin voit turvallisesti valita <strong>Yes, I trust the authors</strong> -vaihtoehdon.</p>
+<div class="image">
+  <img alt="Visual Studio Code varmistaa luotetaanko kansiossa olevien tiedostojen tekijöihin." src="osa1/./hello-7.png" width="782">
+</div>
+</li>
+<li>
+<p>Projektikansio on nyt avattu Visual Studio Codessa ja sinne voi nyt alkaa luomaan omia tiedostoja.</p>
+<div class="image">
+  <img alt="koodaajasivut-kansio näkyy nyt avattuna kansiona Visual Studio Codessa." src="osa1/./hello-8.png" width="785">
+</div>
+</li>
+</ol>
+<h2 id="html-sivun-luominen"><a class="header" href="#html-sivun-luominen">HTML-sivun luominen</a></h2>
+<p>Seuraavaksi luomme projektikansioon uuden HTML-sivun.</p>
+<ol>
+<li>
+<p>Kopioi seuraava ohjelmakoodi leikepöydälle.</p>
+<blockquote>
+<p>Vinkki: Voit kopioida koko tekstin klikkaamalla koodialueen oikeassa yläkulmassa olevaa kopioitikuvaketta.</p>
+</blockquote>
+<pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang="fi"&gt;
+  &lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;title&gt;Hei koodausmaailma!&lt;/title&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;h1&gt;Hei koodausmaailma!&lt;/h1&gt;
+    &lt;p&gt;Tämä sivu on ensimmäinen askel kohti koodaamisen ihmeellistä maailmaa.&lt;/p&gt;
+  &lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+</li>
+<li>
+<p>Klikkaa KOODAAJASIVUT-tekstin vieressä olevaa <strong>New File…</strong>-kuvaketta.</p>
+<div class="image">
+  <img alt="Luodaan uusi tiedosto klikkaamalla New File -kuvaketta." src="osa1/./hello-9.png" width="631">
+</div><br>
+</li>
+<li>
+<p>Syötä uuden tiedoston nimeksi <code>01-hello.html</code> ja paina <em>Enter</em>-näppäintä.</p>
+<div class="image">
+  <img alt="Annetaan uudelle tiedosto nimeksi 01-hello.html." src="osa1/./hello-10.png" width="777">
+</div><br>
+<blockquote>
+<p>Tämän materiaalin tiedostonimet alkavat numeroilla, jolloin niiden löytäminen jatkossa on helpompaa.</p>
+</blockquote>
+</li>
+<li>
+<p>Liitä leikepöydälle kopioimasi HTML-koodi editorinäkymään.</p>
+<div class="image">
+  <img alt="HTML-koodi on liitetty leikepöydältä editorinäkymään." src="osa1/./hello-11.png" width="1091">
+</div><br>
+<p>Tiedostonimen perässä on täytetty ympyrä. Se ilmoittaa, että tiedostoa on muokattu edellisen tallennuksen jälkeen.</p>
+<blockquote>
+<p>Tässä vaiheessa kannattaa myös tarkistaa, että VS Coden alapalkissa näkyy, että merkistökoodauksena (encoding) käytetään <em>UTF-8</em>-muotoa.</p>
+</blockquote>
+</li>
+<li>
+<p>Tallenna tiedosto valitsemalla <strong>File</strong>-valikosta kohta <strong>Save</strong>.</p>
+<p>Nyt tiedosto on tallennettu levylle. Tämän voi tarkistaa välilehden otsikosta. Tiedostonimen perässä on X-kuvake. Tämä ilmoittaa, että tiedostoon ei ole tehty viimeisimmän tallennuksen jälkeen.</p>
+</li>
+</ol>
+<h2 id="html-sivun-avaaminen-selaimessa"><a class="header" href="#html-sivun-avaaminen-selaimessa">HTML-sivun avaaminen selaimessa</a></h2>
+<p>Seuraavaksi voidaan katsoa, miltä sivu näyttää selaimessa.</p>
+<ol>
+<li>
+<p>Käynnistä Windowsin <em>Resurssienhallinta</em> klikkaamalla sen kuvaketta alareunan tehtäväpalkista.</p>
+<div class="image">
+  <img alt="Windowsin tehtäväpalkista käynnistetään Resurssienhallinta-ohjelma." src="osa1/./hello-1.png" width="734">
+</div>
+</li>
+<li>
+<p>Valitse vasemman reunan siirtymisruudusta <strong>Tiedostot</strong>-vaihtoehto (Documents).</p>
+<div class="image">
+  <img alt="Resurssienhallinnan vasemmasta reunasta valitaan Tiedostot-vaihtoehto." src="osa1/./hello-2.png" width="1182">
+</div><br>
+</li>
+<li>
+<p>Avaa <strong>koodaajasivut</strong>-kansio tuplaklikkaamalla sen kuvaketta.</p>
+<div class="image">
+  <img alt="Avataan koodaajasivut-kansio." src="osa1/./hello-4.png" width="1181">
+</div><br>
+</li>
+<li>
+<p>Tuplaklikkaa kansiosta löytyvää <strong>01-hello.html</strong>-tiedostoa.</p>
+<div class="image">
+  <img alt="Avataan HTML-sivu selaimessa tuplaklikkaamalla sitä." src="osa1/./hello-12.png" width="1182">
+</div><br>
+</li>
+<li>
+<p>HTML-sivu on nyt selaimessa auki.</p>
+<div class="image">
+  <img alt="Avataan HTML-sivu selaimessa tuplaklikkaamalla sitä." src="osa1/./hello-13.png" width="1182">
+</div><br>
+</li>
+<li>
+<p>Kokeile muuttaa HTML-sivua seuraavasti:</p>
+<ul>
+<li>Muuta HTML-tiedostoa Visual Studio Codessa. Muutos voi olla esimerkiksi p-elementissä olevan tekstin muuttaminen toisenlaiseksi.</li>
+<li>Tallenna tekemäsi muutokset. Tarkista, että tiedostonimen perässä oleva ympyrä muuttuu X-kuvakkeeksi.</li>
+<li>Päivitä selainsivu painamalla F5-näppäintä tai painamalla osoiterivin vasemmalla puolella olevaa päivityskuvaketta.</li>
+</ul>
+</li>
+</ol>
+<p>Nyt osaat luoda projektikansioon uusia tiedostoja ja tiedät, miten pääset katsomaan niitä selaimessa.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="css-tyylit"><a class="header" href="#css-tyylit">CSS-tyylit</a></h1>
+<p>Aikaisemmin tutustuttiin HTML-merkkaukseen, jolla esitetään dokumentin sisältö. Ohjeena tagien valinnassa oli, että kussakin tilanteessa käytettävä tagi valitaan sisällön perusteella, ei halutun ulkoasun perusteella. Tämän seurauksena HTML-sivu itsessään on vielä aika karun näköinen.</p>
+<p>HTML-sivun ulkoasua voidaan koristella <em>CSS-tyylien</em> (Cascading Style Sheets) avulla. Nämä CSS-tyylit esiteltään <em>tyylisääntöinä</em> (style rules), jotka kokonaisuutena määrittelevät HTML-sivulle sen ulkoasun. Tyylisäännöt koostuvat yksittäisistä <strong>säännöistä</strong>, jotka määrittelevät tietylle määritellylle kokonaisuudelle ulkoasumääritykset.</p>
+<h2 id="sääntö"><a class="header" href="#sääntö">Sääntö</a></h2>
+<p>Yksittäinen sääntö muodostuu <em>selektorista</em> ja aaltosulkeilla rajatusta
+<em>deklaraatiolohkosta</em>. <strong>Selektori</strong> määrää mitä elementtejä sääntö koskee. Selektori voi olla
+yksinkertaisimmillaan elementin nimi (kuten esimerkiksi <code>h1</code>). <strong>Deklaraatiolohko</strong> sisältää yhden tai useamman määrittelyn, jotka muokkaavat kohteena olevan elementin ulkoasua. Yksittäistä määrittelyä kutsutaan deklaraatioksi, se päättyy aina puolipisteeseen.</p>
+<p>Alla olevassa esimerkkisäännössä selektorina on <code>h1</code>-elementti ja deklaraatiolohkossa on yksi deklaraatio.</p>
+<div class="image">
+ <img alt="Yksittäinen sääntö muodostuu selektorista ja deklaraatiolohkosta. Kuvan esimerkissä deklaraatiolohkossa on yksi deklaraation." src="osa1/./css-1.png" width="980">
+</div>
+<h2 id="deklaraatio"><a class="header" href="#deklaraatio">Deklaraatio</a></h2>
+<p>Deklaraatio koostuu ominaisuuden nimestä ja sen arvosta. <strong>Nimi</strong> määrittelee, mitä tyyliominaisuutta muokataan, <strong>arvo</strong> määrittelee ominaisuudelle uuden arvon. Ominaisuuden nimi ja arvo erotetaan toisistaan aina kaksoispisteellä.</p>
+<div class="image">
+ <img alt="Deklaraation koostuu ominaisuuden nimestä ja arvosta, jotka erotetaan toisistaan kaksoispisteellä." src="osa1/./css-2.png" width="951">
+</div><br>
+<p>Deklaraatiolohko voi sisältää useamman deklaraation. Deklaraatiot käsitellään
+ylhäältä alas, myöhäisempi määritys korvaa aiemman.</p>
+<p>Esimerkiksi seuraavassa esimerkissä määritellään <code>p</code>-elementille marginaali, tekstin koko ja riviväli. Ensimmäisellä rivillä oleva <code>margin</code>-määrite asettaa saman levyisen marginaalin elementin jokaiselle sivulle. Toisella rivillä oleva <code>margin-bottom</code>-määrite korvaa edellä määritetyn alamarginaalin uudella arvolla.</p>
+<pre><code class="language-css">p { margin: 1em;
+    margin-bottom: 2em; 
+    font-size: 80%;
+    line-height: 1.4; 
+</code></pre>
+<blockquote>
+<p>Edellä kuvattu korvaavuus ei todennäköisesti tunnu ihan selkeimmältä, mutta opit niiden toiminnan myöhemmin, kun opit lisää CSS-määritteistä. Lisäksi kannattaa varautua siihen, että tulet oppimaan tästä monesta muusta myös tekemiesi virheiden kautta. 😉</p>
+</blockquote>
+<h2 id="tyylisääntöjen-liittäminen"><a class="header" href="#tyylisääntöjen-liittäminen">Tyylisääntöjen liittäminen</a></h2>
+<p>Tyylisäännöt voidaan liittää kolmella eri tavalla osaksi HTML-sivua.</p>
+<ol>
+<li>Tiedostoviittauksella <code>link</code>-elementin avulla, jolloin tyylit liitetään omana tiedostona.</li>
+<li>Tyylit sijoitetaan HTML-dokumentin <code>head</code>-osioon sijoitetun <code>style</code>-elementin sisälle. Tällä menetelmällä HTML-dokumentilla on omat, yksilölliset CSS-tyylissäännöt.</li>
+<li>Yksittäisen HTML-elementin aloitustagiin <code>style</code>-määritteenä, jolloin tyyli koskee ainoastaan kyseistä elementtiä.</li>
+</ol>
+<p>Näistä ensimmäinen vaihtoehto on suositeltavin, siinä tyylisäännöt liitetään sivustoon erillisenä tiedostona. Tällä tavalla koko sivustolla voidaan käyttää samoja tyylisääntöjä ja koko sivustoa koskevien tyylien muuttaminen on pidemmän päälle nopeampaa.</p>
+<p>Tutustutaan seuraavaksi siihen, miten tyylitiedosto liitetään osaksi HTML-sivua.</p>
+<ol>
+<li>
+<p>Luo projektikansioon uusi tiedosto, anna sen nimeksi <code>02-tyylit.html</code> ja liitä sen sisällöksi seuraava HTML-koodi:</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html lang="fi"&gt;
+  &lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;title&gt;Tyyleillä saat ulkoasun kohdilleen&lt;/title&gt;
+    &lt;link href="02-tyylit.css" rel="stylesheet"&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;h1&gt;Tyyleillä saat ulkoasun kohdilleen!&lt;/h1&gt;
+    &lt;p&gt;Tämä sivu on esimerkki siitä, miten tyyleillä saa muokattua ulkoasua (oletustyyliä) hienommaksi.&lt;/p&gt;
+    &lt;p&gt;Tämän sivun ulkoasun määrittely on tehty kuudella deklaraatiolla.&lt;/p&gt;
+  &lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p>Tämä dokumentti on rakenteeltaan identtinen aikasempien esimerkkien kanssa. Keskeinen lisäys on <code>head</code>-elementissä oleva <code>link</code>-elementti, jolla CSS-tiedosto saadaan kytkettyä osaksi HTML-sivua. Tässä HTML-dokumenttiin linkitetään <code>02-css.css</code>-niminen tiedosto.</p>
+</li>
+<li>
+<p>Luo projektikansioon uusi tiedosto, anna sen nimeksi <code>02-tyylit.css</code> ja liitä sen sisällöksi seuraavat CSS-tyylisäännöt:</p>
+<pre><code class="language-css">body {
+  font-family: system-ui, sans-serif;
+  background-color: #B3BFB8;
+  color: #000;
+  max-width: 40em;
+  margin: 2em auto;
+}
+
+h1 {
+  font-size: 1.25em;
+}
+</code></pre>
+</li>
+<li>
+<p>Avaa <strong>HTML-sivu</strong> selaimessa samalla tavalla, mitä edellisellä sivulla ohjeistettiin.</p>
+<div class="image">
+  <img alt="Tyylisäännöt liitetty osaksi HTML-sivua." src="osa1/./css-3.png" width="1126">
+</div><br>
+</li>
+</ol>
+<h2 id="tyylisäännöt-avattuna"><a class="header" href="#tyylisäännöt-avattuna">Tyylisäännöt avattuna</a></h2>
+<p>Seuraavaksi tutustutaan hieman siihen, mitä edellä olevat tyylisäännöt määrittelevät.</p>
+<pre><code class="language-css">body {
+  font-family: system-ui, sans-serif;
+  background-color: #B3BFB8;
+  color: #000;
+  max-width: 40em;
+  margin: 2em auto;
+}
+</code></pre>
+<p>Alussa oleva <code>body</code>-selektori kohdistaa deklaraatiolohkossa olevat määrittelyt vaikuttamaan dokumentin <code>body</code>-elementtiin. Siihen määritellään tyypillisesti koko dokumenttia koskevat tyylimääritykset, kuten käytettävä fontti, taustaväri ja tekstinväri.</p>
+<p><code>font-family</code>-asetuksella määritellään elementissä (ja tässä tapauksessa koko dokumentissa) käytettävä fontti. <code>system-ui</code> ja <code>sans-serif</code> ovat geneerisiä tunnisteita, eivät siis oikeita fonttien nimiä. Käytettävät fontit listataan pilkulla erotettuna, joista ensimmäiseksi laitteelta löytyvää fonttia käytetään ensisijaisesti.</p>
+<p>Esimerkissä ensisijaisesti käytetään ns. <code>system-ui</code>-fonttia, joka on laitteen käyttöliittymässä käytössä oleva oletusfontti. Toissijaisesti käytetään mitä tahansa <code>sans-serif</code>-perheen fonttia, jolloin käytetään päätteetöntä fonttia, joka laitteessa oletuksena käytetään. Tämän seurauksena Windows-koneissa käytetään todennäköisesti Segoe UI -fonttia ja Mac OS -koneissa puolestaan San Francisco -fonttia.</p>
+<blockquote>
+<p>Osa CSS-tyylimäärityksistä ovat sellaisia, jotka periytyvät (inherit) lapsielementeille, jolloin niitä ei tarvitse määritellä jokaiselle alaelementille erikseen. Esimerkiksi edellä käsitelty <code>font-family</code> on sellainen. Kun käytettävä fontti määritellään <code>body</code>-elementille, niin silloin samaa fonttia käytetään kauttaaltaan koko dokumentissa, jollei sitä erikseen määritellä toiseksi.</p>
+<p>W3Schoolin sivuilla on tiivis esittely <a href="https://www.w3schools.com/cssref/pr_font_font-family.php">font-family</a>-määritteestä. Sivun taulukossa oleva <code>Inherited: yes</code>-rivi kertoo, että kyseinen määrite periytyy.</p>
+</blockquote>
+<p><code>background-color</code> asettaa elementille sen taustavärin. Esimerkissä värikoodi annetaan ns. HTML-värikoodina, missä arvo alkaa <code>#</code>-merkillä ja sen perässä on joko kolme tai kuusi numeroa. Tässä tapauksessa taustaväriksi määritellään vaaleanvihreä. Taustaväri ei periydy sen lapsielementeille. Elementtien taustaväri on oletuksena läpinäkyvä, jolloin koko sivun taustaväri on automaattisesti muidenkin sivulla olevien elementtien taustaväri.</p>
+<blockquote>
+<p>HTML-värikoodi on oikeasti numeroita, vaikka siellä näyttää esiintyvän kirjaimia joukossa. Värikoodi esitetään kompaktimmassa heksadesimamaalimuodossa, jossa käytössä olevat numerot ovat <code>0</code>, <code>1</code>, <code>2</code>, <code>3</code>, <code>4</code>, <code>5</code>, <code>6</code>, <code>7</code>, <code>8</code>, <code>9</code>, <code>A</code>, <code>B</code>, <code>C</code>, <code>D</code>, <code>E</code> ja <code>F</code>.</p>
+</blockquote>
+<p><code>color</code> määrittelee käytettävän tekstivärin, joka esimerkkitapauksessa asetetaan mustaksi. Tekstivärin määritys periytyy lapsielementeille eli esimerkissä koko dokumentin tekstiväri on musta, jollei sitä erikseen määritetä jollekin elementille toiseksi. Poikkeuksena ovat linkit, joiden oletusvärit eivät muutu, ne täytyy asettaa erikseen.</p>
+<blockquote>
+<p>Suositeltava käytäntö on, että <code>background-color</code> että <code>color</code> määritellään aina yhdessä. Tällöin järjestelmän poikkeavat oletusvärit eivät sekoita tarkkaan mietittyä ulkoasua.</p>
+</blockquote>
+<blockquote>
+<p>Netistä löytyy paljon erilaisia palveluita, joilla pystyy luomaan helpolla toisiinsa sopivia väriyhdistelmiä. Esimerkiksi <a href="https://coolors.co">Coolors</a> on yksi hyvin helppokäyttöinen väriyhdistelmien luontiin soveltuva palvelu.</p>
+</blockquote>
+<p><code>max-width</code>-asetuksella määritellään sivun suurin sallittu leveys eli sen alueen leveys, jossa sivun sisältö on. Arvoksi määritellään <code>40em</code>, joka tarkoittaa 40 kirjaimen korkeutta.</p>
+<blockquote>
+<p><code>em</code>-yksikkö on ns. suhteellinen yksikkö eli se saa arvonsa käytössä olevaan fonttikokoon perustuen. Tämä yksikkö mahdollistaa skaalautuvien sivujen toteuttamisen, jossa sivun ulkoasua ei ole sidottu tiettyyn esimääriteltyyn arvoon.</p>
+</blockquote>
+<p><code>margin</code>-asetuksella määritellään koko dokumentin ympärillä olevat marginaalialueet. <code>2em</code> määrittelee sivun ylä- ja alareunaan kahden kirjaimen korkuisen tyhjän alueen. <code>auto</code> puolestaan keskittää sisällön vaakasuunnassa keskelle niin, että sekä vasemmassa että oikeassa reunassa on saman kokoinen tyhjä alue.</p>
+<pre><code class="language-css">h1 {
+  font-size: 1.25em;
+}
+</code></pre>
+<p>Tämä tyylisääntö kohdistuu pelkästään sivulla oleviin <code>h1</code>-elementteihin. <code>font-size</code>-asettaa niiden fonttikooksi 1,25 kertaa tavallista tekstikokoa isomman koon. Vaihtoehtoisesti tässä voisi käyttää myös arvoa <code>125%</code>.</p>
+<p>Nyt sinulla on pieni käsitys siitä, mitä CSS-tyylit ovat ja mitä niillä voi saada aikaan.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="laatikkomalli"><a class="header" href="#laatikkomalli">Laatikkomalli</a></h1>
+<p>HTML:ssä kaikki elementit voidaan ajatella jonkilaisina laatikkoina. CSS:n puolella jokainen elementti noudattaa ns. <strong>laatikkomallia</strong> (box model). Laatikkomallissa jokaisella elementillä on sitä ympäröivä <em>kehys</em>, kehyksen ulkopuolelle jäävä <em>marginaali</em> ja kehyksen sisäpuolelle jäävä <em>täyte</em>.</p>
+<p>Seuraavissa kohdissa tutustutaan <code>h2</code>-elementin laatikkomalliin. HTML-koodissa elementti on esitetty seuraavasti:</p>
+<pre><code class="language-html">&lt;h2&gt;Tuotteet&lt;/h2&gt;
+</code></pre>
+<h2 id="kehys"><a class="header" href="#kehys">Kehys</a></h2>
+<p>Jokaisella HTML-elementillä on sitä ympäröivä <strong>kehys</strong> (border), joka on oletuksena näkymätön. Kehyksen paksuus, tyyli ja väri määritellään <code>border</code>-määritteellä. Seuraavassa esimerkissä kehysviivan paksuudeksi määritellään yksi pikseli (<code>1px</code>), kehysviivan tyyliksi yhteinen viiva (<code>solid</code>) ja väriksi musta (<code>#000000</code>).</p>
+<pre><code class="language-css">h2 {
+  border: 1px solid #000000;
+}
+</code></pre>
+<div class="image">
+ <img alt="Jokaisella elementillä on kehys. Kuvassa Tuotteet-tekstin ympärillä on yhden pikselin paksuinen yhtenäinen musta kehysviiva." src="osa1/./boxmodel-border.png" width="465">
+</div>
+<p>CSS mahdollistaa myös kehyksen jokaiselle sivulle yksilölliset määritykset. Esimerkiksi alla olevassa tyylisäännössä määritellään <code>h2</code>-elementin kullekin sivulle omat kehysviiva-määritykset.</p>
+<pre><code class="language-css">h2 {
+  border-top: 2px solid #999;
+  border-left: 3px solid #333;
+  border-right: 3px solid #666;
+  border-bottom: 2px solid #000;
+}
+</code></pre>
+<h2 id="täyte"><a class="header" href="#täyte">Täyte</a></h2>
+<p>Sisällön (eli tässä tapauksessa tekstin) ja kehyksen väliin jäävää aluetta kutsutaan <strong>täytteeksi</strong> (padding), joka määritellään <code>padding</code>-asetuksella. Seuraavassa esimerkissä asetetaan ylä- ja alareunan täytteeksi <code>2em</code>. Vastaavasti vasemman ja oikean reunan täytteeksi asetetaan <code>3em</code>.</p>
+<pre><code class="language-css">h2 {
+  padding: 2em 3em;
+}
+</code></pre>
+<div class="image">
+ <img alt="Jokaisella elementillä on täyte, joka on kehyksen ja sisällön väliin jäävä alue." src="osa1/./boxmodel-padding.png" width="461">
+</div>
+<p>Jollain elementeillä on määritelty lähtökohtainen oletustäyte, jonka joutuu tietyissä tilanteissa korvaamaan.</p>
+<h2 id="marginaali"><a class="header" href="#marginaali">Marginaali</a></h2>
+<p>Kahden vierekkäisen elementin kehysten väliin jäävää aluetta kutsutaan <strong>marginaaliksi</strong> (margin), joka määritellään <code>margin</code>-asetuksella. Seuraava esimerkki määrittelee jokaiselle sivulle oman marginaaliarvon. Marginaalien määritys lähtee ylämarginaalista ja etenee siitä myötäpäivään niin, että neljäs arvo määrittelee vasemman reunan marginaalin.</p>
+<pre><code class="language-css">h2 {
+  margin: 1em 2em 1em 2em;
+}
+</code></pre>
+<div class="image">
+ <img alt="Jokaisella elementillä on marginaali, joka on kahden vierekkäisen elementin väliin jäävä alue." src="osa1/./boxmodel-margin.png" width="786">
+</div>
+<blockquote>
+<p>Edellä olevan esimerkin voisi esittää tiiviimmin seuraavasti, koska siinä on pareittain samat arvot.</p>
+<pre><code class="language-css">h2 {
+  margin: 1em 2em;   
+}
+</code></pre>
+</blockquote>
+<p>Jollain elementeillä on lähtökohtaisesti määriteltynä oletusmarginaali, joka jossain tilanteissa täytyy erikseen poistaa. HTML-sivuja tehdessäsi saatat törmätä seuraavanlaiseen CSS-tyylisääntöön. Se poistaa oletuksena määritellyt täytteet ja marginaalit kaikista elementeistä (<code>*</code>-selektori). Tällä tavalla voidaan varmistaa, että sivun sisältö näkyy todennäköisemmin samanlaisena eri laitteilla.</p>
+<pre><code class="language-css">* {
+  margin: 0;
+  padding: 0;
+}</code></pre>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="yhden-sivun-kotisivupohja"><a class="header" href="#yhden-sivun-kotisivupohja">Yhden sivun kotisivupohja</a></h1>
+<p>Seuraavaksi toteutamme yksinkertaiset yhden sivun kotisivut (one page website). Siinä kaikki sisältö sijaitsee yhdellä sivulla, jossa sisältöjen välillä liikutaan skrollaamalla sivua ylös- ja alaspäin. Tämän tyyppiset sivut toimivat loistavasti silloin, kun sisältöä on maltillisesti, kuten esimerkiksi profiilisivulla, CV:ssä tai tapahtumasivustolla.</p>
+<h2 id="html-sivupohja"><a class="header" href="#html-sivupohja">HTML-sivupohja</a></h2>
+<p>Ensin luomme HTML-sivupohjan. Luo projektikansioon uusi tiedosto, anna sen nimeksi <code>03-onepage.html</code> ja liitä  sisällöksi seuraava HTML-koodi.</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html lang="fi"&gt;
+  &lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;Kotisivut Helposti - räätälöityjä kotisivuja joka lähtöön&lt;/title&gt;
+    &lt;link href="03-onepage.css" rel="stylesheet"&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    
+    TODO etusivu
+
+    TODO palvelut
+
+    TODO referenssit
+
+    TODO yhteystiedot
+
+    TODO alaotsake
+    
+  &lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p>Kuten varmasti arvasit, niin tämä sivu ei näytä vielä juuri miltään. Sivupohja itsessään on ihan samanlainen, mitä aiemmin. Uutena lisäksenä oli <code>meta viewport</code> -määritys, joka varmistaa, että sivusto näyttää fiksulta myös mobiililaitteilla. Tästä löytyy lisätietoa w3School-sivuston  <a href="https://www.w3schools.com/css/css_rwd_viewport.asp">Responsive Web Design - The Viewport</a> -sivulta.</p>
+<h2 id="yksittäiset-sivut"><a class="header" href="#yksittäiset-sivut">Yksittäiset sivut</a></h2>
+<p>Seuraavissa kohdissä lisätään <code>TODO</code>-rivien paikalle yksi kerrallaan sivun sisältöä.</p>
+<ol>
+<li>
+<p>Korvaa <code>TODO etusivu</code> -rivi seuraavalla HTML-koodilla:</p>
+<pre><code class="language-html">    &lt;header&gt;
+      &lt;div&gt;
+        &lt;h1&gt;Kotisivut Helposti&lt;/h1&gt;
+        &lt;p&gt;Teemme yksinkertaisia ja edullisia kotisivuja yhdistyksille 
+           ja yksityishenkilöille.&lt;/p&gt;
+        &lt;p&gt;Tutustu palveluihimme ja ota yhteyttä.&lt;/p&gt;
+        &lt;nav&gt;
+          &lt;ul&gt;
+            &lt;li&gt;&lt;a href="#palvelut"&gt;palvelut&lt;/a&gt;&lt;/li&gt;
+            &lt;li&gt;&lt;a href="#referenssit"&gt;referenssit&lt;/a&gt;&lt;/li&gt;
+            &lt;li&gt;&lt;a href="#yhteystiedot"&gt;yhteystiedot&lt;/a&gt;&lt;/li&gt;
+          &lt;/ul&gt;
+        &lt;/nav&gt;
+      &lt;/div&gt;
+    &lt;/header&gt;
+</code></pre>
+<p>Tässä HTML-koodissa on aikaisempaan nähden kaksi uutta elementtiä: <code>header</code> ja <code>nav</code>. Ne ovat ns. semanttisia elementtejä eli ne määrittelevät sisällön merkityksen suhteessa koko sivuun. <code>header</code>-elementillä määritellään sivun yläotsake. Tässä esimerkissä <code>header</code>-elementti sisältää sen sisällön, mitä sijoitettaisiin sivuston etusivulle. <code>nav</code>-elementti sisältää ne linkit, joilla navigoidaan (eli liikutaan) sivun sisällä.</p>
+<p>Navigointilinkkien osoitteiden alussa on <code>#</code>-merkki, jolla tehdään linkki sivun sisällä toiseen kohtaan. Tämä merkintätapa avautuu seuraavassa kohdassa paremmin, kun määrittelemme elementille tunnisteen.</p>
+</li>
+<li>
+<p>Korvaa <code>TODO palvelut</code> -rivi seuraavalla HTML-koodilla:</p>
+<pre><code class="language-html">    &lt;section id="palvelut"&gt;
+      &lt;h2&gt;Tätä me teemme&lt;/h2&gt;
+      &lt;p&gt;Yrityksemme tarjoaa kattavia palveluja, jotka keskittyvät 
+         digitaalisen läsnäolon parantamiseen ja asiakaskokemuksen 
+         kehittämiseen.&lt;/p&gt;
+      &lt;div class="palvelut"&gt;
+        &lt;div&gt;
+          &lt;h3&gt;Kotisivujen suunnittelu ja toteutus&lt;/h3&gt;
+          &lt;p&gt;Tarjoamme kattavat kotisivujen suunnittelu- ja toteutuspalvelut, 
+             jotka varmistavat modernin ja käyttäjäystävällisen verkkosivuston. 
+             Räätälöimme sivuston vastaamaan tarpeitasi, jotta voit tarjota 
+             parhaan mahdollisen käyttäjäkokemuksen.&lt;/p&gt;  
+        &lt;/div&gt;
+        &lt;div&gt;
+          &lt;h3&gt;Ylläpitopalvelut&lt;/h3&gt;
+          &lt;p&gt;Pidämme huolta verkkosivustosi toimivuudesta ja turvallisuudesta 
+             jatkuvilla ylläpitopalveluilla. Varmistamme, että sivustosi on aina 
+             ajan tasalla ja suojattu mahdollisilta uhilta.&lt;/p&gt;
+        &lt;/div&gt;
+        &lt;div&gt;
+          &lt;h3&gt;Hakukoneoptimointi (SEO)&lt;/h3&gt;
+          &lt;p&gt;Parannamme verkkosivustosi näkyvyyttä hakukoneissa tehokkaiden 
+             hakukoneoptimointipalveluiden avulla. Autamme sinua saavuttamaan 
+             korkeammat sijoitukset hakutuloksissa ja houkuttelemaan enemmän 
+             kävijöitä sivustollesi.&lt;/p&gt;
+        &lt;/div&gt;
+        &lt;div&gt;
+          &lt;h3&gt;Sisällöntuotanto&lt;/h3&gt;
+          &lt;p&gt;Luomme laadukasta ja kiinnostavaa sisältöä, joka puhuttelee 
+             kohdeyleisöäsi ja tukee yrityksesi viestintää. 
+             Sisällöntuotantopalvelumme kattavat kaiken blogikirjoituksista 
+             ja artikkeleista aina markkinointimateriaaleihin.&lt;/p&gt;
+        &lt;/div&gt;
+        &lt;div&gt;
+          &lt;h3&gt;Kotisivujen päivitys ja muokkaus&lt;/h3&gt;
+          &lt;p&gt;Tarjoamme joustavia päivitys- ja muokkauspalveluita, joiden 
+             avulla voit pitää verkkosivustosi ajan tasalla ja vastaamaan 
+             muuttuvia tarpeita. Päivitämme sisältöä, ulkoasua ja 
+             toiminnallisuuksia tarpeidesi mukaan.&lt;/p&gt;  
+        &lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/section&gt;
+</code></pre>
+<p>Tässä kokonaisuuden merkkaus on myöskin pääosin tuttua entuudestaan. Koko sisältö on kääritty <code>section</code>-elementin sisälle, joka sekin on semanttinen elementti. Sillä voidaan merkitä yksittäinen kokonaisuus, tässä tapauksessa tapauksessa <code>section</code>-elementti sisältää <em>Palvelut</em>-alasivun sisällön.</p>
+<p><code>section</code>-elementille on annettu <code>id</code>-määritteellä tunniste. <strong>Tunniste</strong> määrittelee elementille yksilöllisen nimen, jolla siihen voidaan viitate muissa yhteyksissä. Mille tahansa HTML-elementille voi määritellä tunnisteen, kunhan se on HTML-sivun sisällä täysin yksilöllinen.</p>
+<p>Etusivun navigoinnissa <em>palvelut</em>-osion osoitteena on <code>#palvelut</code>. Kun käyttäjä klikkaa tätä linkkiä, niin selain siirtyy sivun sisällä siihen kohtaan, josta tuo <code>#</code>-merkin perässä oleva tunniste on. Eli tässä tapauksessa selain siirtyy edellä lisätyn <code>section</code>-elementin alkuun.</p>
+<p><code>div</code>-elementille määritelty <code>class</code>-määrite määrittelee ko. elementille luokkanimen. Luokkanimet ovat käteviä, kun halutaan kohdistaa ko. elementille juuri tietyt tyylimääritteet. Tästä näet esimerkin myöhemmin, kun lisäämme tälle HTML-sivulle tyylimääritteet. Toisin kuin tunnisteita, niin samaa luokkanimeä voi käyttää HTML-sivulla useamman kerran.</p>
+<blockquote>
+<p>Huomaa, että HTML-sivulla voi olla saman niminen tunniste (<code>id</code>) ja luokka (<code>class</code>), ne eivät riitele keskenään. Näiden kanssa on silti hyvä olla tarkkana. Saatat nimittäin törmätä tilanteeseen, kun ihmettelet CSS-tyylimäärityksesi toimimattomuutta ja huomaat lopulta, että olet vahingossa tyylisäännöt luokan sijasta tunnisteelle.</p>
+</blockquote>
+</li>
+<li>
+<p>Korvaa <code>TODO referenssit</code> -rivi seuraavalla HTML-koodilla:</p>
+<pre><code class="language-html">    &lt;section id="referenssit"&gt;
+      &lt;h2&gt;Referenssejä&lt;/h2&gt;
+      &lt;p&gt;Tässä muutamia esimerkkejä toteuttamistamme kotisivuista.&lt;/p&gt;
+      &lt;div class="referenssit"&gt;
+        &lt;div&gt;
+          &lt;h3&gt;Kylän Kunto&lt;/h3&gt;
+          &lt;img src="./03-kunto.jpg" alt="Kylän Kunnon kotisivut"&gt;
+          &lt;p&gt;Tämä kesäinen kotisivu on suunniteltu kylän urheilutoimintaa 
+             edistävälle yhdistykselle. Yhdistys ylläpitää talvella hiihtolatuja 
+             ja kesällä tarjoaa mahdollisuuden soutaa kirkkoveneellä. 
+             Sivustolla esitellään yhdistyksen tarjoamat aktiviteetit ja 
+             palvelut, sekä annetaan tietoa tapahtumista ja yhteystiedoista.&lt;/p&gt;
+        &lt;/div&gt;
+        &lt;div&gt;
+          &lt;h3&gt;Puuseppä Hirvonen&lt;/h3&gt;
+          &lt;img src="./03-puuseppa.jpg" alt="Puusepän kotisivut"&gt;
+          &lt;p&gt;Tämä yksinkertainen ja tyylikäs kotisivu on suunniteltu puusepälle, 
+             joka tarjoaa laadukkaita ja kestäviä puutöitä. Sivustolla esitellään 
+             puusepän palvelut, kuten huonekalujen valmistus, korjauspalvelut, 
+             mittatilaustyöt ja sisustussuunnittelu. Yhteystiedot-osio 
+             mahdollistaa helpon yhteydenoton. Sivuston värimaailma koostuu 
+             mustasta, valkoisesta, vihreästä ja punaisesta, mikä luo raikkaan ja 
+             ammattimaisen ilmeen.&lt;/p&gt;
+        &lt;/div&gt;
+        &lt;div&gt;
+          &lt;h3&gt;Taloustuonti Oy&lt;/h3&gt;
+          &lt;img src="./03-tuonti.jpg" alt="Maahantuontiyrityksen kotisivut"&gt;
+          &lt;p&gt;Tämä kotisivu on suunniteltu taloustavaroiden maahantuontia 
+             harjoittavalle yritykselle. Sivustolla esitellään yrityksen tarjoamat 
+             palvelut, kuten tuotteiden maahantuonti, varastointi ja logistiikka, 
+             jakelu ja myynti sekä asiakaspalvelu ja tuki.&lt;/p&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/section&gt;
+</code></pre>
+<p>Tämä on rakenteeltaan hyvin samankaltainen, kuin edellinen osio. Tässä osiossa hyödynnetään kolmea valmista kuvaa. Lataa ja tallenna ne samaan kansioon HTML-tiedoston kanssa.</p>
+<ul>
+<li>Tallenna <a href="osa1/03-kunto.jpg">tämä kuva</a> nimellä <code>03-kunto.jpg</code>.</li>
+<li>Tallenna <a href="osa1/03-puuseppa.jpg">tämä kuva</a> nimellä <code>03-puuseppa.jpg</code>.</li>
+<li>Tallenna <a href="osa1/03-tuonti.jpg">tämä kuva</a> nimellä <code>03-tuonti.jpg</code>.</li>
+</ul>
+<blockquote>
+<p>Vinkki: Voit tallentaa kuvat klikkaamalla linkin päällä hiiren kakkospainikkeella ja valitsemalla ponnahdusvalikosta kohta <strong>Tallenna linkki nimellä</strong>. Valitse kuvan tallennuspaikaksi projektikansio.</p>
+</blockquote>
+</li>
+<li>
+<p>Korvaa <code>TODO yhteystiedot</code> -rivi seuraavalla HTML-koodilla:</p>
+<pre><code class="language-html">    &lt;section id="yhteystiedot"&gt;
+      &lt;h2&gt;Kiinnostuitko?&lt;/h2&gt;
+      &lt;p&gt;Yrityksemme toimitilat ovat Tampereella. Olet lämpimästi tervetullut 
+         toimistollemme keskustelemaan siitä, miten voisimme sinua auttaa.&lt;/p&gt;
+      &lt;address&gt;
+        Kuninkaanakatu 24&lt;br&gt;
+        33200 Tampere&lt;br&gt;
+        &lt;br&gt;
+        &amp;#9742; &lt;a href="tel:+358400112233"&gt;0400 112233&lt;/a&gt;
+      &lt;/address&gt;
+    &lt;/section&gt;
+</code></pre>
+<p>Tässä osiossa <code>address</code>-elementti on uusi. Sillä merkitään sivulla olevat osoitetiedot. Huomaa myös linkin erikoinen osoite. Tällä tavalla puhelinnumero avautuu älypuhelimissa suoraan puhelinsovellukseen, kun sitä napautetaan sivulla.</p>
+<p><code>br</code>-elementit tekevät pakotetun rivivaihdon. Sitä voi käyttää mm. <code>address</code>-elementissä tekstin rivitykseen. Muistisääntönä <code>br</code> tulee sanasta <strong>break</strong>.</p>
+</li>
+<li>
+<p>Korvaa <code>TODO alaotsake</code> -rivi seuraavalla HTML-koodilla:</p>
+<pre><code class="language-html">    &lt;footer&gt;
+      &lt;p&gt;&amp;copy; 2025 Kotisivut Helposti&lt;/p&gt;
+      &lt;p&gt;Etusivun taustakuva unsplash.com, muun sisällön on luonut Copilot-tekoäly.&lt;/p&gt;
+    &lt;/footer&gt;
+</code></pre>
+<p>Tämä määrittelee <code>footer</code>-elementin, joka on myös semanttinen elementti. Sitä käytetään merkaamaan sivun alaotsake. Se sisältää yleensä ns. copyright-tiedot sekä mahdolliset rekisteriselosteet.</p>
+</li>
+</ol>
+<p>Näiden jälkeen sivun HTML-osuus on valmis. Se ei näytä tällä hetkellä kovin ihmeelliseltä, koska siihen ei ole vielä kytketty tyylisääntöjä. Kun sivu avataan selaimessa, niin se näyttää seuraavanlaiselta:</p>
+<div class="image">
+  <a href="osa1/onepage-1-full.png"><img alt="Kotisivupohja selaimessa." src="osa1/./onepage-1.png" width="1111"></a>
+</div><br>
+<blockquote>
+<p>Vihje: Kuvaa klikkaamalla saat näkyville koko sivun kuvaruutukopion.</p>
+</blockquote>
+<p>Seuraavaksi lähdemme määrittelemään sivun ulkoasua.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="kotisivupohjan-ulkoasu"><a class="header" href="#kotisivupohjan-ulkoasu">Kotisivupohjan ulkoasu</a></h1>
+<p>Edellisessä vaiheessa koostettiin osa osalta yhden sivun kotisivut pienelle kotisivuja tekevälle yritykselle. Seuraavaksi määritellään tälle kotisivulle pala palalta ulkoasu.</p>
+<p>Luo projektikansioon uusi tiedosto, anna sen nimeksi <code>03-onepage.css</code> ja liitä sen sisällöksi seuraavissa kohdissa olevat CSS-tyylimääritykset.</p>
+<ol>
+<li>
+<p>Aivan ensimmäiseksi tuodaan <a href="https://fonts.google.com/">Google Fonts</a> -palvelusta sivustolla käytettävä <a href="https://fonts.google.com/specimen/Inter">Inter</a>-fontti. Tämä tapahtuu seuraavalla tuontilauseella, kopioi ja liitä se CSS-tiedoston alkuun.</p>
+<pre><code class="language-css">@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&amp;display=swap');
+</code></pre>
+</li>
+<li>
+<p>Seuraavaksi määritellään sivustolla käytettävät värit ja pari arvoa. Tässä hyödynnetään CSS:n muuttujia, joiden avulla arvot määritellään vain kerran ja tämän jälkeen käytetään niille annettuja nimiä.  Kopio ja liitä seuraava teksti edellisen <code>import</code>-lauseen alle.</p>
+<pre><code class="language-css">:root {
+  --primary-dark: #B9314F;
+  --primary: #D65C70;
+  --primary-light: #EFBEC6;
+  --neutral-darkest: #000000;
+  --neutral-darkest-alpha: rgba(0,0,0,0.7);
+  --neutral: #E7ECEF;
+  --neutral-lightest: #FFFFFF;
+  --border-radius: 0.5em;
+  --max-width: 40em;
+}
+</code></pre>
+</li>
+<li>
+<p>Nollataan vielä elementtien alkuarvot. Kopioi ja liitä seuraavat sääntö edellisten alle.</p>
+<pre><code class="language-css">* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+</code></pre>
+<p>Tämä sääntö poistaa <code>margin</code>- ja <code>padding</code>-asetuksista niiden alkuarvot, jonka seurauksena  sivun pitäisi näyttää kaikilla selaimilla suunnilleen samalta. <code>box-sizing</code>-asetus määrittelee täytteen ja kehyksen paksuuden kuuluvan elementin kokonaisleveyteen ja -korkeuteen.</p>
+<div class="image">
+  <a href="osa1/onepagecss-1-full.png"><img alt="Elementtien alkuarvot nollattu." src="osa1/./onepagecss-1.png" width="1111"></a>
+</div><br>
+</li>
+<li>
+<p>Seuraavaksi päästään määrittelemään sivun lopullista ulkoasua. Ulkoasun määrittely aloitetaan <code>body</code>-elementin asetuksilla, joilla määritellään koko dokumenttia koskevat asetukset. Kopioi seuraavat rivit edellisten alapuolelle.</p>
+<pre><code class="language-css">body {
+  font-family: "Inter", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+  background-color: var(--primary-dark);
+  color: var(--neutral-lightest);
+}
+</code></pre>
+<p>Fontin määritykset on kopioitu suoraan Google Fonts -palvelun esimerkkimäärityksistä. Ne määrittelevät käytettäväksi <strong>Inter</strong>-fonttia, sen normaalia paksuutta ja tyyliä. Tämän lisäksi määritellään koko dokumentille sen taustaväri (punainen) ja tekstiväri (valkoinen).</p>
+<p>Tausta- ja tekstivärin määrityksissä on esimerkki siitä, miten CSS-tiedoston alussa määriteltyjä muuttuja-arvoja käytetään.</p>
+<div class="image">
+  <a href="osa1/onepagecss-2-full.png"><img alt="Sivuston perusvärit ja fontti on määritelty." src="osa1/./onepagecss-2.png" width="1111"></a>
+</div><br>
+</li>
+<li>
+<p>Tällä hetkellä sivun sisältö on yhtenä jatkuvana juoksutuksena, ilman selkeitä osakokonaisuuksia. Seuraavaksi määritellään sivusto näyttämään siltä, että se koostuisi useammasta päällekkäisestä sivusta. Kopioi seuraavat rivit edellisten alapuolelle.</p>
+<pre><code class="language-css">header, section {
+  min-height: 100vh;  
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 1.5em;
+}
+</code></pre>
+<p>Selektorissa on listattu kaksi elementtiä pilkulla eroteltuna. Tämän seurauksena tämä sääntö kohdistuu sekä <code>header</code>- että <code>section</code>-elementteihin. Kun useampaan elementtiin halutaan määritellä samat säännöt, ne voidaan listata selektorissa pilkulla eroteltuna.</p>
+<p><code>min-height</code>-asetus määrittelee <code>header</code>- ja <code>section</code>-elementtien vähimmäiskorkeudeksi selainikkunan näkymäalueen korkeuden (<code>vh</code> = viewport height). Tämä määritys tekee sen, että jokainen "sivu" on vähintään näkymäalueen korkuinen. Jos yksittäisen "sivun" korkeus on suurempi, niin silloin korkeus mukautuu sen mukaisesti.</p>
+<p><code>display</code>-, <code>flex-direction</code>-, <code>justify-content</code>- ja <code>align-items</code>-asetukset määrittelevät sisällön sijoittumaan pysty- ja vaakasuunnassa keskelle. Tämä CSS:n Flexbox-ominaisuuden avulla. Nämä neljä riviä ovat näppärä tapa keksittää sisältö jonkin elementin keskelle.</p>
+<p><code>padding</code>-asetus määrittelee "sivujen" reunoille pienen täytteen. Tämä huolehtii siitä, että tekstit ja muu sisältö eivät mene aivan reunaan kiinni, vaan reunoille pieni väli antamaan pientä tilan tuntua. Tämä asetus näkyy käytännössä vasta, kun sivulla oleva teksti on niin pitkä, että sitä joudutaan rivittämään.</p>
+<div class="image">
+  <a href="osa1/onepagecss-3-full.png"><img alt="Sisältö on nyt aseteltu sivun korkuisiin laatikoihin." src="osa1/./onepagecss-3.png" width="1111"></a>
+</div><br>
+</li>
+<li>
+<p>Seuraavaksi määritellään etusivun taustakuva. Tätä varten käy lataamassa ensin Unsplash-sivustolta <a href="https://unsplash.com/photos/a-forest-of-trees-with-a-body-of-water-in-the-background-xHkmimemaOQ">tässä linkissä</a> oleva kuva klikkaamalla sivun oikeassa yläkulmassa olevaa <strong>Download free</strong> nappia ja tallenna se projektikansioon nimellä <code>03-background.jpg</code>.</p>
+<p>Unsplash on yksi ilmaisia kuvia tarjoavista kuvapalveluista. Sen hienoimmat kuvat kuuluvat usein sen maksulliseen palveluun, mutta ilmaislatauksessa on paljon käyttökelpoisia kuvia. Palvelun kuvia saa käyttää vapaasti myös kaupallisissa toteutuksissa ja niitä voidaan käyttää ilman mainintaa tekijästä.</p>
+<p>Kun olet hakenut edellä olevan kuvan ja vienyt sen projektikansioon pyydettyllä nimellä, niin kopioi seuraavat rivit CSS-tiedoston loppuun edellisten alapuolelle.</p>
+<pre><code class="language-css">header {
+  background-image: url("03-background.jpg");
+  background-size: cover;
+  background-position: top;
+}
+</code></pre>
+<div class="image">
+  <a href="osa1/onepagecss-4-full.png"><img alt="Etusivun taustakuva määritelty." src="osa1/./onepagecss-4.png" width="1111"></a>
+</div><br>
+<p>Tämä asettaa etusivun taustakuvaksi edellä ladatun tiedoston. Taustakuva asetellaan niin, että se täyttää (<code>cover</code>) koko etusivun, jolloin sitä tarvittaessa suurennetaan tai pienennetään. Taustakuva asetetaan alkamaan ruudun yläreunasta, muilta sivuilta sisältöä tarvittaessa leikataan.</p>
+</li>
+<li>
+<p>Etusivun tekstiä on vaikea lukea, koska valkoinen teksti ei ole helppo lukea vaaleaa taustaa vasten. Määritellään seuraavaksi teksti paremmin luettavaksi sijoittamalla se tummemmalle alustalle. Kopio seuraavat rivit edellistan alapuolelle.</p>
+<pre><code class="language-css">header &gt; div {
+  font-size: 110%;
+  background-color: var(--neutral-darkest-alpha);
+  border-radius: calc(var(--border-radius) * 2);
+  padding: 2em;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+</code></pre>
+<p>Tämä asetus kohdistuu välittömästi <code>header</code>-elementin alla olevaan <code>div</code>-elementtiin.</p>
+<blockquote>
+<p>Huomaa, että asetus ei kohdistu <code>div</code>-elementilla alla oleviin <code>div</code>-elementteihin, vaan ainoastaan siihen <code>div</code>-elementtiin, joka on heti  <code>header</code>-elementin alla.</p>
+<p><code>header div</code> -selektori kohdistuisi kaikkiin <code>header</code>-elementin alla oleviin <code>div</code>-elementteihin, olivat ne kuinka syvällä tahansa.</p>
+</blockquote>
+<p>Tämän <code>div</code>-elementin fonttikokoa suurennetaan hieman ja sen taustaväriksi asetetaan hieman läpikuultava musta. Tämän lisäksi laatikon reunoja pyöristetään hieman <code>border-radius</code>- asetuksella sekä laatikon sisälle määritellään hieman täytettä, jotta sisältö ei olisi reunoissa kiinni.</p>
+<p><code>border-radius</code> -asetuksessa hyödynnetään CSS:n <code>calc</code>-laskentaominaisuutta. Siinä käytetään muuttujissa määriteltyä <code>--border-radius</code>-arvoa tuplaamalla sen arvo kaksinkertaiseksi. Tämä on yksinkertainen esimerkki siitä, miten arvoja voidaan laskea muista arvoista CSS-tyyleissä.</p>
+<p>Sisältö keskitetään laatikon sisälle samalla menetelmällä, mitä aiemmin käytettiin sivun sisältöjen keskittämiseen.</p>
+<div class="image">
+  <a href="osa1/onepagecss-5-full.png"><img alt="Etusivun teksti tummalla taustalla." src="osa1/./onepagecss-5.png" width="1111"></a>
+</div><br>
+</li>
+<li>
+<p>Muotoillaan seuraavaksi navigointia paremman näköiseksi. Kopioi seuraavat rivit edellisten alapuolelle.</p>
+<pre><code class="language-css">nav ul {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: 1em;
+}
+</code></pre>
+<p>Tämä sääntö kohdistuu kaikkiin <code>nav</code>-elementtien sisällä oleviin <code>ul</code>-listoihin. Sääntö sijoittaa navigointilinkit vaakaan sekä määrittelee linkkien yläpuolelle pienen marginaalin. <code>flex-wrap</code>-asetus huolehtii linkkien rivityksestä, kun sivun leveys tulee niin kapeaksi, että linkit eivät mahdu rinnakkain.</p>
+<div class="image">
+  <a href="osa1/onepagecss-6-full.png"><img alt="Navigointilinkit sijoitettu vierekkäin." src="osa1/./onepagecss-6.png" width="1111"></a>
+</div><br>
+<p>Muotoillaan vielä yksittäiset lista-alkiot. Kopioi seuraavat rivit edellisten alapuolelle.</p>
+<pre><code class="language-css">nav li {
+  list-style-type: none;  
+  background-color: var(--primary-dark);  
+  padding: 1em;
+  margin: 0.5em;
+  border-radius: var(--border-radius);
+}
+</code></pre>
+<p>Tämä sääntö kohdistuu <code>nav</code>-elemetin alla oleviin <code>li</code>-elementteihin. <code>list-style-type</code>-asetus poistaa lista-alkion edessä olevan pallukan. Loput määrittelevät lista-alkiolle taustavärin, täytteen, marginaalin ja kulman pyöreyden.</p>
+<div class="image">
+  <a href="osa1/onepagecss-7-full.png"><img alt="Navigointilinkit sijoitettu vierekkäin." src="osa1/./onepagecss-7.png" width="1111"></a>
+</div><br>
+</li>
+<li>
+<p>Aikaisemmin koko dokumentille asetettiin tekstiväri. Tämä asetus ei määrittele linkkien väriä, vaan ne tulee määritellä erikseen. Muokataan seuraavaksi navigointilinkkien värit toimivammiksi. Kopioi seuraavat rivit edellisten alapuolelle.</p>
+<pre><code class="language-css">nav a {
+  color: var(--neutral);
+  text-decoration: none;
+} 
+</code></pre>
+<p>Tämä sääntö kohdistuu <code>nav</code>-elementin alla oleviin linkkeihin. Linkin väriksi asetetaan neutraali sävy ja sen alleviivaus poistetaan.</p>
+<div class="image">
+  <a href="osa1/onepagecss-8-full.png"><img alt="Navigointilinkkien tekstiväri määritelty." src="osa1/./onepagecss-8.png" width="1111"></a>
+</div><br>
+</li>
+<li>
+<p>Määritellään navigointilinkeille  visuaalinen palaute, kun hiiren kursorin vie linkin päälle. Kopioi seuraavat rivit edellisten alapuolelle.</p>
+<pre><code class="language-css">nav li:hover {
+  background-color: var(--neutral);
+}
+
+nav li:hover a {
+  color: var(--neutral-darkest);
+}
+</code></pre>
+<p>Nämä säännöt kohdistuvat <code>nav</code>-elementin alla olevaan lista-alkioon ja linkkiin, kun hiiren kursori on lista-alkion päällä. Kun hiiren kursori on linkkilaatikon päällä, muuttuu laatikon taustavärin vaaleaksi ja tekstivärin tummaksi.</p>
+<p>Reagoiminen hiiren kursoriin tapahtuu <code>hover</code>-pseudoluokan avulla. Sen seurauksena säännössä olevat määritykset tulevat voimaan, kun hiiren kursori on elementin päällä. Kun hiiren kursori poistuu elementin päältä, palautuu alkuperäiset asetukset takaisin voimaan.</p>
+<p>Voit testata tämän toiminnallisuutta viemällä kursorin linkin päälle.</p>
+<div class="image">
+  <img alt="Navigointilinkkien värit vaihtuvat kun hiiren kursori viedään linkin päälle." src="osa1/./onepagecss-9.png" width="1108">
+</div><br>
+<p>Etusivun määritykset ovat nyt valmiit, siirrätään määrittelemään muiden sivujen ulkoasua.</p>
+</li>
+<li>
+<p>Muilla sivuilla on vielä koko dokumentille määritelty taustaväri (punainen). Muutetaan taustavärit seuraavksi neutraaleimmiksi. Kopioi seuraavat rivit edellisten alapuolelle.</p>
+<pre><code class="language-css">section {
+  background-color: var(--neutral);
+  color: var(--neutral-darkest);
+}
+
+section:nth-child(odd) {
+  background-color: var(--neutral-lightest);
+}
+</code></pre>
+<p>Ensimmäinen sääntö määrittelee jokaisen <code>section</code>-elemementin taustaväriksi vaalean värisävyn ja tekstiväriksi tumman värisävyn.</p>
+<p>Toinen sääntö muuttaa joka toisen <code>section</code>-elementin taustaväriksi valkoisen. Tällä tavalla eri sivut saadaan eroteltua visuaalisesti toisistaan.</p>
+<div class="image">
+  <a href="osa1/onepagecss-10-full.png"><img alt="Sivujen taustaväri määritelty vuorottelemaan." src="osa1/./onepagecss-10.png" width="1111"></a>
+</div><br>
+</li>
+<li>
+<p>Sivun tekstiä on tällä hetkellä raskas lukea, koska tekstirivit ovat lähtökohtaisesti liian pitkiä. Säädetään seuraavaksi tekstirivin pituutta. Kopioi seuraavat rivit edellisten alapuolelle.</p>
+<pre><code class="language-css">header p, section p {
+  max-width: var(--max-width);
+  margin: 0.5em 0;
+}
+</code></pre>
+<p>Tämä määrittelee etusivun ja muiden sivun tekstikappale-elementtien maksimileveyden sekä niiden ylä- ja alapuolelle pienen välin.</p>
+<div class="image">
+  <a href="osa1/onepagecss-11-full.png"><img alt="Tekstikappaleen maksimileveys on määritelty." src="osa1/./onepagecss-11.png" width="1111"></a>
+</div><br>
+</li>
+<li>
+<p>Sivuston otsikkoelementit kaipaavat seuraavaksi muokkaamista. Kopioi seuraavat rivit edellisten alapuolelle.</p>
+<pre><code class="language-css">h1 {
+  font-size: 300%;
+  margin: 1em 0 0.5em 0;
+}
+
+h2 {
+  font-size: 250%;
+  margin: 1em 0;
+}
+</code></pre>
+<p>Tämä asettaa <code>h1</code>- ja <code>h2</code>-elementtien tekstinkoon ja marginaalit. Tämä muutti etusivun pääotsikon lisäksi alasivun yläotsikot.</p>
+<div class="image">
+  <a href="osa1/onepagecss-12-full.png"><img alt="Otsikkoelementit on määritelty." src="osa1/./onepagecss-12.png" width="1111"></a>
+</div><br>
+</li>
+<li>
+<p>Seuraavaksi muokataan palvelut-osiossa olevat palvelut omiksi kokonaisuuksiksi. Kopioi ensin seuraavat rivit muiden jatkoksi.</p>
+<pre><code class="language-css">.palvelut {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  max-width: calc(var(--max-width) * 1.5);
+  margin-top: 1em;
+}
+</code></pre>
+<p>Tässä yhteydessä käytetään ensimmäisen kerran niin sanottua luokkaselektoria. Luokkaselektorilla sääntö voidaan kohdistaa niihin elementteihin, jotka on määritelty kuulumaan tiettyyn luokkaan <code>class</code>-määritteellä. CSS-tiedostossa selektorin alussa on <code>.</code>-merkki ja välittömästi sen perässä luokan nimi. Jos esimerkiksi elementille on määriltelty luokan nimeksi <code>yhteystiedot</code>, niin silloin siihen viitataan selektorilla <code>.yhteystiedot</code>.</p>
+<p>Tämä sääntö määrittelee <code>palvelut</code>-nimiselle elementtiluokan hyödyntämään Flexbox-asettelua. Aikaisemmista poiketen määritellään sisältö keskittymään vaakasuunnassa ja tarvittaessa rivittymään.</p>
+<p>Tämän lisäksi elementi maksimileveydeksi määritellään puolitoista kertaa tekstikappaleen maksimileveys. Koska palvelut tullaan asemoimaan useampi rinnakkain, niin silloin alueen maksimileveys voi olla leveämpi luettavuuden siitä kärsimättä.</p>
+<p>Tällä säännöllä ei ole isoa vaikutusta sivunäkymään. Jatketaan palveluiden ulkoasun määrittelyä. Kopioi seuraavat rivit edellisten alapuolelle.</p>
+<pre><code class="language-css">.palvelut &gt; div {
+  background-color: var(--primary-dark);
+  color: var(--neutral-lightest);
+  margin: 0.5em;
+  padding: 1.5em;
+  border-radius: var(--border-radius);
+  max-width: calc(var(--max-width) * 0.375);
+}
+</code></pre>
+<p>Tämä sääntö kohdistuu välittämästi <code>palvelut</code>-luokkaelementin alla oleviin <code>div</code>-elementteihin. Tämä asettaa niiden taustaväriksi tumman sävyn ja tekstiväriksi vaalean sävyn. Tämän lisäksi asetetaan yksittäisen laatikon marginaalit, täyte ja kulmien pyöreys. Marginaaleilla saadaan erotettua laatikot toisistaan, täytteellä laatikon sisälle hieman tyhjää reunoille.</p>
+<p>Laatikon maksimileveydeksi asetetaan laskukaavalla laskettu arvo, joka on 37,5% tekstikappaleen maksimileveydestä. Tämä varmistaa, että täydessä sivunleveydessä laatikoita sijoittuu kolme rinnakkain.</p>
+<div class="image">
+  <a href="osa1/onepagecss-13-full.png"><img alt="Palvelut erotteltu omiksi laatikoikseen." src="osa1/./onepagecss-13.png" width="1111"></a>
+</div><br>    
+<p>Asetetaan vielä yksittäisen laatikon otsikolle pienet marginaalit. Kopioi seuraavat rivit edellisten alapuolelle.</p>
+<pre><code class="language-css">.palvelut h3 {
+  margin: 0.8em 0;
+}
+</code></pre>
+<p>Samalla korjataan HTML-tiedostossa <em>Hakukoneoptimointi (SEO)</em> -laatikossa oleva <strong>hakukoneoptimointipalveluiden</strong>-sana lyhyemmäksi. Sivuston ulkoasua on hyvä tarkkailla pitkin kehitysprosessia ja testailla sitä useilla eri selainikkunan leveyksillä.</p>
+<div class="image">
+  <a href="osa1/onepagecss-14-full.png"><img alt="Palveluiden otsikoille määritelty pieni väli." src="osa1/./onepagecss-14.png" width="1111"></a>
+</div><br>
+<p>Palvelut-osion ulkoasu on nyt määritelty. Siirrytään muokkaamaan seuraavaa osiota.</p>
+</li>
+<li>
+<p>Referenssit osion esimerkkien ulkoasu määritellään hyvin samalla tavalla kuin Palvelut-osion ulkoasu. Aloita kopioimalla seuraavan rivit edellisten jatkoksi.</p>
+<pre><code class="language-css">.referenssit {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+</code></pre>
+<p>Tässäkin hyödynnetään luokkaselektoria, joka kohdistaa säännön <code>referenssit</code>-elementilleluokalle. Samalla tavalla kuin Palvelut-osiossa, myös tässä referenssit sijoitetaan keskelle vaakaan ja rivitetään tarvittaessa.</p>
+<p>Tämä asetus ei vielä muuttanut osion ulkoasua. Määritellään seuraavaksi yhden laatikon ulkoasu. Kopioi seuraavat rivit edellisten jatkoksi.</p>
+<pre><code class="language-css">.referenssit &gt; div {
+  background-color: var(--primary-light);
+  border-radius: var(--border-radius);
+  margin: 1em;
+  padding: 1.5em;
+  max-width: calc(var(--max-width) * 0.5);
+}
+</code></pre>
+<p>Tämä sääntö kohdistuu välittömästi <code>referenssit</code>-luokan alla oleviin <code>div</code>-elementteihin. Sille määritellään taustaväri, kulman pyöreys, marginaalit ja täyte. Näiden lisäksi yhden laatikon maksimileveydeksi asetetaan puolet tekstikappaleen maksimileveydestä.</p>
+<div class="image">
+  <a href="osa1/onepagecss-15-full.png"><img alt="Referenssit on eroteltu omiksi laatikoikseen." src="osa1/./onepagecss-15.png" width="1111"></a>
+</div><br>
+<p>Referenssikuvat pakottavat sivun leveämmäksi kuin mitä toivotaan, se korjataan seuraavaksi määritelemällä referenssilaatikon sisällön ulkoasu. Kopioi seuraavat rivit edellisten alapuolelle.</p>
+<pre><code class="language-css">.referenssit h3 {
+  color: var(--neutral-darkest);
+  font-size: 150%;
+  margin-bottom: 0.5em;
+}
+
+.referenssit p {
+  margin: 1em 0;
+}
+
+.referenssit img {
+  width: 100%;
+}
+</code></pre>
+<p>Nämä asettavat referenssilaatikon elementeille seuraavat asiat.</p>
+<ul>
+<li><code>h3</code>-otsikolle värin, fonttikoon ja alamarginaalin.</li>
+<li><code>p</code>-tekstikappaleelle ylä- ja alamarginaalin.</li>
+<li><code>img</code>-kuvan käyttämään 100% sille annetusta tilasta. Tämä skaalaa kuvan oikeaan kokoon.</li>
+</ul>
+<div class="image">
+  <a href="osa1/onepagecss-16-full.png"><img alt="Referenssilaatikoiden ulkoasu on määritelty." src="osa1/./onepagecss-16.png" width="1111"></a>
+</div><br>   
+</li>
+<li>
+<p>Referenssit-osion ulkoasu on nyt valmis, siirrytään muokkaamaan Yhteystiedot-osion ulkoasua. Tämän osion ulkoasu on aika pitkälle määritelty aikasempien asetusten pohjalta. Korjataan ainoastaan osoitteen kursivointi ja puhelinumeron tekstiväri. Kopioi seuraavat rivit edellisten alapuolelle.</p>
+</li>
+</ol>
+<pre><code class="language-css">address {
+  font-style: normal;
+  font-weight: 600;
+  margin-top: 1em;
+}
+
+address a {
+  text-decoration: none;
+  color: var(--primary-dark)
+}
+</code></pre>
+<p>Tämä asettaa osoitteen tekstityyliksi normaalin (eli poistaa kursivoinnin), tekstin paksuudeksi lihavoinnin ja pienen ylämarginaalin. Lisäksi linkistä poistetaan alleviivaus ja tekstiväriksi asetetaan tumman punainen.</p>
+   <div class="image">
+     <a href="osa1/onepagecss-17-full.png"><img alt="Yhteystietojen ulkoasu on määritelty." src="osa1/./onepagecss-17.png" width="1111"></a>
+   </div><br>    
+<ol start="17">
+<li>
+<p>Viimeisenä vaiheena on alaotsakkeen eli <code>footer</code>-elementin ulkoasun määrittely. Kopioi seuraavat rivit edellisten alapuolelle.</p>
+<pre><code class="language-css">footer {
+  font-size: 80%;
+  padding: 2em;
+  text-align: center; 
+}
+
+footer p {
+  margin: 0.5em;
+}
+</code></pre>
+<p>Nämä asetukset määrittelevät alaotsakkeen fonttikoon, täytteen ja keskittää tekstin keskelle. Tämän lisäksi alaotsakkeessa oleville tekstikappaleille määritellään pieni marginaali.</p>
+<div class="image">
+ <a href="osa1/onepagecss-18-full.png"><img alt="Alaotsakkeen ulkoasu on määritelty." src="osa1/./onepagecss-18.png" width="1111"></a>
+</li>
+</ol>
+   </div><br>
+<ol start="18">
+<li>
+<p>Nyt sivuston ulkoasu on kokonaisuudessaan valmis ja se näyttää seuraavanlaiselta:</p>
+ <div class="image">
+   <img alt="Sivuston ulkoasu on valmis." src="osa1/./onepagecss-18-full.png" width="500">
+ </div><br></li>
+</ol>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="javascript"><a class="header" href="#javascript">JavaScript</a></h1>
+<p>Verkossa on runsaasti lähdemateriaalia tarjolla. Hyvä vaihtoehto on esimerkiksi sivusto <a href="https://www.w3schools.com/js/default.asp">W3Schools Javascript</a> ja vaihtoehtoisesti vaikka maksutta saatavilla olevaa kirja <a href="https://codersguild.net/download/2811_JavaScript-From-Zero-to-Hero.pdf">JavaScript From Zero to Hero</a> (hieman nurinkurisesti vasta luku 4 käsittelee alkeita, hyppää siis neljänteen lukuun). Linkki on toisinaan hyvin hidas, ole siis kärsivällinen.</p>
+<p>Erinomainen tietolähde on myös ohjelmistokehittäjien yhteisö <a href="https://stackoverflow.com/questions">Stack Overflow</a>, jossa hakutoiminnon avulla voi etsiä vastauksia kysymyksiin ja jos kyseisestä asiasta ei löydy tietoja, voi lisätä oman kysymyksen. Vastaava ja kenties vielä suositumpi on <a href="https://superuser.com/">Stack Exchange</a>, johon kannattaa myös tutustua.</p>
+<h2 id="tämän-materiaalin-tavoite"><a class="header" href="#tämän-materiaalin-tavoite">Tämän materiaalin tavoite</a></h2>
+<p>Tämä itseopiskelumateriaali tarjaa vain välttämättömimmän sisällön ohjelmoinnin perusteisiin, jotta opiskelija pääsee omatoimisesti alkuun. Jos et ole aiemmin koodannut, sinun pitää alkuvaiheessa sietää sitä epävarmuuden tunnetta, että et vielä tiedä tarpeeksi. Jostain pitää aloittaa ja lähteä hitaasti etenemään ja tämän materiaalin puitteissa sivuutamme paljon erilaisia hienouksia tai oikopolkuja ja keskitymme pedagogisesti selkeimpiin koodiratkaisuihin. Vähä vähältä uutta tietoa ja uusia taitoja alkaa kertyä.</p>
+<p><strong>Tässä JavaScript-osiossa olevat harjoitustehtävät ovat vain itseopiskelua varten ja tarkoitettu aivojumpaksi. Näitä harjoituksia ei arvioida eikä niistä saa pisteitä valintaprosessiin. Siitä huolimatta ne voivat olla oppimisen kannalta arvokkaita ja tärkeitä.</strong></p>
+<p>Älä huoli, vaikka JavaScript tuntuisi aluksi vaikealta – kaikki osaajat ovat joskus olleet samassa tilanteessa. Jokainen pieni askel vie sinua eteenpäin, ja pian huomaat ymmärtäväsi yhä enemmän. Ole utelias, kokeile rohkeasti ja muista: virheet ovat paras tapa oppia. Tämä on alku matkallesi luomaan omia verkkosovelluksia – ja se on aika siisti juttu!</p>
+<p>Jos haluat käyttää tekoälyä hyväksesi, käytä sitä kuin se olisi opettaja: tee tekoälylle kysymyksiä, jotka alkavat sanalla "miksi":</p>
+<ul>
+<li>miksi tästä rivistä tulee syntax error</li>
+<li>miksi lauseeni ei tulosta mitään</li>
+<li>miksi saan virheilmoituksen 'unexpected token else'</li>
+</ul>
+<p>Tällöin oma osaaminen karttuu nopeasti. Huonoin vaihtoehto on (ja tällä kurssilla se ei ole sallittu!) pyytää tekoälyä ratkaisemaan tehtäviä sinun puolestasi. Tällöin omaa oppimista ei tapahdu lainkaan.</p>
+<h2 id="ohjelmoinnin-peruskäsitteet"><a class="header" href="#ohjelmoinnin-peruskäsitteet">Ohjelmoinnin peruskäsitteet</a></h2>
+<p>Ohjelmointi on tapa antaa tietokoneelle tarkkoja ohjeita siitä, mitä sen tulee tehdä. Ohjelmat koostuvat yksittäisistä käskyistä, jotka suoritetaan yksi kerrallaan ennalta määrätyssä järjestyksessä. Näiden käskyjen avulla tietokone voi käsitellä tietoa, ratkaista ongelmia, suorittaa toistuvia tehtäviä ja reagoida käyttäjän toimintaan. Ohjelmointi on eräänlaista viestintää ihmisen ja koneen välillä, mutta kone ymmärtää vain tarkasti määriteltyä kieltä – ohjelmointikieltä. Tämän vuoksi ohjelmointi vaatii loogista ajattelua ja huolellista ohjeiden laatimista.</p>
+<p>Useimpien ohjelmien perusrakenne noudattaa samaa yksinkertaista periaatetta: tietoja otetaan vastaan, niitä käsitellään, ja lopuksi tulokset näytetään käyttäjälle tai tallennetaan jonnekin. Näitä kolmea osaa kutsutaan nimillä syöte, prosessointi ja tuloste. Tämä kolmijako auttaa hahmottamaan ohjelman kulun ja sen, miten eri osat liittyvät toisiinsa.</p>
+<h3 id="syöte-eli-input"><a class="header" href="#syöte-eli-input">Syöte eli input</a></h3>
+<p>Syöte tarkoittaa tietoa, jota ohjelma saa ulkopuolelta. Tämä tieto voi tulla esimerkiksi käyttäjältä, joka kirjoittaa jotain näytölle ilmestyvään tekstikenttään, tai se voi olla tiedostossa oleva tieto, jonka ohjelma lukee automaattisesti. Ilman syötettä ohjelma toimisi aina samalla tavalla eikä voisi reagoida tilanteisiin tai käyttäjän tarpeisiin.</p>
+<h3 id="käsittely-eli-prosessointi"><a class="header" href="#käsittely-eli-prosessointi">Käsittely eli prosessointi</a></h3>
+<p>Kun tiedot on saatu syötteenä, ohjelma siirtyy seuraavaan vaiheeseen: käsittelyyn eli prosessointiin. Tässä vaiheessa ohjelma tekee varsinaisen työnsä. Se voi laskea, vertailla, muuntaa tai muuten käsitellä syötetietoja logiikan mukaisesti. Prosessointi on ohjelman ydin – siinä tapahtuu se, mitä varten ohjelma on kirjoitettu. Esimerkiksi laskinohjelmassa tämä vaihe tarkoittaa laskutoimituksen suorittamista käyttäjän syöttämien lukujen perusteella.</p>
+<h3 id="tulostus-eli-output"><a class="header" href="#tulostus-eli-output">Tulostus eli output</a></h3>
+<p>Kun tiedot on käsitelty, ohjelma siirtyy viimeiseen vaiheeseen eli tulostukseen. Tällöin ohjelma antaa käyttäjälle jotain näkyvää palautetta – esimerkiksi näyttää laskutoimituksen tuloksen, piirtää kuvaajan tai tallentaa tuloksen tiedostoon. Tuloste on ohjelman tapa kertoa, mitä tapahtui. Se voi olla yhtä yksinkertainen kuin teksti "Valmis!" ruudulla, tai monimutkaisempi esitys tuloksista, esimerkiksi tilasto tai raportti.</p>
+<p>Yhteenvetona voi sanoa, että ohjelma on joukko ohjeita, joiden avulla tietokone osaa ottaa vastaan tietoa, käsitellä sen halutulla tavalla ja näyttää tai tallentaa tulokset. Tämä kolmiosainen rakenne – syöte, prosessointi ja tuloste – on läsnä melkein jokaisessa ohjelmassa, yksinkertaisimmista laskimista monimutkaisiin verkkosovelluksiin. <strong>Ohjelmointi on siis ennen kaikkea järjestelmällistä ongelmanratkaisua, jossa kone tekee työn, mutta ihminen määrittää säännöt</strong>.</p>
+<h3 id="koodilause"><a class="header" href="#koodilause">Koodilause</a></h3>
+<p>Koodilause on ohjelmointikielessä yksi yksittäinen käsky tai toimenpide, jonka tietokone suorittaa. Jokainen koodilause kertoo tietokoneelle, mitä se tekee seuraavaksi – esimerkiksi luo muuttujan, laskee jotain, näyttää tietoa tai muuttaa tietoa. Lauseita suoritetaan yleensä ylhäältä alas, yksi kerrallaan, siinä järjestyksessä kuin ne on kirjoitettu.</p>
+<p>Koodilause muistuttaa tavallisen kielen virkettä: siinä on aina jokin toiminto ja usein myös kohde, johon toiminto kohdistuu. Esimerkiksi lause "Anna Maijalle omena" kertoo, kuka saa mitä. Vastaavasti ohjelmointikielen lause voi sanoa: "laske yhteen nämä luvut ja tallenna tulos".</p>
+<h2 id="miten-testaan-nopeasti-javascript-lauseen"><a class="header" href="#miten-testaan-nopeasti-javascript-lauseen">Miten testaan nopeasti JavaScript-lauseen?</a></h2>
+<p>Alla on pieni video, jossa esitellään selaimesta löytyvän konsolin käyttöä lyhyesti.</p>
+<p><a href="https://www.youtube.com/watch?v=K5MPBOznDSc" target=_blank><img src="osa2/console.jpg"></a></p>
+<p>Klikkaa yllä olevaa kuvaa nähdäksesi videon.</p>
+<p>Muutamia esimerkkejä JavaScriptin koodilauseista:</p>
+<pre><code class="language-javascript">let nimi = "Anna"
+</code></pre>
+<p>Tämä lause luo muuttujan nimeltä <code>nimi</code> ja tallentaa siihen tekstin <code>"Anna"</code>.</p>
+<pre><code class="language-javascript">let summa = 5 + 3
+</code></pre>
+<p>Tässä lasketaan yhteen luvut 5 ja 3, ja tulos (eli 8) tallennetaan muuttujaan <code>summa</code>.</p>
+<pre><code class="language-javascript">console.log("Hei maailma!")
+</code></pre>
+<p>Tämä lause näyttää tekstin selaimen konsolissa. Konsoliin tulostaminen  on yleinen tapa tarkistaa, mitä ohjelma tekee.</p>
+<pre><code class="language-javascript">luku++
+</code></pre>
+<p>Tämä lause kasvattaa yhdellä kokonaisluvun sisältävää muuttujaa nimeltä <code>luku</code>. Se on lyhyempi tapa kirjoittaa <code>luku = luku + 1</code>.</p>
+<p>Jokainen näistä esimerkeistä on yksi itsenäinen koodilause. Ohjelma koostuu useista tällaisista lauseista, jotka muodostavat yhdessä toimivan kokonaisuuden. Aivan aluksi tärkeää on oppia lukemaan ja kirjoittamaan näitä lauseita selkeästi ja loogisesti.</p>
+<br>
+<p><img src="osa2/process.png" alt="ohjelman rakenne" title="Ohjelman rakenne" /></p>
+<br>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="muuttujat-ja-tietotyypit"><a class="header" href="#muuttujat-ja-tietotyypit">Muuttujat ja tietotyypit</a></h1>
+<h2 id="muuttujat"><a class="header" href="#muuttujat">Muuttujat</a></h2>
+<p>Muuttujat ovat säilytyspaikkoja arvoille eli datalle. Ne mahdollistavat sen, että koodisi voi käsitellä vaihtelevaa tietoa – kuten käyttäjän nimeä tai laskun summaa. Tieto pysyy muuttujassa tallessa koko ohjelman suorituksen ajan.</p>
+<p>Lisätietoa ja harjoituksia löytyy esimerkiksi sivustosta <a href="https://www.w3schools.com/js/js_variables.asp">W3Schools Variables</a>.</p>
+<p>Ohjelmoija voi halutessaan muuttaa muuttujan arvoja ohjelman suorituksen aikana vaikka monta kertaa, esimerkiksi pelissä voi pelaajan pistemäärä olla tallennettuna muuttujaan ja aina kun pelaaja onnistuu jossain uudessa asiassa, hänen piste-muuttujansa arvoa kasvatetaan.</p>
+<p>Muuttuja <strong>esitellään</strong> ennen sen ensimmäistä käyttöä varatulla komentosanalla <code>let</code>. Koodi toimii valitettavasti myös, vaikka let-komennon jättää pois, mutta tällöin muuttujasta tulee vahingossa ns. globaali. Muista siis esitellä aina muuttuja oikealla tavalla.</p>
+<p>JavaScriptin koodilause päättyy joko rivinvaihtoon (ENTER) tai puolipisteeseen. Nykytavan mukaan puolipisteitä ei enää käytetä, mutta niiden käyttö ei ole virhe. Alla olevat kaksi koodilausetta päättyvät puolipisteeseen.</p>
+<pre><code class="language-javascript">let nimi = "Anna";
+let ika = 16;
+</code></pre>
+<p>Seuraavat koodirivit päättyvät rivinvaihtoon ilman puolipistettä. Huomaa, desimaalierotin on desimaalipiste eikä suomen kielen kieliopin mukainen pilkku. Kolmannella rivillä <code>hinta</code>-muuttujaan tallennetaan uusi arvo, joka korvaa vanhan. Vain viimeisin arvo jää jäljelle. Myöskään muuttujaa ei kolmannella rivillä enää uudelleen esitellä, koska se on <code>let</code>-komennolla esitelty jo aiemmin.</p>
+<pre><code class="language-javascript">let hinta = 5.95
+let alePros = 0.2
+hinta = 4.76
+</code></pre>
+<p>Muistettavaa muuttujista:</p>
+<ul>
+<li>Käytä kuvaavia nimiä (ika, etunimi) – ei pelkkiä kirjaimia (x, y).</li>
+<li>Muuttujan nimi ei saa sisältää välilyöntejä.</li>
+<li>Vältä muuttujien nimeämisessä skandinaavisia kirjaimia, osa työkaluista tai kirjastoista voi toimia väärin</li>
+<li>Käytä camelCase-tyyliä: esim. <code>kokoNimi</code> tai alaviivoja esim. <code>ale_prosentti</code> kun muuttujan nimi on pitkä yhdyssana.</li>
+</ul>
+<h2 id="perustietotyypit-primitiiivit"><a class="header" href="#perustietotyypit-primitiiivit">Perustietotyypit (primitiiivit)</a></h2>
+<p>Muuttujille voi antaa eri tyyppisiä arvoja. JavaScript tunnistaa tyypin automaattisesti.</p>
+<p>Tärkeimmät tietotyypit:</p>
+<div class="table-wrapper"><table><thead><tr><th>Tyyppi</th><th>Esimerkki</th><th>Selitys</th></tr></thead><tbody>
+<tr><td>String</td><td>"Moikka"</td><td>Teksti (merkkijono)</td></tr>
+<tr><td>Number</td><td>42, 3.14</td><td>Luku (kokonais- tai desimaali)</td></tr>
+<tr><td>Boolean</td><td>true, false</td><td>Totuusarvo (kyllä/ei)</td></tr>
+<tr><td>Undefined</td><td>muuttuja ilman arvoa</td><td>Esim. let x</td></tr>
+<tr><td>Null</td><td>null</td><td>Tarkoituksella "tyhjä"</td></tr>
+</tbody></table>
+</div>
+<pre><code class="language-javascript">let teksti = "Hei"
+let luku = 100
+let totuus = true
+let eiMaaritetty
+let tyhja = null
+</code></pre>
+<h3 id="tekstin-kirjoitus"><a class="header" href="#tekstin-kirjoitus">Tekstin kirjoitus</a></h3>
+<p>Koska tekstimuotoinen data voi sisältää kaikkia merkkejä, myös välilyöntejä ja erikoismerkkejä, tekstimuotoinen data on ympäröitävä erotinmerkeillä, joita on kolmea tyyppiä. Voit käyttää tekstiin heittomerkkejä eli 'hipsuja', lainausmerkkejä tai backtick-merkkejä:</p>
+<pre><code class="language-javascript">let eka = 'Hei'
+let toka = "Moi"
+// tämä on kommentti
+let kolmas = `Terve, ${eka}` // muuttujan upotus tulostukseen
+</code></pre>
+<h3 id="kommentit-ja-kaltevat-viivat"><a class="header" href="#kommentit-ja-kaltevat-viivat">Kommentit ja "kaltevat" viivat</a></h3>
+<p>Koodin joukkoon voi lisätä yllä olevan esimerkin mukaan <strong>kommentteja</strong>, eli ohjelmoijan omia muistiinpanoja. Ne eivät vaikuta ohjelman toimintaan vaan ovat pelkästään ihmisen luettavaksi tarkoitettuja huomautuksia tai vastaavaa. Kommentti aloitetaan kirjoittamalla peräkkäin kaksi kauttaviivaa <code>// tämä on kommentti</code>. Kauttaviivat ovat eri merkki, kuin seuraavassa esiteltävät <strong>kenoviivat</strong>, jotka osoittavat ikään kuin kello 11:een, kun taas kauttaviivat osoittavat kello 1:een.</p>
+<p>Muista: kauttaviiva <code>/</code> ja kenoviiva <code>\</code> ovat eri merkki ja saavat aikaan eri toimintoja. Seuraavaksi eräs kenoviivan käyttötarkoitus, eli escape-merkit.</p>
+<p><strong>Escape-merkit</strong> ovat erikoismerkkejä, joita käytetään ohjelmoinnissa, kun halutaan lisätä koodiin merkkejä, joita ei voi kirjoittaa suoraan sellaisenaan. Näitä merkkejä tarvitaan, koska jotkut merkit JavaScriptissä (ja muissa kielissä) tulkitaan erikoistarkoitukseen, eikä niitä voi käyttää normaalina tekstinä ilman erityistä käsittelyä.</p>
+<p>Escape-merkki on kenoviiva <code>\</code>, jota seuraa jokin muu merkki. Tämä yhdistelmä kertoo JavaScriptille: "älä käsittele seuraavaa merkkiä tavalliseen tapaan, vaan tulkitse se erikoismerkkinä".</p>
+<p>Muutama Escape-merkki:</p>
+<ul>
+<li>\' ja \" sallivat kirjoittaa lainausmerkin osaksi merkkijonoa</li>
+<li>\n tekee rivinvaihdon</li>
+<li>\\ lisää kenoviivan</li>
+</ul>
+<p>Esimerkki merkkijonosta, joka sisältää Escape-merkkejä:</p>
+<pre><code class="language-javascript">let eka = "Täällä on kenoviiva \\ ja lainausmerkki \" tekstin joukossa."
+</code></pre>
+<p>Ylläolevan muuttujan tulostus tuottaa tällaisen rivin:</p>
+<pre><code class="language-text">Täällä on kenoviiva \ ja lainausmerkki " tekstin joukossa.
+</code></pre>
+<p>Kun haluat tulostaa tekstin kahdelle riville, lisää haluamaasi kohtaan \n.</p>
+<pre><code class="language-javascript">let esimerkki = "Hei, mitä kuuluu?\nKaikki hyvin."
+</code></pre>
+<h3 id="tietotyypin-tarkistus"><a class="header" href="#tietotyypin-tarkistus">Tietotyypin tarkistus</a></h3>
+<p>Voit tarkistaa muuttujan tietotyypin komennolla typeof.</p>
+<pre><code class="language-javascript">let luku = 10
+console.log(typeof luku) // "number"
+</code></pre>
+<h3 id="tyyppimuunnokset"><a class="header" href="#tyyppimuunnokset">Tyyppimuunnokset</a></h3>
+<p>JavaScript muuntaa joskus tyyppejä automaattisesti. Tämä voi yllättää:</p>
+<pre><code class="language-javascript">let a = 2
+let b = "2"
+console.log(a + b) // "22" (yhdistää tekstiksi)
+</code></pre>
+<p>Voit myös muuntaa tyyppejä itse:</p>
+<pre><code class="language-javascript">Number("123")  // 123
+String(456)    // "456"
+Boolean("")    // false
+</code></pre>
+<h3 id="yhteenveto"><a class="header" href="#yhteenveto">Yhteenveto</a></h3>
+<ul>
+<li>Käytä let muuttujien luomiseen.</li>
+<li>Muista tietotyypit: teksti, luku, tosi/epätosi.</li>
+<li>Kirjoita kuvaavia muuttujanimiä.</li>
+<li>Tarkista tyyppi typeof-komennolla.</li>
+<li>Tyyppimuunnokset voivat aiheuttaa yllätyksiä.</li>
+</ul>
+<br>
+<h2 id="esimerkit"><a class="header" href="#esimerkit">Esimerkit</a></h2>
+<p>JavaScript-koodi kirjoitetaan HTML-sivulle <code>&lt;script&gt;</code>-elementin sisään. Tämä tarkoittaa, että voit lisätä koodin suoraan HTML-tiedostoon, ja selain suorittaa sen, kun sivu avataan. Kaikki JavaScript kirjoitetaan <code>&lt;script&gt;</code>- ja <code>&lt;/script&gt;</code>-tägien väliin. Se voi olla sivun alussa, lopussa tai erillisessä tiedostossa.</p>
+<h3 id="missä-kohtaa-htmlää-script-elementti-voi-olla"><a class="header" href="#missä-kohtaa-htmlää-script-elementti-voi-olla">Missä kohtaa HTML:ää <code>&lt;script&gt;</code>-elementti voi olla?</a></h3>
+<ul>
+<li><code>&lt;script&gt;</code>-elementti voidaan sijoittaa kahteen yleiseen paikkaan:</li>
+<li><code>&lt;head&gt;</code>-elementin sisälle</li>
+<li><code>&lt;body&gt;</code>-elementin sisälle</li>
+</ul>
+<p>Usein <code>&lt;script&gt;</code> sijoitetaan <code>&lt;body&gt;</code>-elementin sisään ja sen loppuun. Kun selain lukee HTML-tiedostoa ylhäältä alas, se lukee ja suorittaa koodin heti kun se kohtaa sen. Jos JavaScript yritetään suorittaa ennen kuin sivun sisältö on ehtinyt latautua (esimerkiksi ennen kuin elementit kuten <code>&lt;p id="tulos"&gt;</code> ovat olemassa), koodi ei välttämättä toimi oikein – selain ei vielä "näe" niitä elementtejä.</p>
+<p>Siksi on hyvä tapa sijoittaa <code>&lt;script&gt;</code>-elementti juuri ennen sivun rungon lopettavaa <code>&lt;body&gt;</code>-tagia,</p>
+<p>Alla on muutamia esimerkkejä ja niiden jälkeen harjoituksia, joiden avulla voit itse kokeilla miten koodaaminen onnistuu.</p>
+<h3 id="esimerkki-1"><a class="header" href="#esimerkki-1">Esimerkki 1</a></h3>
+<p>Luo muuttuja nimeltä <code>ilmoitus</code>, jonka arvo on <code>"Tervetuloa koodauskurssille!</code>.</p>
+<p><strong>Suoritusohje:</strong> Tulosta se alert-ikkunassa. Tee koodistasi kokonainen html-tiedosto ja tallenna se nimellä <code>esimerkki1.html</code>. Avaa luomasi tiedosto selaimessa.</p>
+<h4 id="esimerkki1html"><a class="header" href="#esimerkki1html">esimerkki1.html:</a></h4>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+  &lt;meta charset="UTF-8"&gt;
+  &lt;title&gt;Esimerkki 1&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;script&gt;
+    let ilmoitus = "Tervetuloa koodauskurssille!"
+    alert(ilmoitus)
+  &lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<h3 id="esimerkki-2"><a class="header" href="#esimerkki-2">Esimerkki 2</a></h3>
+<p>Luo muuttuja <code>oppilas</code>, jonka arvo on <code>"Lauri"</code>, ja muuttuja <code>pisteet</code>, jonka arvo on <code>95</code>. Tulosta console.log-komennolla teksti</p>
+<pre><code>Oppilas: Lauri, Pisteet: 95
+</code></pre>
+<h4 id="esimerkki2html"><a class="header" href="#esimerkki2html">esimerkki2.html:</a></h4>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+  &lt;meta charset="UTF-8"&gt;
+  &lt;title&gt;Esimerkki 2&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;script&gt;
+    let oppilas = "Lauri"
+    let pisteet = 95
+    console.log("Oppilas: " + oppilas + ", Pisteet: " + pisteet)
+  &lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<h3 id="esimerkki-3"><a class="header" href="#esimerkki-3">Esimerkki 3</a></h3>
+<p>Luo muuttuja <code>ekaLuku</code>, jonka arvo on <code>12</code>, ja <code>tokaLuku</code>, jonka arvo on <code>8</code>. Laske niiden summa ja näytä se sivulla HTML-elementissä, jonka id on <code>tulos</code>.</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+  &lt;meta charset="UTF-8"&gt;
+  &lt;title&gt;Esimerkki 3&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;p id="tulos"&gt;&lt;/p&gt;
+
+  &lt;script&gt;
+    let ekaLuku = 12
+    let tokaLuku = 8
+    let yhteensa = ekaLuku + tokaLuku
+    document.getElementById("tulos").innerHTML = "Lukujen yhteissumma on: " + yhteensa
+  &lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<h2 id="harjoitukset"><a class="header" href="#harjoitukset">Harjoitukset</a></h2>
+<p>Harjoitukset ov tarkoitettu itseopiskeluun. Yritä ratkaista annetut harjoitustehtävät. Jos haluat, saat käyttää apunasi tekoälyä siinä muodossa, että teet kysymyksiä, jotka alkavat sanalla "miksi."</p>
+<p>Näitä harjoituksia ei arvioida eikä niistä saa pisteitä valintaprosessiin, mutta niiden kautta oppii uutta, jota tarvitset myöhemmin tämän hakukurssin varsinaisessa arvioitavassa näyttötehtävässä.</p>
+<h3 id="harjoitus-1"><a class="header" href="#harjoitus-1">Harjoitus 1</a></h3>
+<p>Luo muuttuja nimeltä <code>tervehdys</code>, jonka arvo on <code>"Hei maailma!"</code>. Tulosta se alert-ikkunassa.</p>
+<h3 id="harjoitus-2"><a class="header" href="#harjoitus-2">Harjoitus 2</a></h3>
+<p>Luo muuttuja <code>nimi</code>, jonka arvo on <code>"Emma"</code>, ja muuttuja <code>ika</code>, jonka arvo on <code>23</code>. Tulosta console.log-komennolla teksti</p>
+<pre><code>Nimi: Emma, Ikä: 23
+</code></pre>
+<h3 id="harjoitus-3"><a class="header" href="#harjoitus-3">Harjoitus 3</a></h3>
+<p>Luo muuttuja <code>luku1</code>, jonka arvo on <code>5</code>, ja <code>luku2</code>, jonka arvo on <code>3</code>. Laske niiden summa ja näytä se sivulla HTML-elementissä, jonka id on <code>summa</code>.</p>
+<h3 id="harjoitus-4"><a class="header" href="#harjoitus-4">Harjoitus 4</a></h3>
+<p>Luo muuttuja <code>teksti</code>, jonka arvo on <code>"JavaScript on kivaa"</code> ja näytä se HTML-elementissä, jonka id on <code>viesti</code>.</p>
+<h3 id="harjoitus-5"><a class="header" href="#harjoitus-5">Harjoitus 5</a></h3>
+<p>Luo muuttuja <code>totuus</code> arvolla <code>true</code> ja näytä sen tietotyyppi HTML-elementissä, jonka id on <code>tyyppi</code>.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="operaattorit"><a class="header" href="#operaattorit">Operaattorit</a></h1>
+<p>Operaattorit ovat symboleita, joilla voidaan tehdä laskutoimituksia ja muokata muuttujien arvoja. Ne ovat ohjelmoinnin perusrakennuspalikoita, aivan kuten matikassa + ja -.</p>
+<p>Lisätietoja ja lisäharjoituksia löytyy esimerkiksi sivustosta <a href="https://www.w3schools.com/js/js_operators.asp">W3Schools Operators</a>.</p>
+<h2 id="laskuoperaattorit"><a class="header" href="#laskuoperaattorit">Laskuoperaattorit</a></h2>
+<p>Yksi tärkeimmistä operaattoreista on <strong>sijoitusoperaattori</strong> jota merkitään yhdellä yhtysuuruusmerkillä (=). Se on tavallaan suora määräys tietokoneelle, että <strong>sijoita merkin oikealla puolella oleva arvo vasemmalla olevaan muuttujaan</strong>. Muista, aina oikealta vasemmalle.</p>
+<p>Näitä esimerkkejä oli jo aiemmin, mutta tässä vielä kertauksena:</p>
+<pre><code class="language-javascript">let nimi
+nimi = "Eino"
+let ika = 35
+</code></pre>
+<p>JavaScript tukee kaikkia tuttuja peruslaskuja:</p>
+<p><strong>Yhteenlasku (+)</strong></p>
+<ul>
+<li>Numeroiden laskemiseen:</li>
+</ul>
+<pre><code class="language-javascript">let a = 10 + 5 // 15
+</code></pre>
+<ul>
+<li>Tekstien yhdistämiseen (yhdistely eli katenointi yhdistää merkkijonot):</li>
+</ul>
+<pre><code class="language-javascript">let tervehdys = "Hei " + "Maija" // "Hei Maija"
+</code></pre>
+<p><strong>Vähennyslasku (-)</strong></p>
+<ul>
+<li>Vähentää luvut normaalisti.</li>
+</ul>
+<pre><code class="language-javascript">let erotus = 20 - 4 // 16
+</code></pre>
+<p><strong>Kertolasku (*)</strong></p>
+<ul>
+<li>Kertoo kaksi lukua.</li>
+</ul>
+<pre><code class="language-javascript">let tulo = 6 * 3 // 18
+</code></pre>
+<p><strong>Jakolasku (/)</strong></p>
+<ul>
+<li>Jakaa luvut.</li>
+</ul>
+<pre><code class="language-javascript">let jako = 30 / 5 // 6
+</code></pre>
+<p><strong>Potenssi (**)</strong></p>
+<ul>
+<li>Korottaa luvun potenssiin.</li>
+</ul>
+<pre><code class="language-javascript">let potenssi = 2 ** 4 // 16 (eli 2*2*2*2)
+</code></pre>
+<p><strong>Jakojäännös (modulo) (%)</strong></p>
+<ul>
+<li>Palauttaa jakolaskun jakojäännöksen</li>
+</ul>
+<pre><code class="language-javascript">let jakojaannos = 10 % 3 // 1
+</code></pre>
+<h3 id="muuttujan-arvon-muuttaminen"><a class="header" href="#muuttujan-arvon-muuttaminen">Muuttujan arvon muuttaminen</a></h3>
+<p><strong>Kasvatus yhdellä (++)</strong></p>
+<ul>
+<li>Lisää muuttujan arvoon yksi:</li>
+</ul>
+<pre><code class="language-javascript">let luku = 4
+luku++ // nyt luku on 5
+</code></pre>
+<p><strong>Vähennys yhdellä (--)</strong></p>
+<ul>
+<li>Vähentää yhdellä:</li>
+</ul>
+<pre><code class="language-javascript">let luku = 4
+luku-- // nyt luku on 3
+</code></pre>
+<h3 id="toimintojen-järjestys"><a class="header" href="#toimintojen-järjestys">Toimintojen järjestys</a></h3>
+<p>Operaattoreilla on tietty laskujärjestys (kuten matikassa):</p>
+<ul>
+<li>Sulut ()</li>
+<li>Potenssi **</li>
+<li>Kertolasku, jakolasku ja jakojäännös *, /, %</li>
+<li>Yhteen- ja vähennyslasku +, -</li>
+</ul>
+<p>Esimerkiksi:</p>
+<pre><code class="language-javascript">let tulos = (2 + 3) * 4 // tulos on 20, koska sulut lasketaan ensin
+</code></pre>
+<h3 id="yhteenveto-1"><a class="header" href="#yhteenveto-1">Yhteenveto</a></h3>
+<ul>
+<li>Käytä operaattoreita laskemiseen ja tekstin yhdistämiseen.</li>
+<li>+ toimii sekä lukujen että tekstin kanssa.</li>
+<li>Modulo (%) kertoo, mitä jää jäljelle jaossa.</li>
+<li>++ ja -- ovat lyhenteitä yhden lisäämiselle tai vähentämiselle.</li>
+<li>Käytä sulkuja selkeyttämään laskujen järjestystä.</li>
+</ul>
+<h2 id="harjoitukset-1"><a class="header" href="#harjoitukset-1">Harjoitukset</a></h2>
+<p>harjoitukset ovat vapaaehtoisia eikä niitä arvioida. Niissä on kuitenkin tärkeitä opiskeltavia asioita, jonka vuoksi niiden suorittaminen on erittäin suositeltavaa.</p>
+<h3 id="harjoitus-6"><a class="header" href="#harjoitus-6">Harjoitus 6</a></h3>
+<p>Laske kahden luvun summa ja näytä tulos sivulla (innerHTML-tekniikkla)</p>
+<h3 id="harjoitus-7"><a class="header" href="#harjoitus-7">Harjoitus 7</a></h3>
+<p>Vähennä yksi luku toisesta ja tulosta tulos alert-ikkunassa.</p>
+<h3 id="harjoitus-8"><a class="header" href="#harjoitus-8">Harjoitus 8</a></h3>
+<p>Kerro kaksi lukua ja näytä tulos console.log-komennolla.</p>
+<h3 id="harjoitus-9"><a class="header" href="#harjoitus-9">Harjoitus 9</a></h3>
+<p>Laske jakojäännös kahdesta luvusta ja näytä tulos HTML:ssä.</p>
+<h3 id="harjoitus-10"><a class="header" href="#harjoitus-10">Harjoitus 10</a></h3>
+<p>Lisää muuttujaan yksi ja näytä uusi arvo innerHTML:ssä.</p>
+<h2 id="harjoitusten-mallivastaukset"><a class="header" href="#harjoitusten-mallivastaukset">Harjoitusten mallivastaukset</a></h2>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+  &lt;meta charset="UTF-8"&gt;
+  &lt;title&gt;Harjoitus 6 – Summa&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;p id="summa"&gt;&lt;/p&gt;
+  &lt;script&gt;
+    let luku1 = 7
+    let luku2 = 5
+    let summa = luku1 + luku2
+    document.getElementById("summa").innerHTML = "Summa on: " + summa
+  &lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+  &lt;meta charset="UTF-8"&gt;
+  &lt;title&gt;Harjoitus 7 – Vähennys&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;script&gt;
+    let luku1 = 10
+    let luku2 = 4
+    let erotus = luku1 - luku2
+    alert("Erotus on: " + erotus)
+  &lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+  &lt;meta charset="UTF-8"&gt;
+  &lt;title&gt;Harjoitus 8 – Kertolasku&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;script&gt;
+    let luku1 = 6
+    let luku2 = 3
+    let tulo = luku1 * luku2
+    console.log("Tulo on: " + tulo)
+  &lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+  &lt;meta charset="UTF-8"&gt;
+  &lt;title&gt;Harjoitus 9 – Jakojäännös&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;p id="mod"&gt;&lt;/p&gt;
+  &lt;script&gt;
+    let luku1 = 13
+    let luku2 = 5
+    let jakojaannos = luku1 % luku2
+    document.getElementById("mod").innerHTML = "Jakojäännös on: " + jakojaannos
+  &lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+  &lt;meta charset="UTF-8"&gt;
+  &lt;title&gt;Harjoitus 5 – ++ Operaattori&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;p id="luku"&gt;&lt;/p&gt;
+  &lt;script&gt;
+    let pisteet = 10
+    pisteet++
+    document.getElementById("luku").innerHTML = "Pisteet nyt: " + pisteet
+  &lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<h2 id="vertailuoperaattorit"><a class="header" href="#vertailuoperaattorit">Vertailuoperaattorit</a></h2>
+<p>JavaScriptissä on operaattoreita, joita käytetään vertaamaan arvoja keskenään. Näitä kutsutaan vertailuoperaattoreiksi (comparison operators).</p>
+<p>Vertailun tuloksena saadaan tosi (true) tai epätosi (false) arvo.</p>
+<h3 id="tärkeimmät-vertailuoperaattorit"><a class="header" href="#tärkeimmät-vertailuoperaattorit">Tärkeimmät vertailuoperaattorit</a></h3>
+<div class="table-wrapper"><table><thead><tr><th>Operaattori</th><th>Selitys</th><th>Esimerkki</th><th>Tulos</th></tr></thead><tbody>
+<tr><td>==</td><td>Onko arvot yhtäsuuret?</td><td>a == 6</td><td>false</td></tr>
+<tr><td>!=</td><td>Onko arvot erisuuret?</td><td>a != 6</td><td>true</td></tr>
+<tr><td>&gt;</td><td>Onko suurempi kuin?</td><td>a &gt; 4</td><td>true</td></tr>
+<tr><td>&lt;</td><td>Onko pienempi kuin?</td><td>a &lt; 4</td><td>false</td></tr>
+<tr><td>&gt;=</td><td>Onko suurempi tai yhtä suuri?</td><td>a &gt;= 5</td><td>true</td></tr>
+<tr><td>&lt;=</td><td>Onko pienempi tai yhtä suuri?</td><td>a &lt;= 4</td><td>false</td></tr>
+</tbody></table>
+</div>
+<h2 id="esimerkkejä-vertailuista"><a class="header" href="#esimerkkejä-vertailuista">Esimerkkejä vertailuista</a></h2>
+<p>Alla on kolme yksinkertaista esimerkkiä, jotka voit avata selaimessa ja nähdä tulokset suoraan:</p>
+<p><strong>esimerkki4.html</strong></p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+  &lt;meta charset="UTF-8"&gt;
+  &lt;title&gt;Vertailuoperaattorit – Esimerkki 4&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;p id="tulos1"&gt;&lt;/p&gt;
+  &lt;script&gt;
+    let a = 5
+    let vertailu = (a == 5)
+    document.getElementById("tulos1").innerHTML = "Onko a yhtä kuin 5? " + vertailu
+  &lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><strong>esimerkki5.html</strong></p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+  &lt;meta charset="UTF-8"&gt;
+  &lt;title&gt;Vertailuoperaattorit – Esimerkki 5&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;p id="tulos2"&gt;&lt;/p&gt;
+  &lt;script&gt;
+    let a = 5
+    let vertailu = (a &lt; 4)
+    document.getElementById("tulos2").innerHTML = "Onko a pienempi kuin 4? " + vertailu
+  &lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><strong>esimerkki6.html</strong></p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+  &lt;meta charset="UTF-8"&gt;
+  &lt;title&gt;Vertailuoperaattorit – Esimerkki 6&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;p id="tulos3a"&gt;&lt;/p&gt;
+  &lt;p id="tulos3b"&gt;&lt;/p&gt;
+  &lt;p id="tulos3c"&gt;&lt;/p&gt;
+
+  &lt;script&gt;
+    let a = 5
+    document.getElementById("tulos3a").innerHTML = "a != 6 on " + (a != 6)
+    document.getElementById("tulos3b").innerHTML = "a &gt;= 5 on " + (a &gt;= 5)
+    document.getElementById("tulos3c").innerHTML = "a &lt;= 4 on " + (a &lt;= 4)
+  &lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="ohjausrakenteet-ja-lohko"><a class="header" href="#ohjausrakenteet-ja-lohko">Ohjausrakenteet ja lohko</a></h1>
+<h2 id="ohjausrakenteet"><a class="header" href="#ohjausrakenteet">Ohjausrakenteet</a></h2>
+<p>Ohjausrakenteet ovat ohjelmoinnissa keinoja hallita, mitä osia koodista suoritetaan ja missä järjestyksessä. Ne mahdollistavat esimerkiksi ehtojen tarkistamisen ja toistuvien toimintojen suorittamisen. Ilman ohjausrakenteita ohjelma suorittaisi koodirivit vain ylhäältä alas, yksi kerrallaan, ilman mahdollisuutta valintoihin tai toistoihin.</p>
+<p>Lisätietoja ja lisäharjoituksia löytyy esimerkiksi seuraavista sivustoista:</p>
+<ul>
+<li><a href="https://www.w3schools.com/js/js_if_else.asp">W3Schools IF/Else</a></li>
+<li><a href="https://www.w3schools.com/js/js_loop_while.asp">W3Schools While Loop</a></li>
+<li><a href="https://www.w3schools.com/js/js_loop_for.asp">W3Schools For Loop</a></li>
+</ul>
+<h2 id="lohko"><a class="header" href="#lohko">Lohko</a></h2>
+<p>Lohko tarkoittaa joukkoa koodirivejä, jotka kuuluvat yhteen. Lohko merkitään JavaScriptissä aaltosulkujen <code>{ }</code> sisään. Esimerkiksi if-ehtolauseessa lohko kertoo, mitä tapahtuu, jos ehto toteutuu.</p>
+<p>Tyypillisesti eri ohjausrakenteet ovat alla olevan muotoisia:</p>
+<pre><code class="language-javascript">ohjauskomento (ehto) {
+    koodilause
+    koodilause
+    koodilause
+}
+</code></pre>
+<p>Yllä olevassa esimerkissä "ohjauskomento" voisi olla esimerkiksi <code>while</code> tai <code>if</code>. Ohjauskomennon jälkeen on normaalisti suluissa oleva ehto (tai muun tyyppinen  lauseke, kuten <code>for</code>-rakenteessa), joka määrää, suoritetaanko kyseinen lohko.</p>
+<p>Lohko suoritetaan aina kokonaisuudessaan tai jätetään kokonaan väliin – yksittäisiä lauseita ei hypitä yli. Näin lohko sitoo useamman lauseen yhdeksi ehjäksi kokonaisuudeksi.</p>
+<h2 id="esimerkit-1"><a class="header" href="#esimerkit-1">Esimerkit</a></h2>
+<p><strong>if-else (ehtolause):</strong></p>
+<p>Alla olevassa if-else-rakenteessa tarkistetaan, onko muuttujan <code>numero</code> arvo suurempi kuin 0. Jos ehto <code>numero &gt; 0</code> on tosi, suoritetaan lohkossa oleva koodi ja tulostetaan "Luku on positiivinen". Jos ehto ei ole tosi, siirrytään else-haaraan ja tulostetaan "Luku ei ole positiivinen". Tämä rakenne on hyödyllinen silloin, kun halutaan tehdä eri asioita tilanteen mukaan. Ohjelma siis tekee joko/tai -päätöksiä annetun ehdon perusteella.</p>
+<pre><code class="language-javascript">let numero = 5;
+if (numero &gt; 0) {
+  console.log("Luku on positiivinen");
+} else {
+  console.log("Luku ei ole positiivinen");
+}
+</code></pre>
+<p><strong>while (toistolause, kunnes ehto ei enää pidä paikkaansa):</strong></p>
+<p>While-rakenteessa ohjelma toistaa lohkon sisällä olevaa koodia niin kauan kuin annettu ehto on tosi. Tässä esimerkissä ehto on <code>i &lt; 3</code>, eli toisto jatkuu niin kauan kuin muuttuja <code>i</code> on pienempi kuin 3. Jokaisella kierroksella tulostetaan "Toisto numero: " ja muuttujan <code>i</code> arvo. Lohkon viimeisellä rivillä <code>i</code>-muuttujaa kasvatetaan yhdellä, jotta toisto lopulta päättyy. Tämä rakenne sopii tilanteisiin, joissa ei välttämättä tiedetä etukäteen montako kertaa toistoa tarvitaan.</p>
+<pre><code class="language-javascript">let i = 0;
+while (i &lt; 3) {
+  console.log("Toisto numero: " + i);
+  i++;
+}
+</code></pre>
+<p><strong>for (toistolause, jolla toistoa ohjataan laskurimuuttujalla):</strong></p>
+<p>For-rakenteessa toisto tapahtuu ennalta määrätyn määrän kertoja. Esimerkissä toisto alkaa, kun muuttuja <code>i</code> on 0, ja jatkuu niin kauan kuin <code>i &lt; 5</code>. Jokaisella kierroksella tulostetaan "Luku: " ja <code>i</code>-muuttujan arvo. Toiston lopussa <code>i</code> kasvaa yhdellä (<code>i++</code>), kunnes se saavuttaa arvon 5 ja ehto ei enää täyty. For-silmukka on kätevä silloin, kun tiedetään tarkalleen, montako kertaa toistoa tarvitaan.</p>
+<pre><code class="language-javascript">for (let i = 0; i &lt; 5; i++) {
+  console.log("Luku: " + i);
+}
+</code></pre>
+<h2 id="harjoitukset-2"><a class="header" href="#harjoitukset-2">Harjoitukset</a></h2>
+<p>Seuraavien harjoitusten kanssa käytetään automaattista koodintarkistuspalvelua Codecheck.io.</p>
+<h3 id="harjoitus-11"><a class="header" href="#harjoitus-11">Harjoitus 11</a></h3>
+<p>Kirjoita if-else -rakenne, joka testaa annetun muuttujan <code>ika</code> arvoa ja tulostaa joko "Olet täysi-ikäinen." tai "Olet alaikäinen." riippuen siitä, onko muuttujan arvo suurempi tai yhtäsuuri kuin 18.</p>
+<p><a href="https://codecheck.io/files/2504120812xlv5gvm3o8dzdnftrm4hfuo8">Harjoitus 11 - codecheck</a></p>
+<h3 id="harjoitus-12"><a class="header" href="#harjoitus-12">Harjoitus 12</a></h3>
+<p>Tulosta allekkain numerot 1:stä 10:een käyttäen while-silmukkaa.</p>
+<p><a href="https://codecheck.io/files/25041208574nnhjke606ro06mequuw27zyc">Harjoitus 12 - codecheck</a></p>
+<h3 id="harjoitus-13"><a class="header" href="#harjoitus-13">Harjoitus 13</a></h3>
+<p>Tulosta kaikki parilliset luvut välillä 2–20 käyttäen for-silmukkaa.</p>
+<p><a href="https://codecheck.io/files/2504120917atbm2tidd4o3yxni5bkjsw3b9">Harjoitus 13 - codecheck</a></p>
+<h3 id="harjoitus-14"><a class="header" href="#harjoitus-14">Harjoitus 14</a></h3>
+<p>Laske ja tulosta lukujen 1–100 summa for-silmukalla.</p>
+<p><a href="https://codecheck.io/files/25041209263wbzgmmo54fwyjx6p1w5s4mrk">Harjoitus 14 - codecheck</a></p>
+<h3 id="harjoitus-15"><a class="header" href="#harjoitus-15">Harjoitus 15</a></h3>
+<p>Kirjoita if/else -rakenne, joka tutkii annettua muuttujaa ja tulostaa joko "Luku on parillinen." tai "Luku on pariton." riippuen muuttujan arvosta.</p>
+<p><a href="https://codecheck.io/files/2504120936c1etuvc3iivrwnw3v2jpfbi81">Harjoitus 15 - codecheck</a></p>
+<h3 id="harjoitus-16"><a class="header" href="#harjoitus-16">Harjoitus 16</a></h3>
+<p>Kirjota while-silmukka, joka tulostaa allekkain silmukkamuuttujan arvon niin kauna, kuin se on suurempi kuin 0. Joka silmukan kierroksella muuttujan arvoa pitää vähentää yhdellä.</p>
+<p><a href="https://codecheck.io/files/2504120944azomttm6s1kd352mc2d4l9kfi">Harjoitus 16 - codecheck</a></p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="funktiot"><a class="header" href="#funktiot">Funktiot</a></h1>
+<h2 id="mikä-on-funktio-ohjelmoinnissa-ja-miksi-niitä-tarvitaan"><a class="header" href="#mikä-on-funktio-ohjelmoinnissa-ja-miksi-niitä-tarvitaan">Mikä on funktio ohjelmoinnissa ja miksi niitä tarvitaan?</a></h2>
+<p>Funktio on ohjelmoinnissa kuin pieni ohjelma ohjelman sisällä. Se on nimetty kokonaisuus koodia, joka suorittaa tietyn tehtävän. Funktio voi ottaa syötteitä (eli parametreja), käsitellä ne, ja palauttaa tuloksen. Funktioita käytetään, jotta ohjelmakoodista tulee <strong>selkeämpää</strong>, <strong>uudelleenkäytettävää</strong>, ja <strong>helpommin ylläpidettävää</strong>.</p>
+<p>Lisätietoja ja lisäharjoituksia löytyy esimerkiksi sivustosta <a href="https://www.w3schools.com/js/js_functions.asp">W3Schools Functions</a>.</p>
+<p>Ilman funktioita joutuisi kirjoittamaan saman koodin moneen kertaan. Funktio mahdollistaa saman toiminnon suorittamisen monta kertaa eri tilanteissa vain yhdellä koodinpätkällä. Esimerkiksi jos haluat laskea kahden luvun summan useassa kohdassa ohjelmaa, voit tehdä sen yhden summalaskufunktion avulla – etkä toista samaa koodia moneen kertaan.</p>
+<h3 id="valmiit-funktiot"><a class="header" href="#valmiit-funktiot">Valmiit funktiot</a></h3>
+<p>Kaikissa ohjelmointikielissä on suuri joukko valmiita funktioita, jotka ovat kielen kehittäjien kirjoittamia. Niitä on JavaScriptissäkin useita satoja. Ne ovat ikään kuin reservissä odottamassa, että niitä kutsutaan.</p>
+<p>Olet jo aiemmin käyttänyt esimerkiksi <code>alert()</code> ja <code>console.log()</code>-funktioita. Muita hyvin usein käytettyjä ovat esimerkiksi <code>parseInt()</code>, <code>Math.random()</code> ja <code>prompt()</code>.</p>
+<p>Funktio karkeasti ottaen käyttäytyy kuin kielen komentosana ja niitä on helppo koodata itse lisää.</p>
+<p>Joku on koodannut nämä funktiot valmiiksi ja nyt me voimme vain käyttää niitä suoraan, eikä meidän tarvitse edes tietää, mitä funktion sisällä tapahtuu. Riittää, että tiedämme esimerkiksi sen, että <code>alert("moi")</code> avaa pienen ikkunan ja tulostaa sen sisään parametrina antamamme viestin. Tämä on esimerkki uudelleenkäytettävyydestä.</p>
+<h3 id="miten-funktio-määritellään-javascriptissä"><a class="header" href="#miten-funktio-määritellään-javascriptissä">Miten funktio määritellään JavaScriptissä?</a></h3>
+<p>JavaScriptissä funktio voidaan määritellä usealla tavalla, mutta tavallisin perusmuoto on seuraava:</p>
+<pre><code class="language-javascript">function nimi(parametri1, parametri2) {
+  // täällä suoritetaan toimintoja
+  return tulos;
+}
+</code></pre>
+<ul>
+<li>
+<p><code>function</code> on varattu sana, joka kertoo että ollaan tekemässä funktiota.</p>
+</li>
+<li>
+<p>nimi on funktion nimi. Sen avulla funktiota voidaan kutsua myöhemmin.</p>
+</li>
+<li>
+<p>suluissa <code>()</code> määritellään parametrit eli syötteet, joita funktio ottaa vastaan.</p>
+</li>
+<li>
+<p>altosulkujen <code>{}</code> sisällä on funktion sisältö eli mitä se tekee. Tämä on lohko, johon tutustiomme jo aiemmin.</p>
+</li>
+<li>
+<p><code>return</code> palauttaa arvon funktion kutsujalle. Jos return-lausetta ei ole, funktio palauttaa undefined.</p>
+</li>
+</ul>
+<p><strong>HUOMAA, kun olemme kirjoittaneet funktion valmiiksi, se jää ikään kuin reserviin odottamaan, että sitä kutsutaan jossain koodin myöhemmässä vaiheessa. Funktion mää'rittely ei siis vielä käynnistä sitä.</strong></p>
+<h2 id="esimerkit-2"><a class="header" href="#esimerkit-2">Esimerkit</a></h2>
+<h3 id="esimerkki-1-yksinkertainen-tervehdysfunktio"><a class="header" href="#esimerkki-1-yksinkertainen-tervehdysfunktio">Esimerkki 1: yksinkertainen tervehdysfunktio</a></h3>
+<pre><code class="language-javascript">function tervehdi() {
+  console.log("Hei maailma!")
+}
+</code></pre>
+<h4 id="selitys-vaiheittain"><a class="header" href="#selitys-vaiheittain">Selitys vaiheittain:</a></h4>
+<ol>
+<li>
+<p><code>tervehdi()</code> määrittelee funktion nimeltä tervehdi, joka ei ota mitään parametreja.</p>
+</li>
+<li>
+<p><code>{ ... }</code> sisältää funktion rungon.</p>
+</li>
+<li>
+<p><code>console.log("Hei maailma!")</code> tulostaa tekstin konsoliin.</p>
+</li>
+<li>
+<p>Muistutus vielä uudelleen: funktiota ei suoriteta automaattisesti vaan sitä pitää kutsua erikseen. Kutsu on ikäänkuin uusi komentosana, joka voi esiintyä muualla koodissa omana lauseenaan. Kutsu voidaan myös kytkeä jonkin tapahtuman seuraukseksi, esimerkiksi käyttäjä klikkaa painiketta, joka kutsuu funktiota. Funktion kutsu tämän funktion tapauksessa on yksinkertaisesti rivi, jossa on funktion nimi ja sulut, jotka ovat pakolliset.</p>
+</li>
+</ol>
+<p><strong>Funktion kutsuminen:</strong></p>
+<pre><code class="language-javascript">tervehdi()
+</code></pre>
+<h3 id="esimerkki-2-funktio-joka-laskee-summan"><a class="header" href="#esimerkki-2-funktio-joka-laskee-summan">Esimerkki 2: Funktio, joka laskee summan</a></h3>
+<pre><code class="language-javascript">function laskeSumma(a, b) {
+  return a + b
+}
+</code></pre>
+<h4 id="selitys-vaiheittain-1"><a class="header" href="#selitys-vaiheittain-1">Selitys vaiheittain:</a></h4>
+<ol>
+<li>
+<p><code>function laskeSumma(a, b)</code> määrittelee funktion nimeltä laskeSumma, joka ottaa kaksi parametria: <code>a</code> ja <code>b</code>.</p>
+</li>
+<li>
+<p><code>return a + b</code> laskee muuttujien summan ja palauttaa sen.</p>
+</li>
+</ol>
+<p>Funktiota kutsutaan näin:</p>
+<pre><code class="language-javascript">let tulos = laskeSumma(3, 4)    // tulos saa arvon 7
+console.log(tulos)              // tulostaa: 7
+</code></pre>
+<h4 id="selitys"><a class="header" href="#selitys">Selitys:</a></h4>
+<p>Funktion kutsussa sulkujen sisällä on kaksi lukua; 3 ja 4.Kutsuttaessa ensimmäinen näistä parametreista, eli 3, asetetaan ensimmäisen funktion parametrimuuttujan <code>a</code> arvoksi. Toinen parametri 4 menee parametrimuuttujan <code>b</code> arvoksi. Tässä vaiheessa ohjelman suoritus "hyppää" funktioon, jossa siis a:n arvona 3 ja b:n arvona 4.</p>
+<p>Sen jälkeen funktio suorittaa laskutoimituksen ja <strong>palauttaa</strong> vastauksen. Samalla funktio päättyy ja ohjelman suoritus palaa takaisin sinne, missä funktiota kutsuttiin.  Kyseisellä rivillä on sijoituslause <code>let tulos = laskeSumma(3, 4)</code> jolloin funkiokutsun palautusarvo sijoitetaan muuttujan <code>tulos</code> arvoksi.</p>
+<p>Lopuksi ohjelma tulostaa saamansa arvon näytölle.</p>
+<p>Klikkaa alla olevaa kuvaa, niin näet yksinkertaisena animaationa kyseisen funktiokutsun etenemisen vaihe vaiheelta. Ohjelman suoritus "hyppää" välillä funktioon, jonka koodirivit suoritetaan, ja funktiosta palataan takaisin sinne, mistä sitä kutsuttiin.</p>
+<p><a href="https://youtu.be/YZe5mIHbzkE" target=_blank><img src="osa2/funcani.jpg"></a></p>
+<h3 id="yhteenveto-2"><a class="header" href="#yhteenveto-2">Yhteenveto</a></h3>
+<p>Funktiot tekevät koodista loogisempaa jakamalla sen pienempiin osiin. JavaScriptissä funktion voi luoda helposti function-avainsanalla. Harjoittelemalla yksinkertaisilla esimerkeillä opit nopeasti, kuinka tehokas työkalu funktio on ohjelmoinnissa!</p>
+<h2 id="esimerkit-3"><a class="header" href="#esimerkit-3">Esimerkit</a></h2>
+<h3 id="esimerkki-7"><a class="header" href="#esimerkki-7">Esimerkki 7</a></h3>
+<p>Kirjoita funktio, joka ottaa parametrina vastaan yhden luvun ja palauttaa sen neliön. Tulosta funktion palauttaman laskutoimituksen tulos napin painalluksesta.</p>
+<p>Tässä esimerkissä on kaksi uutta asiaa, toinen on <code>&lt;input&gt;</code>-elementin käyttö JavaScriptin kanssa ja toinen on <code>onClick</code>-tapahtumaan liitetty funktiokutsu. Tutki esimerkkikoodia huolellisesti, kopioi se ja tallenna tiedostoksi ja kokeile toiminta selaimella. Samaa tekniikkaa käytetään myöhemminkin runsaasti.</p>
+<p>Tässä vaiheessa ei tarvitse vielä selvittää <code>document.getElementById("elementinTunniste")</code>-rakenteen toimintaa. Sen voi kopioida sellaisenaan tehtävästä toiseen, kunhan vaihtaa jokaisessa kohdassa halutun elementin tunnisteen eli id:n kyseiseen kutsuun.</p>
+<pre><code class="language-javascript">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+  &lt;meta charset="UTF-8"&gt;
+  &lt;title&gt;Esimerkki 7 – Neliön laskeminen&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;h2&gt;Laske neliö&lt;/h2&gt;
+  &lt;input type="number" id="luku" placeholder="Syötä luku"&gt;
+  &lt;button onclick="laskeNelio()"&gt;Laske&lt;/button&gt;
+  &lt;p id="tulos"&gt;&lt;/p&gt;
+
+  &lt;script&gt;
+    function laskeNelio() {
+      let luku = Number(document.getElementById("luku").value);
+      let nelio = luku * luku;
+      document.getElementById("tulos").innerText = "Neliö on: " + nelio;
+    }
+  &lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<h3 id="esimerkki-8"><a class="header" href="#esimerkki-8">Esimerkki 8</a></h3>
+<p>Kirjoita funktio, joka saa parametrina henkilön nimen ja tulostaa tervehdyksen "Hei, [nimi]!"</p>
+<pre><code class="language-javascript">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+  &lt;meta charset="UTF-8"&gt;
+  &lt;title&gt;Esimerkki 8 – Tervehdys&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;h2&gt;Tervehdi käyttäjää&lt;/h2&gt;
+  &lt;input type="text" id="nimi" placeholder="Kirjoita nimesi"&gt;
+  &lt;button onclick="tervehdi()"&gt;Tervehdi&lt;/button&gt;
+  &lt;p id="tervehdys"&gt;&lt;/p&gt;
+
+  &lt;script&gt;
+    function tervehdi() {
+      let nimi = document.getElementById("nimi").value;
+      document.getElementById("tervehdys").innerText = "Hei, " + nimi + "!";
+    }
+  &lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<h3 id="esimerkki-9"><a class="header" href="#esimerkki-9">Esimerkki 9</a></h3>
+<p>Kirjoita funktio, joka kertoo onko syötetty luku parillinen vai ei.</p>
+<pre><code class="language-javascript">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+  &lt;meta charset="UTF-8"&gt;
+  &lt;title&gt;Esimerkki 9 – Parillisuus&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;h2&gt;Tarkista onko luku parillinen&lt;/h2&gt;
+  &lt;input type="number" id="luku" placeholder="Syötä luku"&gt;
+  &lt;button onclick="tarkistaParillisuus()"&gt;Tarkista&lt;/button&gt;
+  &lt;p id="vastaus"&gt;&lt;/p&gt;
+
+  &lt;script&gt;
+    function tarkistaParillisuus() {
+      let luku = Number(document.getElementById("luku").value);
+      if (luku % 2 === 0) {
+        document.getElementById("vastaus").innerText = "Luku on parillinen.";
+      } else {
+        document.getElementById("vastaus").innerText = "Luku on pariton.";
+      }
+    }
+  &lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<h2 id="harjoitukset-3"><a class="header" href="#harjoitukset-3">Harjoitukset</a></h2>
+<p>Nämäkin harjoitukset ovat vapaaehtoisia ja tarkoitettu koodaustaitojen opiskeluun.</p>
+<h3 id="harjoitus-17"><a class="header" href="#harjoitus-17">Harjoitus 17</a></h3>
+<p>Kirjoita HTML-sivu, jossa käyttäjältä kysytään kaksi lukua. Luo funktio, joka laskee lukujen summan ja näyttää sen sivulla.</p>
+<h3 id="harjoitus-18"><a class="header" href="#harjoitus-18">Harjoitus 18</a></h3>
+<p>Luo HTML-sivu ja funktio, joka tarkistaa annetun iän perusteella, kuuluuko käyttäjä seuraaviin ryhmiin:</p>
+<ul>
+<li>Alle 13 → "lapsi"</li>
+<li>13–19 → "nuori"</li>
+<li>20 tai yli → "aikuinen"</li>
+</ul>
+<p>Näytä tulos sivulla.</p>
+<h3 id="harjoitus-19"><a class="header" href="#harjoitus-19">Harjoitus 19</a></h3>
+<p>Kirjoita HTML-sivu ja funktio, joka muuntaa annetun lämpötilan celsius-asteista fahrenheiteiksi. <code>(Kaava: F = C * 1.8 + 32)</code></p>
+<p>Näytä tulos sivulla.</p>
+<h2 id="mallipohjat-avuksi-harjoituksiin"><a class="header" href="#mallipohjat-avuksi-harjoituksiin">Mallipohjat avuksi harjoituksiin</a></h2>
+<p>Mikäli harjoitusten koodaaminen tuntuu ylipääsemättömän vaikealta, voit käyttää apunasi alla olevia tyhjiä mallipohjia. Niistä puuttuu vain JavaScript-funktio.</p>
+<h3 id="mallipohja-17"><a class="header" href="#mallipohja-17">Mallipohja 17</a></h3>
+<pre><code class="language-javascript">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+  &lt;meta charset="UTF-8"&gt;
+  &lt;title&gt;Harjoitus 17 – Laske summa&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;h2&gt;Laske kahden luvun summa&lt;/h2&gt;
+  &lt;input type="number" id="luku1" placeholder="Ensimmäinen luku"&gt;
+  &lt;input type="number" id="luku2" placeholder="Toinen luku"&gt;
+  &lt;button onclick="laskeSumma()"&gt;Laske&lt;/button&gt;
+  &lt;p id="tulos"&gt;&lt;/p&gt;
+
+  &lt;script&gt;
+    function laskeSumma() {
+      // Täydennä funktio tähän
+    }
+  &lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<h3 id="mallipohja-18"><a class="header" href="#mallipohja-18">Mallipohja 18</a></h3>
+<pre><code class="language-javascript">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+  &lt;meta charset="UTF-8"&gt;
+  &lt;title&gt;Harjoitus 18 – Ikäryhmä&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;h2&gt;Tarkista ikäryhmä&lt;/h2&gt;
+  &lt;input type="number" id="ika" placeholder="Anna ikäsi"&gt;
+  &lt;button onclick="tarkistaIka()"&gt;Tarkista&lt;/button&gt;
+  &lt;p id="vastaus"&gt;&lt;/p&gt;
+
+  &lt;script&gt;
+    function tarkistaIka() {
+      // Täydennä funktio tähän
+    }
+  &lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<h3 id="mallipohja-19"><a class="header" href="#mallipohja-19">Mallipohja 19</a></h3>
+<pre><code class="language-javascript">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+  &lt;meta charset="UTF-8"&gt;
+  &lt;title&gt;Harjoitus 19 – Celsius to Fahrenheit&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;h2&gt;Muunna lämpötila&lt;/h2&gt;
+  &lt;input type="number" id="celsius" placeholder="Celsius-asteet"&gt;
+  &lt;button onclick="muunna()"&gt;Muunna&lt;/button&gt;
+  &lt;p id="fahrenheit"&gt;&lt;/p&gt;
+
+  &lt;script&gt;
+    function muunna() {
+      // Täydennä funktio tähän
+    }
+  &lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="taulukkomuuttujat"><a class="header" href="#taulukkomuuttujat">Taulukkomuuttujat</a></h1>
+<h2 id="taulukkomuuttuja-eli-array"><a class="header" href="#taulukkomuuttuja-eli-array">Taulukkomuuttuja eli Array</a></h2>
+<p>JavaScriptin taulukkomuuttuja eli array on muuttuja, johon voit tallentaa useita arvoja samanaikaisesti. Se toimii kuin lista, johon arvot järjestetään peräkkäin. Taulukkoon tallennettuja tietoja kutsutaan alkioiksi, ja jokaisella alkiolla on oma paikkansa, jota kutsutaan indeksiksi. Indeksit alkavat aina numerosta 0.</p>
+<p>Taulukkomuuttujia (array) kannattaa käyttää ohjelmoinnissa silloin, kun halutaan käsitellä useita saman tyyppisiä tietoja tehokkaasti ja helposti. Esimerkiksi kymmenen henkilön nimet yhdessä taulukossa <code>nimet</code> on paljon kätevämpi ratkaisu, kuin luoda kymmenen erillistä muuttujaa. Taulukko on parempi, koska tarvitaan vähemmän koodia, nimiä on helppo lisätä ja poistaa myöhemmin eikä tarvitse luoda uutta muuttujaa jokaiselle nimelle. Lisäksi taulukot mahdollistavat tietojen läpikäymisen silmukan avulla.</p>
+<h3 id="yhteenveto-tilanteista-joissa-taulukoita-kannattaa-käyttää"><a class="header" href="#yhteenveto-tilanteista-joissa-taulukoita-kannattaa-käyttää">Yhteenveto tilanteista, joissa taulukoita kannattaa käyttää:</a></h3>
+<div class="table-wrapper"><table><thead><tr><th>Tilanne</th><th>Miksi taulukko on hyvä?</th></tr></thead><tbody>
+<tr><td>Useita saman tyyppisiä tietoja</td><td>Vähemmän koodia ja selkeämpi rakenne</td></tr>
+<tr><td>Tietoja käsitellään silmukalla</td><td>Helppo käsitellä suuri määrä tietoja</td></tr>
+<tr><td>Tietojen määrä voi muuttua</td><td>Joustava lisäys ja poisto</td></tr>
+<tr><td>Tietojen järjestys tärkeä</td><td>Säilyttää aina järjestyksen</td></tr>
+</tbody></table>
+</div><br>
+<p>Lisätietoja ja lisäharjoituksia löytyy esimerkiksi sivustosta <a href="https://www.w3schools.com/js/js_arrays.asp">W3Schools Arrays</a>.</p>
+<h2 id="esimerkit-4"><a class="header" href="#esimerkit-4">Esimerkit</a></h2>
+<h3 id="taulukon-luonti"><a class="header" href="#taulukon-luonti">Taulukon luonti</a></h3>
+<pre><code class="language-javascript">// Luodaan taulukko, jossa on kolme nimeä
+let nimet = ["Anna", "Jukka", "Maria"]
+}
+</code></pre>
+<p>Tässä taulukossa on kolme alkiota:</p>
+<ul>
+<li>Alkio indeksissä 0 on "Anna"</li>
+<li>Alkio indeksissä 1 on "Jukka"</li>
+<li>Alkio indeksissä 2 on "Maria"</li>
+</ul>
+<h3 id="alkioiden-hakeminen-taulukosta"><a class="header" href="#alkioiden-hakeminen-taulukosta">Alkioiden hakeminen taulukosta</a></h3>
+<p>Taulukon alkioihin pääsee käsiksi indeksin avulla.</p>
+<pre><code class="language-javascript">let nimet = ["Anna", "Jukka", "Maria"];
+
+console.log(nimet[0])  // Tulostaa: Anna
+console.log(nimet[1])  // Tulostaa: Jukka
+console.log(nimet[2])  // Tulostaa: Maria
+</code></pre>
+<p>Huomaa, että indeksi alkaa aina nollasta, eli ensimmäinen alkio on indeksissä 0, toinen 1, kolmas 2, jne.</p>
+<h3 id="alkioiden-lisääminen-taulukkoon"><a class="header" href="#alkioiden-lisääminen-taulukkoon">Alkioiden lisääminen taulukkoon</a></h3>
+<p>Talukkoon lisätään alkio seuraavasti:</p>
+<pre><code class="language-javascript">nimet.push("Minni")  // Lisätään alkio "Minni" taulukon loppuun
+console.log(nimet)   // Tulostaa: ["Anna", "Jukka", "Maria", "Minni"]
+</code></pre>
+<h3 id="alkion-muuttaminen-taulukossa"><a class="header" href="#alkion-muuttaminen-taulukossa">Alkion muuttaminen taulukossa</a></h3>
+<p>Olemassa olevan alkion arvoa voi muuttaa indeksin avulla:</p>
+<pre><code class="language-javascript">let maat = ["Suomi", "Ruotsi", "Norja"]
+maat[1] = "Tanska"   // Muutetaan indeksissä 1 oleva alkio
+console.log(maat)    // Tulostaa: ["Suomi", "Tanska", "Norja"]
+</code></pre>
+<h3 id="taulukon-pituus-length"><a class="header" href="#taulukon-pituus-length">Taulukon pituus (length)</a></h3>
+<p>Taulukon pituuden saa helposti JavaScriptin length-ominaisuudella:</p>
+<pre><code class="language-javascript">let hedelmat = ["omena", "banaani", "kiivi"]
+console.log(hedelmat.length)   // Tulostaa: 3
+</code></pre>
+<h3 id="taulukon-läpikäyminen-silmukalla"><a class="header" href="#taulukon-läpikäyminen-silmukalla">Taulukon läpikäyminen silmukalla</a></h3>
+<p>Taulukon kaikki alkiot voi käydä läpi silmukan avulla:</p>
+<pre><code class="language-javascript">let kaupungit = ["Helsinki", "Tampere", "Oulu"];
+
+for (let i = 0; i &lt; kaupungit.length; i++) {
+    console.log(kaupungit[i]);
+}
+
+// Tulostaa:
+// Helsinki
+// Tampere
+// Oulu
+</code></pre>
+<h3 id="yhteenveto-3"><a class="header" href="#yhteenveto-3">Yhteenveto:</a></h3>
+<ul>
+<li>Taulukko (array) on muuttuja, joka tallentaa useita arvoja yhteen paikkaan.</li>
+<li>Arvot (eli alkiot) ovat numeroituja kokonaislukuindekseillä alkaen luvusta 0.</li>
+<li>Taulukon luonnissa käytetään hakasulkuja []</li>
+<li>Yksittäistä taulukon alkiota käytetään indeksillä, joka kirjoitetaan hakasulkujen sisään</li>
+</ul>
+<h2 id="harjoitukset-4"><a class="header" href="#harjoitukset-4">Harjoitukset</a></h2>
+<h3 id="harjoitus-20"><a class="header" href="#harjoitus-20">Harjoitus 20</a></h3>
+<p>Tee HTML-sivu, jossa on JavaScript-taulukko, johon tallennat kolme lempiväriäsi. Tulosta sitten JavaScriptin avulla taulukon ensimmäinen väri sivulle.</p>
+<p><strong>Vinkki:</strong> Käytä <code>document.getElementById</code> ja <code>.innerHTML</code> arvon näyttämiseen.</p>
+<h3 id="harjoitus-21"><a class="header" href="#harjoitus-21">Harjoitus 21</a></h3>
+<p>Luo HTML-sivu, jossa teet JavaScript-taulukon kolmesta eri eläimestä. Tulosta taulukon pituus (eli alkioiden määrä) sivulle.</p>
+<p><strong>Vinkki:</strong> Käytä taulukon <code>.length</code> -ominaisuutta.</p>
+<h3 id="harjoitus-22"><a class="header" href="#harjoitus-22">Harjoitus 22</a></h3>
+<p>Luo HTML-sivu, jossa on ensin taulukko kahdesta kaupungista. Lisää JavaScriptillä yksi kaupunki lisää taulukkoon. Lopuksi tulosta koko taulukko sivulle niin, että jokainen kaupunki näkyy omalla rivillään.</p>
+<p><strong>Vinkki:</strong> Käytä <code>.push()</code>-metodia lisätäksesi uuden kaupungin taulukkoon. Käytä lisäksi silmukkaa tulostamiseen.</p>
+<h2 id="mallivastaukset-harjoituksiin"><a class="header" href="#mallivastaukset-harjoituksiin">Mallivastaukset harjoituksiin</a></h2>
+<h3 id="mallivastaus-20"><a class="header" href="#mallivastaus-20">Mallivastaus 20</a></h3>
+<pre><code class="language-javascript">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;title&gt;Harjoitus 20&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;p id="tulos"&gt;&lt;/p&gt;
+
+    &lt;script&gt;
+        let varit = ["sininen", "punainen", "keltainen"]
+        document.getElementById("tulos").innerHTML = "Ensimmäinen väri on: " + varit[0]
+    &lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<h3 id="mallivastaus-21"><a class="header" href="#mallivastaus-21">Mallivastaus 21</a></h3>
+<pre><code class="language-javascript">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;title&gt;Harjoitus 21&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;p id="tulos"&gt;&lt;/p&gt;
+
+    &lt;script&gt;
+        let elaimet = ["kissa", "koira", "hevonen"]
+        document.getElementById("tulos").innerHTML = "Eläinten määrä: " + elaimet.length
+    &lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<h3 id="mallivastaus-22"><a class="header" href="#mallivastaus-22">Mallivastaus 22</a></h3>
+<pre><code class="language-javascript">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;title&gt;Harjoitus 22&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;div id="kaupungit"&gt;&lt;/div&gt;
+
+    &lt;script&gt;
+        let kaupungit = ["Helsinki", "Tampere"]
+        kaupungit.push("Oulu")
+
+        let tulos = ""
+        for (let i = 0; i &lt; kaupungit.length; i++) {
+            tulos += kaupungit[i] + "&lt;br&gt;"
+        }
+
+        document.getElementById("kaupungit").innerHTML = tulos
+    &lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="javascript-kirjastot"><a class="header" href="#javascript-kirjastot">JavaScript-kirjastot</a></h1>
+<blockquote>
+<p>Älä keksi pyörää uudelleen!</p>
+</blockquote>
+<p>Tämä sanonta pätee myös ohjelmointiin. Ihan kaikkea on turha lähteä toteuttamaan ilman, että ensin tutkii jo tehtyjä toteutuksia. Voi nimittäin olla, että käyttötarkoitukseen on olemassa juuri sopiva ohjelmakoodikokonaisuus. Tällaista kokonaisuutta kutsutaan termillä <strong>kirjasto</strong> (library).</p>
+<p>Kirjastot ovat tyypillisesti valmiita paketteja, joiden käyttöön löytyy hyvät ja selkeät ohjesivut. Esimerkiksi tällaisia kirjastoja hyödynnetään muun muassa seuraavissa käyttökohteissa.</p>
+<ul>
+<li>Tietojen visualisointi eli erilaisten kaavioiden piirtäminen. Yksi esimerkki tällaisesta on <a href="https://www.chartjs.org/">Chart.js</a>.</li>
+<li>HTML-sivun sisällön animointi laajemmin, mitä CSS-tyylit mahdollistavat. <a href="https://animejs.com/">Anime.js</a> on tästä mainio esimerkki.</li>
+<li>Erilaiset merkkijonojen ja lukujen käsittelyt, kuten esimerkiksi <a href="https://github.com/iamkun/dayjs">Day.js</a>, jolla voi muotoilla päivämääriä haluttuun muotoon.</li>
+<li>Web-sovellusten käyttöliittymien toteuttaminen on nopeampaa kirjastojen avulla. <a href="https://react.dev/">React</a> on näistä yksi käytetyimmistä.</li>
+</ul>
+<p>Suurin osa erilaisten ohjelmakirjastojen lähdekoodeista löytyy GitHub-palvelusta.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="github"><a class="header" href="#github">GitHub</a></h1>
+<p>GitHub on (nykyään) Microsoftin omistama pilvipalvelu, jonka avulla voidaan jakaa ja ylläpitää Git-versiohallinnalla hallinnoituja projekteja. GitHub on jo yli 15 vuotta vanha palvelu, mutta siihen lisätään aktiivisesti uusia ja käyttökelpoisia ominaisuuksia. Siitä on tullut vuosien varrella tunnetuin ja käytetyin Git-projektien tallennuspaikka.</p>
+<p>GitHub rakentuu Gitin, vapaan lähdekoodipohjaisen versiohallintajärjestelmän, ympärille. Gitiä kehittää mm. Linux-ytimestä tunnettu Linux Torvalds ja tämä päivänä se on käytetyin versiohallintajärjestelmä. Gitin perusajatuksena on, että lähdekoodista pidetään yhtä keskusvarastoa, josta ohjelmistokehittäjät tekevät itselleen omalle koneelle paikallisen kopion. Kehittäjät tekevät muutoksia omaan kopioonsa ja päivittävät lopulta omat muutoksensa keskusvarastoon muiden kehittäjien ladattavaksi.</p>
+<p>Esimerkiksi tämän sivuston materiaalia on koostettu samanaikaisesti GitHubin avulla. Kirjoittajilla on omilla koneillaan paikalliset versiot projektista. Kun materiaaliin on tullut muutoksia, kuten esimerkiksi lisätty uusi sivu, on kirjoittaja siirtänyt tekemänsä muutokset GitHubiin toisten kirjoittajien saataville.</p>
+<p>Sen lisäksi, että GitHubia käytetään omissa projekteissa, niin sieltä voi myös löytyä muiden tekemiä projekteja, joita voi käyttää joko ohjelmana tai osana omaa toteutusta. Tämän lisäksi GitHub mahdollistaa osallistumisen avoimen lähdekoodiprojekteihin. Tällöin projekti ladataan omalle koneelle, siihen tehdään tarvittavat muutokset (projektin ohjeistuksen mukaisesti) ja sen jälkeen tehdään eräänlainen ehdotus päivityksestä. Projektin ylläpitäjät voivat hyväksyä ehdotetun päivityksen, pyytää siihen korjauksia tai hylätä sen. Yksi tunnettu GitHubista löytyvä avoimen lähdekoodin projekti on tälläkin kurssilla käytettävä <a href="https://github.com/microsoft/vscode">Visual Studio Code</a>.</p>
+<p>Projektirepojen tallennuksen lisäksi GitHub mahdollistaa paljon muuta. GitHub Pages mahdollistaa (staattisten) kotisivujen hostaamisen. Esimerkiksi tämä materiaali sijaitsee GitHub Pages -palvelussa. GitHubiin voi luoda myös itselleen oman profiilisivun, josta toiset voivat nopeasti nähdä osaamisesi ja ylläpitämäsi projektit. Alla on esimerkki yhden GitHub-käyttäjän profiilisivusta.</p>
+<div class="image">
+  <img alt="Sivuston ulkoasu on valmis." src="osa3/./github-1.png" width="993">
+</div><br><div style="break-before: page; page-break-before: always;"></div><h1 id="mermaid-kirjasto"><a class="header" href="#mermaid-kirjasto">Mermaid-kirjasto</a></h1>
+<p><a href="https://mermaid.js.org/">Mermaid</a>-kirjasto mahdollistaa erilaisten kaavioiden lisääminen helposti HTML-sivulle. Mermaidin tehokkuus on siinä, että kaavion rakenne esitetään tietynlaisena tekstiesityksenä, josta kirjasto muodostaa graafisen esityksen. Kirjastoa ylläpidetään GitHub-palvelussa, sen lähdekoodi löytyy <a href="https://github.com/mermaid-js/mermaid">mermaid</a>-projektisivulta.</p>
+<p>Seuraavaksi tutustutaan siihen, miten Mermaid-kirjasto lisätään osaksi HTML-sivua ja miten sillä piirretään kaavio.</p>
+<h2 id="sivupohja"><a class="header" href="#sivupohja">Sivupohja</a></h2>
+<p>Aloitetaan tämä luomalla ensin yksinkertainen sivupohja. Luo projektikansioon uusi tiedosto, anna sen nimeksi <code>04-mermaid.html</code> ja liitä sen sisällöksi seuraava HTML-koodi.</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html lang="fi"&gt;
+  &lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;title&gt;Mermaid-kirjaston käyttö&lt;/title&gt;
+    &lt;link href="04-mermaid.css" rel="stylesheet"&gt;
+&lt;/head&gt;
+  &lt;body&gt;
+
+    &lt;h1&gt;Mermaid-kirjaston käyttö&lt;/h1&gt;
+
+    TODO mermaid-kaavion piirto
+
+    TODO mermaid-kirjaston tuonti
+
+  &lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p>Luo projektikansioon myös toinen uusi tiedosto, anna sen nimeksi <code>04-mermaid.css</code> ja liitä sen sisällöksi seuraava CSS-sääntö.</p>
+<pre><code class="language-css">body {
+  font-family: system-ui, sans-serif;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+</code></pre>
+<p>Sivupohjan HTML-koodi ja CSS-määritykset ovat tuttuja jo aikaisemmista osista. CSS-tyylit määrittelevät fontiksi käyttöjärjestelmässä käytössä olevan fontin ja sisältö keskitetään pysty- ja vaakasuunnassa keskelle.</p>
+<div class="image">
+  <img alt="Sivupohja, josta lähdetään liikkeelle." src="osa3/./mermaid-1.png" width="1110">
+</div><br>
+<p>TODO-rivit sijoittuvat sivulle peräkkäin, koska niitä ei ole sijoitettu HTML-elementtien sisälle. HTML-kielessä perinteisellä rivinvaihdolla ei ole vaikutusta.</p>
+<h2 id="mermaid-kirjaston-tuonti"><a class="header" href="#mermaid-kirjaston-tuonti">Mermaid-kirjaston tuonti</a></h2>
+<p>Aivan ensimmäiseksi Mermaid-kirjaston ohjelmakoodi täytyy tuoda osaksi omaa HTML-sivua. Tässä materiaalissa noudatetaan Mermaid-kirjaston <a href="https://mermaid.js.org/intro/getting-started.html">Getting Started</a> -sivun ohjeita kohdassa <strong>Calling the Mermaid JavaScript API</strong>.</p>
+<p>Korvaa HTML-tiedostossa <code>TODO mermaid-kirjaston tuonti</code> -rivi seuraavalla HTML-koodilla:</p>
+<pre><code class="language-html">    &lt;script type="module"&gt;
+      import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+      mermaid.initialize({ startOnLoad: true });
+    &lt;/script&gt;
+</code></pre>
+<p>Tämä tuo Mermaid-kirjaston CDN-palvelusta ja käynnistää sen sivun lataamisen yhteydessä. Sivun lopussa oleva TODO-tekstirivi poistui, muuten sivun sisältö pysyi vielä ennallaan.</p>
+<h2 id="kaavion-piirtäminen"><a class="header" href="#kaavion-piirtäminen">Kaavion piirtäminen</a></h2>
+<p>Mermaidissa kaavioiden piirtäminen tapahtuu kuvaamalla kaavion sisältö tietynlaisella tekstinä. Korvaa <code>TODO mermaid-kaavion piirto</code> -teksti seuraavalla HTML-koodilla:</p>
+<pre><code class="language-html">    &lt;pre class="mermaid"&gt;
+        timeline
+          title HTML-kielen historia
+          1992 : HTML 2
+          1997 : HTML 3
+               : HTML 4
+          2014 : HTML 5
+    &lt;/pre&gt;
+</code></pre>
+<p>Tämä määritys luo yksinkertaisen aikajanan, josta ilmenee vuosiluvut, jolloin HTML-kielen eri versiot on julkaistu. Tämä näyttää selaimessa seuraavalta.</p>
+<div class="image">
+  <img alt="Mermaid timeline-kaavio piirretty sivulle." src="osa3/./mermaid-2.png" width="1110">
+</div><br>
+<p>Kaavio saattaa piirtyä oletusasetuksilla liian pienenä. Kaavion kokoa voi muuttaa muokkaamalla <code>.mermaid</code>-luokan CSS-asetuksia. Lisää seuraava CSS-sääntö CSS-tiedoston loppuun.</p>
+<pre><code class="language-css">.mermaid {
+  width: 80vw;
+  max-width: 50em; 
+}
+</code></pre>
+<p>Tämä asettaa kaavion leveydeksi 80 % koko näyttöalueen leveydestä, mutta leveys voi olla maksimissaan 50 kirjaimen korkeutta. Tällä tavalla kaavio skaalautuu sivun mukana, mutta sen leveys ei ylitä sen maksimileveyttä.</p>
+<p>Tämän lisäyksen jälkeen sivu näyttää seuraavalta.</p>
+<div class="image">
+  <img alt="Mermaid timeline-kaavio skaalattuna isommaksi." src="osa3/./mermaid-3.png" width="1110">
+</div><br>
+<p>Samalla tavalla Mermaidilla voidaan piirtää muitakin kaaviotyyppejä, kuten esimerkiksi <a href="https://mermaid.js.org/syntax/sequenceDiagram.html">sekvenssikaavioita</a>, <a href="https://mermaid.js.org/syntax/stateDiagram.html">tilakaavioita</a>, <a href="https://mermaid.js.org/syntax/gantt.html">Gantt-kaavioita</a>, <a href="https://mermaid.js.org/syntax/pie.html">piirakkakaavioita</a>, <a href="https://mermaid.js.org/syntax/gitgraph.html">Gitgraph-kaavioita</a> ja  <a href="https://mermaid.js.org/syntax/mindmap.html">ajatuskarttoja</a>.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="api-rajapinnat"><a class="header" href="#api-rajapinnat">API-rajapinnat</a></h1>
+<p>API on lyhenne sanoista Application Programming Interface ja se tarkoittaa liittymää eli rajapintaa, jonka välityksellä eri sovellukset voivat keskustella keskenään.</p>
+<p>Kuvittele, että haluat tilata ruokaa ravintolasta. Sinun ei tarvitse tietää, miten kokki laittaa ruokaa, vaan riittää, että kerrot tarjoilijalle mitä haluat. Samalla tavalla ohjelmat käyttävät API-rajapintoja puhuakseen toisilleen. API on siis joukko sääntöjä ja ohjeita, joiden avulla ohjelmat voivat pyytää ja vaihtaa tietoja.</p>
+<p>Kun käytät API-rajapintaa, sinun täytyy tietää kaksi tärkeää asiaa:</p>
+<ol>
+<li>Minne lähetät pyynnön (eli verkkopalvelun osoite, esim. https://www.esimerkki.fi).</li>
+<li>Missä muodossa haluamasi tieto lähetetään tai vastaanotetaan (usein JSON-formaatissa, joka on kuin selkeä tekstirakenne).</li>
+</ol>
+<p>Esimerkki:</p>
+<ul>
+<li>Haluat hakea säätiedot ”Helsinki”-nimiselle kaupungille.</li>
+<li>API määrää, että pyyntö tehdään osoitteeseen https://api.saa.fi/helsinki?päivä=2025-04-16 (tämä on vain mielikuvitusosoite).</li>
+<li>Vastauksena voi tulla JSON-tiedosto, jossa lukee esimerkiksi:</li>
+</ul>
+<pre><code class="language-json">{
+  "kaupunki": "Helsinki",
+  "lämpötila": 15,
+  "säätila": "Aurinkoinen"
+}
+</code></pre>
+<p>Ohjelmasi ei tarvitse tietää miten säätiedot on kerätty tai miten palvelu toimii sisäisesti. Riittää, että API kertoo, miten pyyntö pitää tehdä ja miten tieto palautuu.</p>
+<h3 id="miksi-api-on-kätevä"><a class="header" href="#miksi-api-on-kätevä">Miksi API on kätevä?</a></h3>
+<ul>
+<li>Voit hyödyntää valmiita tietoja tai palveluita ilman, että sinun tarvitsee rakentaa kaikkea itse.</li>
+<li>Voit esimerkiksi hakea elokuvien tietoja, musiikkia, karttoja tai vaikkapa vitsejä.</li>
+</ul>
+<h3 id="esimerkkejä-avoimista-ja-ilmaisista-api-rajapinnoista"><a class="header" href="#esimerkkejä-avoimista-ja-ilmaisista-api-rajapinnoista">Esimerkkejä avoimista ja ilmaisista API-rajapinnoista</a></h3>
+<p>Kaikki alla mainitut API:t eivät vaadi rekisteröitymistä tai mitään erityistä avainta, joten voit kokeilla niitä heti.</p>
+<ol>
+<li>
+<p><a href="https://catfact.ninja/">Cat Facts</a></p>
+<ul>
+<li>Palauttaa erilaisia satunnaisia faktoja kissoista.</li>
+</ul>
+</li>
+<li>
+<p><a href="https://dog.ceo/dog-api/">Dog Facts &amp; Dog API</a></p>
+<ul>
+<li>Palauttaa tietoja koiraroduista ja satunnaisia kuvia koirista.</li>
+</ul>
+</li>
+<li>
+<p><a href="https://api.chucknorris.io/">Chuck Norris Jokes</a></p>
+<ul>
+<li>Tarjoaa hauskoja (ja joskus kuivahkoja) Chuck Norris -vitsejä.</li>
+</ul>
+</li>
+<li>
+<p><a href="https://api.adviceslip.com/">Advice Slip API</a></p>
+<ul>
+<li>Antaa satunnaisia neuvoja tai elämänohjeita.</li>
+</ul>
+</li>
+<li>
+<p><a href="https://pokeapi.co/">PokeAPI</a></p>
+<ul>
+<li>Tarjoaa tietoja Pokémon-hahmoista (nimiä, ominaisuuksia, kuvia jne.).</li>
+</ul>
+</li>
+<li>
+<p><a href="https://restcountries.com/">REST Countries</a></p>
+<ul>
+<li>Palauttaa tietoja eri maiden lipuista, pääkaupungeista ja kielistä.</li>
+</ul>
+</li>
+<li>
+<p><a href="https://randomuser.me/">Random User</a></p>
+<ul>
+<li>Luo satunnaisia ”feikkikäyttäjiä” (esim. nimi, sähköposti), joita voi käyttää testaamiseen.</li>
+</ul>
+</li>
+<li>
+<p><a href="https://date.nager.at/">Public Holiday API</a></p>
+<ul>
+<li>Näyttää yleiset pyhäpäivät eri maissa.</li>
+</ul>
+</li>
+<li>
+<p><a href="https://opentdb.com/api_config.php">Open Trivia Database</a></p>
+<ul>
+<li>Tarjoaa tietokilpailukysymyksiä (triviaa) monista eri kategorioista.</li>
+</ul>
+</li>
+</ol>
+<h3 id="miten-näitä-kokeillaan"><a class="header" href="#miten-näitä-kokeillaan">Miten näitä kokeillaan?</a></h3>
+<ul>
+<li>Avaa verkkoselain.</li>
+<li>Liitä osoiteriville jonkin API:n kutsu, esimerkiksi <code>https://api.chucknorris.io/jokes/random</code>.</li>
+<li>Näet JSON-rakenteisen vastauksen, joka sisältää Chuck Norris -vitsin. Se voi näyttää tältä (lyhennetty esimerkki):</li>
+</ul>
+<pre><code class="language-json">{
+    "icon_url": "https://assets.chucknorris.host/img/avatar/chuck-norris.png",
+    "id": "abc123",
+    "value": "Chuck Norris can divide by zero."
+}
+</code></pre>
+<p>Tämä on yksinkertaisin tapa ”puhua” API:lle. Varsinaisessa koodissa tehdään yleensä fetch-pyyntö tai joku vastaava tapa hakea tietoa, ja sitten koodi käsittelee tulokset.</p>
+<p>Yhteenveto: API on siis kuin ravintolan menu, josta ohjelmat voivat tilata tietoa tai palveluita. Sinä voit vain seurata rajapinnan (eli API-dokumentaation) ohjeita ja pyytää haluamasi tiedot – sinun ei tarvitse tietää, miten itse ravintola (palvelu) on toteutettu sisäisesti. Kokeilemalla avoimia API-rajapintoja opit, miten helppoa tiedon hakeminen ohjelmallisesti voi olla!</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="oma-pieni-api-harjoitussovellus"><a class="header" href="#oma-pieni-api-harjoitussovellus">Oma pieni API-harjoitussovellus</a></h1>
+<p>Tämä ohje toteuttaa yhden mallisovelluksen, jossa julkista ja avointa API-rajapintaa käyttäen noudetaan tsekin nimipäiväkalenteri-sovelluksesta annetulla päivämäärällä kyseisen nimipäiväsankarin nimi.</p>
+<h3 id="mitä-haluamme-ohjelman-tekevän"><a class="header" href="#mitä-haluamme-ohjelman-tekevän">Mitä haluamme ohjelman tekevän:</a></h3>
+<p>Käyttäjä valitsee päivämäärän selaimessa. Kun hän painaa "Hae nimipäivä" -painiketta, ohjelma:</p>
+<ol>
+<li>Lukee HTML-lomakkeesta valitun päivämäärän.</li>
+<li>Muotoilee sen oikeaan muotoon.</li>
+<li>Tekee API-kutsun tsekkiläiseen nimipäiväpalveluun.</li>
+<li>Hakee vastauksen (jos löytyy nimipäivä).</li>
+<li>Näyttää nimipäivän käyttäjälle.</li>
+</ol>
+<h2 id="html-runko"><a class="header" href="#html-runko">HTML-runko</a></h2>
+<p>Käytämme alla olevaa HTML-runkoa, johon lisätään toiminnallisuutta useammassa vaiheessa. Alkuvaiheen runko on samanlainen, kuin aiemmatkin tämän materiaalin HTML-sivut.</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html lang="fi"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;title&gt;Tsekin nimipäiväkalenteri&lt;/title&gt;
+    &lt;script&gt;
+        // tähän kirjoitetaan JavaScript-sovellus, joka
+        // suorittaa varsinaisen  datan noudon ja käsittelyn
+    &lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h1&gt;Tsekin nimipäiväkalenteri&lt;/h1&gt;
+
+    &lt;!-- tähän täydennetään HTML-lomake päivämäärän valitsemiseksi --&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<h2 id="html-osion-täydennys-valmiiksi"><a class="header" href="#html-osion-täydennys-valmiiksi">HTML-osion täydennys valmiiksi</a></h2>
+<p>Ensin lisäämme kaksi riviä HTML-koodiin:</p>
+<ul>
+<li>label on pelkkä ohjeteksti</li>
+<li>lomakekenttä, johon käyttäjä voi valita kalenterista päivämäärän.</li>
+<li>id="paivamaara" antaa sille yksilöllisen tunnisteen, jota JavaScript voi käyttää.</li>
+</ul>
+<pre><code class="language-html">&lt;label for="paivamaara"&gt;Valitse päivämäärä:&lt;/label&gt;
+&lt;input type="date" id="paivamaara"&gt;
+</code></pre>
+<p>Lisätään nappi, jota painettaessa kutsutaan JavaScript-funktiota <code>haeNimipaiva()</code>. Funktiota ei vielä ole, mutta kirjoitamme sen itse.</p>
+<pre><code class="language-html">&lt;button onclick="haeNimipaiva()"&gt;Hae nimipäivä&lt;/button&gt;
+</code></pre>
+<p>Lisätään elementti, johon tulos (nimipäivä tai virheilmoitus) näytetään. Tässä käytetään teksikappale-elementtiä <code>&lt;p&gt;</code>, mutta muitakin voi käyttää. Tämäkin elementti vaatii tunnisteen (id), jotta JavaScriptilla on siihen pääsy. Tunniste "tulos" on aika tavalla itsensä selittävä.</p>
+<pre><code class="language-html">&lt;p id="tulos"&gt;&lt;/p&gt;
+</code></pre>
+<p>Nämä edellä luetellut neljä HTML-riviä lisätään <code>&lt;body&gt;</code>-elementin sisään siellä olevan kommentin sijaan.</p>
+<h2 id="javascript-funktio-api-kutsun-suorittamiseksi"><a class="header" href="#javascript-funktio-api-kutsun-suorittamiseksi">JavaScript-funktio API-kutsun suorittamiseksi</a></h2>
+<pre><code class="language-javascript">async function haeNimipaiva() {
+</code></pre>
+<ul>
+<li>Määritellään asynkroninen funktio nimeltä haeNimipaiva. Sitä voidaan käyttää await-avainsanan kanssa (odotetaan API-vastausta rauhassa ilman että selain jäätyy).</li>
+</ul>
+<h3 id="haetaan-päivämäärä"><a class="header" href="#haetaan-päivämäärä">Haetaan päivämäärä</a></h3>
+<pre><code class="language-javascript">const paiva = document.getElementById('paivamaara').value
+</code></pre>
+<ul>
+<li>Etsitään HTML:stä kenttä, jonka id on paivamaara.</li>
+<li>Otetaan sen arvo (value), eli käyttäjän valitsema päivämäärä. Se tulee muodossa "2025-04-16" (ISO-formaatti).</li>
+</ul>
+<h3 id="tarkistetaan-onko-päivämäärä-valittu"><a class="header" href="#tarkistetaan-onko-päivämäärä-valittu">Tarkistetaan, onko päivämäärä valittu</a></h3>
+<pre><code class="language-javascript">if (!paiva) {
+    alert('Valitse ensin päivämäärä!')
+    return
+}
+</code></pre>
+<ul>
+<li>Jos käyttäjä ei ole valinnut päivää, näytetään ilmoitus.</li>
+<li><code>return</code> lopettaa funktion suorittamisen tähän.</li>
+</ul>
+<h3 id="muotoillaan-päivämäärä-oikeaan-muotoon"><a class="header" href="#muotoillaan-päivämäärä-oikeaan-muotoon">Muotoillaan päivämäärä oikeaan muotoon</a></h3>
+<pre><code class="language-javascript">const paivaObj = new Date(paiva)
+</code></pre>
+<ul>
+<li>Luodaan JavaScriptin Date-objekti käyttäjän syötteestä.</li>
+</ul>
+<pre><code class="language-javascript">const paivaStr = ("0" + paivaObj.getDate()).slice(-2)
+const kuukausiStr = ("0" + (paivaObj.getMonth() + 1)).slice(-2)
+</code></pre>
+<ul>
+<li>getDate() palauttaa päivän (esim. 3). Lisäämme alkuun nollan ja otamme viimeiset 2 merkkiä → saadaan 03.</li>
+<li>getMonth() palauttaa kuukauden nollapohjaisesti (0 = tammikuu, 11 = joulukuu), joten lisätään +1.</li>
+<li>Lopputulos: jos päivä on 3. huhtikuuta, saadaan "03" ja "04".</li>
+</ul>
+<h3 id="rakennetaan-api-kutsun-osoite"><a class="header" href="#rakennetaan-api-kutsun-osoite">Rakennetaan API-kutsun osoite</a></h3>
+<pre><code class="language-javascript">const apiUrl = `https://svatky.adresa.info/json?date=${paivaStr}${kuukausiStr}`
+</code></pre>
+<ul>
+<li>Luodaan URL-osoite, jota API käyttää.</li>
+<li>Esimerkiksi 03.04. → API-kutsu on:</li>
+</ul>
+<pre><code class="language-javascript">https://svatky.adresa.info/json?date=0304
+</code></pre>
+<h3 id="tehdään-api-kutsu-ja-käsitellään-vastaus"><a class="header" href="#tehdään-api-kutsu-ja-käsitellään-vastaus">Tehdään API-kutsu ja käsitellään vastaus</a></h3>
+<pre><code class="language-javascript">const vastaus = await fetch(apiUrl)
+</code></pre>
+<ul>
+<li>Tehdään verkko- eli API-kutsu. await odottaa vastauksen saapumista.</li>
+</ul>
+<pre><code class="language-javascript">const tiedot = await vastaus.json()
+</code></pre>
+<ul>
+<li>Muutetaan saatu vastaus JSON-muotoon, jotta voimme käsitellä sitä JavaScriptillä.</li>
+</ul>
+<h3 id="näytetään-nimipäivä-tai-virheilmoitus"><a class="header" href="#näytetään-nimipäivä-tai-virheilmoitus">Näytetään nimipäivä tai virheilmoitus</a></h3>
+<pre><code class="language-javascript">if (tiedot.length &gt; 0) {
+    // nimitietueita voisi olla taulukkomuuttujassa useita
+    // otetaan ensimmäinen, eli alkio numero 0
+    let nimi = tiedot[0].name
+    // alla oleva pitkä koodirivi jatkuu kahdelle riville
+    document.getElementById('tulos').textContent = `Nimipäivä ${paivaStr}.${kuukausiStr}.: ${nimi}`
+} else {
+    // alla oleva pitkä koodirivi jatkuu kahdelle riville
+    document.getElementById('tulos').textContent = 'Ei löytynyt nimipäiviä valitulle päivälle.';
+}
+</code></pre>
+<ul>
+<li>Jos API palauttaa tietoa (taulukko ei ole tyhjä), tulostetaan nimipäivät.</li>
+<li><code>map(nimi =&gt; nimi.name)</code> hakee kaikki nimikentät taulukosta.</li>
+<li><code>join(', ')</code> yhdistää ne pilkulla erotetuksi listaksi.</li>
+<li>Jos mitään ei tule, ilmoitetaan ettei nimipäiviä löytynyt.</li>
+</ul>
+<h3 id="virheiden-käsittely"><a class="header" href="#virheiden-käsittely">Virheiden käsittely</a></h3>
+<pre><code class="language-javascript">} catch (virhe) {
+    document.getElementById('tulos').textContent = 'Virhe haettaessa nimipäivää.'
+    console.error(virhe)
+}
+</code></pre>
+<ul>
+<li>Jos kutsu epäonnistuu (esim. ei nettiä), näytetään virheilmoitus ja tulostetaan virhe konsoliin.</li>
+</ul>
+<h3 id="koko-sovellus-valmiina"><a class="header" href="#koko-sovellus-valmiina">Koko sovellus valmiina</a></h3>
+<p>Voit kokeilla tätä sovellusta klikkaamalla linkkiä: <a href="http://neutroni.hayo.fi/~peterf/nameday">Tsekin nimipäiväsovelluksen malli</a>.</p>
+<p>Alla koko koodi yhtenäisenä.</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html lang="fi"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;title&gt;Tsekin nimipäiväkalenteri&lt;/title&gt;
+    &lt;script&gt;
+        async function haeNimipaiva() {
+            const paiva = document.getElementById('paivamaara').value
+            if (!paiva) {
+                alert('Valitse ensin päivämäärä!')
+                return
+            }
+
+            const paivaObj = new Date(paiva)
+            const paivaStr = ("0" + paivaObj.getDate()).slice(-2)
+            const kuukausiStr = ("0" + (paivaObj.getMonth() + 1)).slice(-2)
+
+            // alla oleva pitkä koodirivi jatkuu kahdelle riville
+            const apiUrl = `https://svatky.adresa.info/json?date=${paivaStr}${kuukausiStr}`
+
+            try {
+                const vastaus = await fetch(apiUrl)
+                const tiedot = await vastaus.json()
+                if (tiedot.length &gt; 0) {
+                    // nimitietueita voisi olla taulukkomuuttujassa useita
+                    // otetaan ensimmäinen, eli alkio numero 0
+                    let nimi = tiedot[0].name
+                    // alla oleva pitkä koodirivi jatkuu kahdelle riville
+                    document.getElementById('tulos').textContent = 
+                        `Nimipäivä ${paivaStr}.${kuukausiStr}.: ${nimi}`
+                } else {
+                    // alla oleva pitkä koodirivi jatkuu kahdelle riville
+                    document.getElementById('tulos').textContent = 'Ei löytynyt nimipäiviä valitulle päivälle.'
+                }
+            } catch (virhe) {
+                // alla oleva pitkä koodirivi jatkuu kahdelle riville
+                document.getElementById('tulos').textContent = 'Virhe haettaessa nimipäivää.'
+                console.error(virhe)
+            }
+        }
+    &lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h1&gt;Tsekin nimipäiväkalenteri&lt;/h1&gt;
+
+    &lt;label for="paivamaara"&gt;Valitse päivämäärä:&lt;/label&gt;
+    &lt;input type="date" id="paivamaara"&gt;
+    &lt;button onclick="haeNimipaiva()"&gt;Hae nimipäivä&lt;/button&gt;
+
+    &lt;p id="tulos"&gt;&lt;/p&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<h2 id="nimipäiväpalvelun-api-kutsun-dataformaatit"><a class="header" href="#nimipäiväpalvelun-api-kutsun-dataformaatit">Nimipäiväpalvelun API-kutsun dataformaatit</a></h2>
+<h3 id="mitä-ja-missä-muodossa-sovellus-lähettää-nimipäiväpalveluun-api-kutsua-käyttäen"><a class="header" href="#mitä-ja-missä-muodossa-sovellus-lähettää-nimipäiväpalveluun-api-kutsua-käyttäen">Mitä ja missä muodossa sovellus lähettää nimipäiväpalveluun API-kutsua käyttäen?</a></h3>
+<ul>
+<li>URL-muoto:</li>
+</ul>
+<pre><code>https://svatky.adresa.info/json?date=DDMM
+</code></pre>
+<p>APIlle lähetetään yksi GET-parametri: <code>date</code></p>
+<ul>
+<li>Se koostuu päivästä ja kuukaudesta numeromuodossa, ilman välejä tai välimerkkejä</li>
+<li>Esim:
+<ul>
+<li>tammikuuta → 0101</li>
+<li>joulukuuta → 3112</li>
+</ul>
+</li>
+</ul>
+<h3 id="mitä-tietoa-sovellus-api-kutsun-jälkeen-vastaanottaa-ja-missä-muodossa"><a class="header" href="#mitä-tietoa-sovellus-api-kutsun-jälkeen-vastaanottaa-ja-missä-muodossa">Mitä tietoa sovellus API-kutsun jälkeen vastaanottaa ja missä muodossa?</a></h3>
+<p>API palauttaa JSON-muotoisen taulukon (array), jonka sisältö voi näyttää tältä:</p>
+<pre><code class="language-json">[
+  {
+    "name": "Radmila",
+    "date": "0304"
+  }
+]
+</code></pre>
+<ul>
+<li>Jokaisessa objektissa voisi olla useampi nimi.</li>
+<li>koska tällä hetkellä kuitenkin palautuneessa JSON-objektissa on vain yksi nimi vaikka se onkin taulukkomuuttujassa, saamme <code>tiedot</code>-taulukon ensimmäisen alkion käyttäen indeksiä 0 näin: <code>tiedot[0]</code></li>
+<li>kyseinen alkio sisältää kaksi kenttää:</li>
+<li>Kenttä <code>name</code> on nimipäivän nimi.</li>
+<li><code>date</code> on päivä ja kuukausi muodossa DDMM.</li>
+<li><code>name</code>-kentän sisältö saadaan <code>nimi = tiedot[0].name</code> sijoituksella muuttujaan <code>nimi</code>.</li>
+</ul>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="tekijät"><a class="header" href="#tekijät">Tekijät</a></h1>
+<p>Tällä sivustolla oleva materiaali on suunnattu ensisijaisesti SASKYn Koodaaja-koulutuksen hakuvaiheen orientaatiokurssin taustamateriaaliksi. Materiaali on toteutettu niin, että sitä voi käyttää myös itsenäiseen opiskeluun.</p>
+<p>Tämän materiaalin on tuottanut Pekka Tapio Aalto ja Peter Forsell.  Se on jaettu <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Nimeä 4.0 Kansainvälinen</a> -lisenssillä.</p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+
+            </nav>
+
+        </div>
+
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="elasticlunr.min.js"></script>
+        <script src="mark.min.js"></script>
+        <script src="searcher.js"></script>
+
+        <script src="clipboard.min.js"></script>
+        <script src="highlight.js"></script>
+        <script src="book.js"></script>
+
+        <!-- Custom JS scripts -->
+
+        <script>
+        window.addEventListener('load', function() {
+            window.setTimeout(window.print, 100);
+        });
+        </script>
+
+    </div>
+    </body>
+</html>
