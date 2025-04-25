@@ -11,4 +11,4 @@ Kirjastot ovat tyypillisesti valmiita paketteja, joiden käyttöön löytyy hyv�
  - Erilaiset merkkijonojen ja lukujen käsittelyt, kuten esimerkiksi [Day.js](https://github.com/iamkun/dayjs), jolla voi muotoilla päivämääriä haluttuun muotoon.
  - Web-sovellusten käyttöliittymien toteuttaminen on nopeampaa kirjastojen avulla. [React](https://react.dev/) on näistä yksi käytetyimmistä.
 
-Seuraavaksi tutustutaan esimerkkinä Mermaid-kirjaston käyttöön. 
+Suurin osa erilaisten ohjelmakirjastojen lähdekoodeista löytyy GitHub-palvelusta.     

@@ -1,6 +1,6 @@
 # Mermaid-kirjasto
 
-[Mermaid](https://mermaid.js.org/)-kirjasto mahdollistaa erilaisten kaavioiden lisääminen helposti HTML-sivulle. Mermaidin tehokkuus on siinä, että kaavion rakenne esitetään tietynlaisena tekstiesityksenä, josta kirjasto muodostaa graafisen esityksen.
+[Mermaid](https://mermaid.js.org/)-kirjasto mahdollistaa erilaisten kaavioiden lisääminen helposti HTML-sivulle. Mermaidin tehokkuus on siinä, että kaavion rakenne esitetään tietynlaisena tekstiesityksenä, josta kirjasto muodostaa graafisen esityksen. Kirjastoa ylläpidetään GitHub-palvelussa, sen lähdekoodi löytyy [mermaid](https://github.com/mermaid-js/mermaid)-projektisivulta.
 
 Seuraavaksi tutustutaan siihen, miten Mermaid-kirjasto lisätään osaksi HTML-sivua ja miten sillä piirretään kaavio.
 

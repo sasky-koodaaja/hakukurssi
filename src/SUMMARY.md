@@ -29,6 +29,7 @@
 # OSA 3 - Kaaviot
 
 - [JavaScript-kirjastot](./osa3/library.md)
+- [GitHub](./osa3/github.md)
 - [Mermaid-kirjasto](./osa3/mermaid.md)
 
 # OSA 4 - API-rajapinnat
